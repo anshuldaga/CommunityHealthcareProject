@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button defaultHref="/health-education" color="danger"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+        {{loadedTab.title}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/6kqe2ICmTxc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </ion-col>
+    </ion-row>
+    <ion-row><ion-col><p>{{loadedTab.description}}</p></ion-col></ion-row>
+  </ion-grid>
+</ion-content>

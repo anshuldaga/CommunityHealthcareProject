@@ -14,6 +14,20 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
+  },
+  { 
+    path: 'health-education', 
+    children: 
+    [
+      {
+        path: '',
+        loadChildren: './health-education/health-education.module#HealthEducationPageModule'
+      },
+      {
+        path: ':educationTabId',
+        loadChildren: './health-education/health-education-tab/health-education-tab.module#HealthEducationTabPageModule' 
+      }
+    ]
   }
 ];
 
