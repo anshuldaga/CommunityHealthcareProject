@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { EducationTab } from './health-education.model';
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class HealthEducationService 
 {
   private healthEducationTabs: EducationTab[] = 
@@ -11,24 +13,26 @@ export class HealthEducationService
     {
       id: 'v1',
       title: 'Video One', 
-      videoUrl: 'https://www.youtube.com/embed/6kqe2ICmTxc',
-      description: 'description lorem ipsum'
+      videoUrl: this.domSanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/6kqe2ICmTxc'),
+      description: 'description lorem ipsum',
+
     },
     {
       id: 'v2',
       title: 'Video Two', 
-      videoUrl: 'https://www.youtube.com/embed/6kqe2ICmTxc',
-      description: 'description lorem ipsum'
+      videoUrl: this.domSanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/6kqe2ICmTxc'),
+      description: 'description lorem ipsum',
     },
     {
       id: 'v3',
       title: 'Video Three', 
-      videoUrl: 'https://www.youtube.com/embed/6kqe2ICmTxc',
+      videoUrl: this.domSanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/6kqe2ICmTxc'),
       description: 'description lorem ipsum'
     }
   ];
 
-  constructor() { }
+
+  constructor(private domSanitizer: DomSanitizer){ }
 
   getAllEducationTabs()
   {

@@ -8,10 +8,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { YoutubeSanPipe } from './youtube-san.pipe';
 
 @NgModule({
-  declarations: [AppComponent, YoutubeSanPipe],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
