@@ -10,13 +10,27 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-          <iframe width="100%" height="315"  [src]="loadedTab.videoUrl"  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-      </ion-col>
-    </ion-row>
-    <ion-row><ion-col><p>{{loadedTab.description}}</p></ion-col></ion-row>
-  </ion-grid>
-</ion-content>
+
+
+  <ion-content>
+      <ion-list no-lines>
+        <ion-card *ngFor="let tab of loadedTab.testRach; let i=index" text-wrap  (click)="toggleLevel('index'+i)" [ngClass]="{active: isLevelShown('index'+i)}">
+          <ion-card-header>
+              <ion-item lines="none">
+                  <ion-avatar>
+                      <img src="https://img.youtube.com/vi/vyElbR6BzZ8/mqdefault.jpg">
+                    </ion-avatar>
+                    <ion-card-title>{{tab.videoTitle}}</ion-card-title>
+                    <ion-icon [name]="isLevelShown('index'+i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+                </ion-item>
+          </ion-card-header>
+          
+          <ion-card-content *ngIf="isLevelShown('index'+i)">
+              <ion-card-subtitle>{{tab.videoDescription}}</ion-card-subtitle>
+              <iframe width="100%" height="315"  [src]="tab.videoUrl"  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
+  </ion-content>
+
+

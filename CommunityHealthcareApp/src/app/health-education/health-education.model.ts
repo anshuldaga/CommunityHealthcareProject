@@ -1,10 +1,17 @@
 import { SafeResourceUrl } from '@angular/platform-browser';
 
+export interface pageVideoSection
+{
+    videoTitle: string;
+    videoDescription: string;
+    videoUrl: SafeResourceUrl;
+}
+
 export interface EducationTab
 {
     id: string;
     title: string;
-    videoUrl: SafeResourceUrl;
     description: string;
-    //trustedVideoUrl: SafeResourceUrl;
+    testRach: pageVideoSection[];
 }
+

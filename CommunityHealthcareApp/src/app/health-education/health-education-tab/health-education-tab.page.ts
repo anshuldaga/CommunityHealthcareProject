@@ -8,8 +8,10 @@ import { EducationTab } from '../health-education.model';
   templateUrl: './health-education-tab.page.html',
   styleUrls: ['./health-education-tab.page.scss'],
 })
+
 export class HealthEducationTabPage implements OnInit {
   loadedTab: EducationTab;
+  showLevel: null;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -25,5 +27,23 @@ export class HealthEducationTabPage implements OnInit {
       this.loadedTab = this.healthEducationService.getEducationTab(educationTabId);
     });
   }
+
+  isLevelShown(index) 
+  {
+    return this.showLevel === index;
+  };
+
+  toggleLevel(index) 
+  {
+    if (this.isLevelShown(index)) 
+    {
+      this.showLevel = null;
+    } 
+    else 
+    {
+      this.showLevel = index;
+    }
+  };
+
 
 }
