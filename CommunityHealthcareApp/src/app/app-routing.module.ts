@@ -11,10 +11,25 @@ const routes: Routes = [
     path: 'home',
     loadChildren: './home/home.module#HomePageModule'
   },
-  {
-    path: 'list',
-    loadChildren: './list/list.module#ListPageModule'
-  }
+  { 
+    path: 'health-education', 
+    children: 
+    [
+      {
+        path: '',
+        loadChildren: './health-education/health-education.module#HealthEducationPageModule'
+      },
+      {
+        path: ':educationTabId',
+        loadChildren: './health-education/health-education-tab/health-education-tab.module#HealthEducationTabPageModule' 
+      }
+    ]
+  },
+  { path: 'health-resources', loadChildren: './health-resources/health-resources.module#HealthResourcesPageModule' },
+  { path: 'health-log', loadChildren: './health-log/health-log.module#HealthLogPageModule' },
+  { path: 'health-card', loadChildren: './health-card/health-card.module#HealthCardPageModule' },
+  { path: 'health-calendar', loadChildren: './health-calendar/health-calendar.module#HealthCalendarPageModule' }
+
 ];
 
 @NgModule({
