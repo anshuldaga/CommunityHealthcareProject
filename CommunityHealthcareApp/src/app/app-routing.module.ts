@@ -27,8 +27,9 @@ const routes: Routes = [
   },
   { path: 'health-resources', loadChildren: './health-resources/health-resources.module#HealthResourcesPageModule' },
   { path: 'health-log', loadChildren: './health-log/health-log.module#HealthLogPageModule' },
-  { path: 'health-card', loadChildren: './health-card/health-card.module#HealthCardPageModule' },
-  { path: 'health-calendar', loadChildren: './health-calendar/health-calendar.module#HealthCalendarPageModule' }
+  { path: 'health-calendar', loadChildren: './health-calendar/health-calendar.module#HealthCalendarPageModule' },
+  { path: 'tabs', loadChildren: './health-card/tabs/tabs.module#TabsPageModule' },
+  { path: 'edit-information', loadChildren: './health-card/information/edit-information/edit-information.module#EditInformationPageModule' }
 
 ];
 

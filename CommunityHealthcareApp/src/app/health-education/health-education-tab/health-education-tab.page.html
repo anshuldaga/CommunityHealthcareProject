@@ -14,7 +14,7 @@
 
   <ion-content>
       <ion-list no-lines>
-        <ion-card *ngFor="let tab of loadedTab.testRach; let i=index" text-wrap  (click)="toggleLevel('index'+i)" [ngClass]="{active: isLevelShown('index'+i)}">
+        <ion-card *ngFor="let tab of loadedTab.vidSection; let i=index" text-wrap (click)="toggleLevel('index'+i)" [ngClass]="{active: isLevelShown('index'+i)}">
           <ion-card-header>
               <ion-item lines="none">
                   <ion-avatar>
@@ -27,7 +27,7 @@
           
           <ion-card-content *ngIf="isLevelShown('index'+i)">
               <ion-card-subtitle>{{tab.videoDescription}}</ion-card-subtitle>
-              <iframe width="100%" height="315"  [src]="tab.videoUrl"  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+              <iframe width="100%" height="315"  [src]="getTrustedHTML(tab.videoUrl)"  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </ion-card-content>
         </ion-card>
       </ion-list>
