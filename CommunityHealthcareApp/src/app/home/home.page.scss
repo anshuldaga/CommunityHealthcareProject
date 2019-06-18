@@ -3,6 +3,55 @@
   overflow: hidden;
 }
 
-.my-width{
-  width: 100px;
+ion-content {
+  background-color: #d7d8da;
+}
+
+.lightblues{
+  width: 150px;
+  height: 140px;
+  color: white;
+  background-color: #add8e6;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+}
+
+.darkblues{
+  width: 150px;
+  height: 140px;
+  color: white;
+  background-color: #191970;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+}
+
+.seagreen {
+  width: 150px;
+  height: 140px;
+  color: white;
+  background-color: #00ced1;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+}
+
+#notifications{
+  background-color: red;
+  position: absolute;
+  top: 0px;
+  right: 8px;
+  border-radius: 100%;
+
+}
+
+#first {
+  text-align : right;
+  color : #d7d8da;
+  font-size: 15px;
+}
+
+#second {
+  font-size:11.3px;
+}
+
+h1 {
+  font-size: 35px;
+  text-align: center;
+  float: top;
 }

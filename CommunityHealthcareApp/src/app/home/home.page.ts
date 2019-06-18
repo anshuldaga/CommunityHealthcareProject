@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
+ appTitle = 'HCAP';
+
+ calendar_Notifications = 5;
+ log_Notifications = 6;
+
+
 }
+
