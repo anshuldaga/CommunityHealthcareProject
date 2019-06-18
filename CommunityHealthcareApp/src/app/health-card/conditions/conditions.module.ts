@@ -2,10 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-
 import { IonicModule } from '@ionic/angular';
-
 import { ConditionsPage } from './conditions.page';
+import { AddConditionComponent } from './add-condition/add-condition.component';
 
 const routes: Routes = [
   {
@@ -21,6 +20,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ConditionsPage]
+  declarations: [ConditionsPage, AddConditionComponent],
+  entryComponents: [AddConditionComponent]
 })
 export class ConditionsPageModule {}
