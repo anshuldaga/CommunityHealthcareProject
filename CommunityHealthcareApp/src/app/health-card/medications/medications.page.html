@@ -1,9 +1,30 @@
 <ion-header>
-        <ion-toolbar>
-            <ion-title>Medications</ion-title>
-        </ion-toolbar>
-    </ion-header>
+    <ion-toolbar>
+        <ion-title>Medications</ion-title>
+    </ion-toolbar>
+</ion-header>
 
 <ion-content>
+    <ion-grid>
+        
+        <ion-row>
+            <ion-col>
+                <ion-button margin (click)="onAddMedication()">Add Medication</ion-button>
+            </ion-col>
+        </ion-row>
+        
+        <ion-row>
+            <ion-col>
+                <ion-list>
+                    <ion-item *ngFor="let medication of loadedMedications">
+                        <ion-label>
+                            <h2>{{medication.medication}}</h2>
+                            <p>{{medication.notes}}</p>
+                        </ion-label>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
 
+    </ion-grid>
 </ion-content>
