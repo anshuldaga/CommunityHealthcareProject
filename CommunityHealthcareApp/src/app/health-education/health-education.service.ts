@@ -53,21 +53,30 @@ export class HealthEducationService
   private healthEducationTabs: EducationTab[] = 
   [
     {
-      id: 'Tech_Insider',
-      title: 'Tech Insider', 
-      description: 'Videos on what you need to know about everything tech: innovation, gadgets, how-to\'s, gaming, and more, from the team at Business Insider',
+      id: 'Managing your Health',
+      title: 'Managing your Health', 
+      description1: 'Understanding Diabetes,',
+      description2: 'Managing High BP,', 
+      description3: 'What is HIV/AIDS ?',
+      image: "https://image.flaticon.com/icons/svg/838/838597.svg",
       testRach: this.tabOneVids
     },
     {
-      id: 'Seeker',
-      title: 'Seeker', 
-      description: 'Seeker exists where technology, innovation and the future collide. We celebrate relentless curiosity with an insatiable drive to question, inspire, and create.',
+      id: 'Healthcare Finances',
+      title: 'Healthcare Finances', 
+      description1: 'How to enroll in forms of insurance,', 
+      description2: 'Breaking down your health insurance',
+      description3: '',
+      image: "https://image.flaticon.com/icons/svg/755/755195.svg",
       testRach: this.tabTwoVids
     },
     {
-      id: 'Quartz',
-      title: 'Quartz', 
-      description: 'Quartz was founded in 2012 to serve a new kind of business leader with bracingly creative and intelligent journalism that\'s built for users first.',
+      id: 'Mental Health',
+      title: 'Mental Health', 
+      description1: 'Depression,',
+      description2: 'Managing Anxiety,',
+      description3: 'Substance Use and Mental Health',
+      image: "https://image.flaticon.com/icons/svg/1835/1835884.svg",
       testRach: this.tabThreeVids
     },
   ];
