@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HealthEducationService } from '../health-education.service';
-import { EducationTab } from '../health-education.model';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-health-education-tab',
@@ -10,12 +10,15 @@ import { EducationTab } from '../health-education.model';
 })
 
 export class HealthEducationTabPage implements OnInit {
-  loadedTab: EducationTab;
+  loadedTab: any;
   showLevel: null;
+  healthEducationTabs: any;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private healthEducationService: HealthEducationService) { }
+  constructor(private activatedRoute: ActivatedRoute,
+    private healthEducationService: HealthEducationService,
+    private domSanitizer: DomSanitizer,) 
+    {
+    }
 
   ngOnInit() 
   {
@@ -28,6 +31,11 @@ export class HealthEducationTabPage implements OnInit {
     });
   }
 
+  getTrustedHTML(vidUrl)
+  {
+    return this.domSanitizer.bypassSecurityTrustResourceUrl(vidUrl);
+  }
+
   isLevelShown(index) 
   {
     return this.showLevel === index;
@@ -37,7 +45,7 @@ export class HealthEducationTabPage implements OnInit {
   {
     if (this.isLevelShown(index)) 
     {
-      this.showLevel = null;
+      this.showLevel = index;
     } 
     else 
     {

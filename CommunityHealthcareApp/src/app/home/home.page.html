@@ -9,60 +9,59 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  
-  <ion-card class="welcome-card">
-      <ion-img src="/assets/shapes.svg"></ion-img>
-      <ion-card-header>
-        <ion-card-subtitle>Get Started</ion-card-subtitle>
-        <ion-card-title>Welcome to Community Healthcare App</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
-      </ion-card-content>
-    </ion-card>
+<ion-content>
+    <ion-list no-lines>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+              <ion-card [routerLink]="['/health-resources']">
+                <ion-card-content>
+                    <ion-card-title> Community Resources </ion-card-title>
+                </ion-card-content>
+              </ion-card>
+          </ion-col>
+          <ion-col>
+              <ion-card [routerLink]="['/health-education']">
+                <ion-card-content>
+                    <ion-card-title> Health Education </ion-card-title>
+                </ion-card-content>
+              </ion-card>
+          </ion-col>
+        </ion-row>
 
-  <ion-item text-center>
-    <ion-label>HCAP</ion-label>
-  </ion-item>
-  <ion-grid>
-    <ion-row>
-      <ion-col col-6>
-        <button ion-button color="secondary" routerLink="/health-resources" class="my-width" large >
-          <b>Community Resources</b>
-        </button>
-      </ion-col>
-      <ion-col col-6>
-        <button ion-button color="secondary" routerLink="/health-calendar" class="my-width" large >
-          <b>Health Calendar</b>
-        </button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-6>
-        <button ion-button color="secondary" routerLink="/health-log" class="my-width" large >
-          <b>Health Log</b>
-        </button>
-      </ion-col>
-      <ion-col col-6>
-        <button ion-button color="secondary" routerLink="/health-education" class="my-width" large >
-          <b>Health Education</b>
-        </button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-6>
-        <button ion-button color="secondary" routerLink="/health-card" class="my-width" large >
-          <b>Health Card</b>
-        </button>
-      </ion-col>
-      <ion-col col-6>
-        <button ion-button color="secondary" class="my-width" large >
-          <b>More Help</b>
-        </button>
-      </ion-col>
-    </ion-row>
-    
-  </ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-card [routerLink]="['/health-calendar']">
+                  <ion-card-content>
+                      <ion-card-title> Health Calendar </ion-card-title>
+                  </ion-card-content>
+                </ion-card>
+            </ion-col>
+            <ion-col>
+                <ion-card [routerLink]="['/tabs']">
+                  <ion-card-content>
+                      <ion-card-title> Health Card </ion-card-title>
+                  </ion-card-content>
+                </ion-card>
+            </ion-col>
+          </ion-row>
 
+          <ion-row>
+              <ion-col>
+                  <ion-card [routerLink]="['/health-log']">
+                    <ion-card-content>
+                        <ion-card-title> Health Log </ion-card-title>
+                    </ion-card-content>
+                  </ion-card>
+              </ion-col>
+              <ion-col>
+                  <ion-card [routerLink]="['/home']">
+                    <ion-card-content>
+                        <ion-card-title> More Help </ion-card-title>
+                    </ion-card-content>
+                  </ion-card>
+              </ion-col>
+            </ion-row>
+      </ion-grid>
+    </ion-list>
 </ion-content>

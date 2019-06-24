@@ -1,20 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { EducationTab } from './health-education.model';
 import { HealthEducationService } from './health-education.service';
+import {HttpClient} from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
 
 @Component({
   selector: 'app-health-education',
   templateUrl: './health-education.page.html',
   styleUrls: ['./health-education.page.scss'],
 })
-export class HealthEducationPage implements OnInit {
-  healthEducationTabs: EducationTab[];  
+export class HealthEducationPage{
+  healthEducationTabs: any;  
 
-  constructor(private healthEducationService: HealthEducationService) { }
-
-  ngOnInit() 
+  constructor(private healthEducationService: HealthEducationService, public http: HttpClient) 
   {
-    this.healthEducationTabs = this.healthEducationService.getAllEducationTabs();
+    this.loadData();
   }
 
+  loadData()
+  {
+    let data:Observable<any>;
+    data = this.http.get('assets/information.json');
+    data.subscribe(result => {
+        this.healthEducationTabs = result;
+      })
+  }
 }

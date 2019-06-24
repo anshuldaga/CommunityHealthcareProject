@@ -4,6 +4,10 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
+import { Router } from '@angular/router';
+
+
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
@@ -22,7 +26,7 @@ export class AppComponent {
     },
     {
       title: 'Health Card',
-      url: '/health-card',
+      url: '/tabs',
       icon: 'person'
     },
     {
@@ -41,13 +45,19 @@ export class AppComponent {
       icon: 'people'
     }
   ];
+  
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private router: Router
   ) {
     this.initializeApp();
+  }
+
+  ngOnInit() {
+    this.router.navigate([''])
   }
 
   initializeApp() {
