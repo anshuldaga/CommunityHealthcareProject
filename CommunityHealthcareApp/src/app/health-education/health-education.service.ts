@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { EducationTab, pageVideoSection } from './health-education.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,7 +8,7 @@ import { Observable } from 'rxjs';
 
 export class HealthEducationService 
 {
-    //private healthEducationTabs: any;
+    private healthEducationTabs: any;
 
 
   constructor(public http: HttpClient)
@@ -26,7 +25,7 @@ export class HealthEducationService
       description2: 'Managing High BP,', 
       description3: 'What is HIV/AIDS ?',
       image: "https://image.flaticon.com/icons/svg/838/838597.svg",
-      //testRach: this.tabOneVids
+      testRach: this.tabOneVids
     },
     {
       id: 'Healthcare Finances',
@@ -35,7 +34,7 @@ export class HealthEducationService
       description2: 'Breaking down your health insurance',
       description3: '',
       image: "https://image.flaticon.com/icons/svg/755/755195.svg",
-      //testRach: this.tabTwoVids
+      testRach: this.tabTwoVids
     },
     {
       id: 'Mental Health',
@@ -44,7 +43,7 @@ export class HealthEducationService
       description2: 'Managing Anxiety,',
       description3: 'Substance Use and Mental Health',
       image: "https://image.flaticon.com/icons/svg/1835/1835884.svg",
-      //testRach: this.tabThreeVids
+      testRach: this.tabThreeVids
     },
   ];
 

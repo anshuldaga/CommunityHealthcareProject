@@ -15,6 +15,6 @@ export interface EducationTab
     description2: string;
     description3: string;
     image: string;
-    //testRach: pageVideoSection[];
+    testRach: pageVideoSection[];
 }
 
