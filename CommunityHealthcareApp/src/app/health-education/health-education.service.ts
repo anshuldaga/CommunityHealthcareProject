@@ -15,6 +15,7 @@ export class HealthEducationService
   {
     this.loadData();
   }
+<<<<<<< HEAD
   
   private healthEducationTabs: EducationTab[] = 
   [
@@ -47,6 +48,8 @@ export class HealthEducationService
     },
   ];
 
+=======
+>>>>>>> parent of 0754d1c... Merge branch 'Front_End_Development' into Release1
 
   loadData()
   {
