@@ -12,6 +12,9 @@ import { EducationTab } from '../health-education.model';
 export class HealthEducationTabPage implements OnInit {
   loadedTab: EducationTab;
   showLevel: null;
+  title: string;
+  secondTitle: string;
+
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -25,9 +28,25 @@ export class HealthEducationTabPage implements OnInit {
       }
       const educationTabId = paramMap.get('educationTabId');
       this.loadedTab = this.healthEducationService.getEducationTab(educationTabId);
+      this.title = this.firstTitle(this.loadedTab.title);
+      this.secondTitle = this.loadedTab.title.replace(this.title, " ");
     });
   }
 
+  firstTitle(word:string){
+    let first = "";
+   for(let i = 0; i < word.length; i++){
+     if(word[i] != ' '){
+       first += word[i];
+     }
+     else{
+      break;
+     }
+   }
+   return first;
+  
+  };
+  
   isLevelShown(index) 
   {
     return this.showLevel === index;

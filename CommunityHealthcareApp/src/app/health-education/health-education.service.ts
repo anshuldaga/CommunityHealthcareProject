@@ -53,8 +53,8 @@ export class HealthEducationService
   private healthEducationTabs: EducationTab[] = 
   [
     {
-      id: 'Managing your Health',
-      title: 'Managing your Health', 
+      id: 'Managing Your Health',
+      title: 'Managing Your Health', 
       description1: 'Understanding Diabetes,',
       description2: 'Managing High BP,', 
       description3: 'What is HIV/AIDS ?',

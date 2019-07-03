@@ -2,25 +2,29 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-      <ion-back-button defaultHref="/health-education"></ion-back-button>
+      <ion-back-button defaultHref="/health-education" color = "danger"></ion-back-button>
     </ion-buttons>
     <ion-title>
         <p id = "first">Health Education</p> 
        </ion-title>
   </ion-toolbar>
 
-<ion-card class = "faded"></ion-card>
+<ion-card class = "faded">
+  <img id = "heart" src = "https://image.flaticon.com/icons/svg/1142/1142172.svg">
+  <ion-card-header id = "header">
+    {{title}}
+  </ion-card-header>
+  <ion-card-header id = "header2">
+    {{secondTitle}}
+  </ion-card-header>
+</ion-card>
 
-
-
-  <ion-content>
+<ion-content>
       <ion-list no-lines>
-        <ion-card *ngFor="let tab of loadedTab.testRach; let i=index" text-wrap  (click)="toggleLevel('index'+i)" [ngClass]="{active: isLevelShown('index'+i)}">
+        <ion-card style = "background-color:white;" *ngFor="let tab of loadedTab.testRach; let i=index" (click)="toggleLevel('index'+i)" [ngClass]="{active: isLevelShown('index'+i)}">
           <ion-card-header>
-              <ion-item lines="none">
-                  <ion-avatar>
-                      <img src="https://img.youtube.com/vi/vyElbR6BzZ8/mqdefault.jpg">
-                    </ion-avatar>
+              <ion-item lines="none">    
+                     <img id = "video" src="https://image.flaticon.com/icons/svg/174/174883.svg">
                     <ion-card-title>{{tab.videoTitle}}</ion-card-title>
                     <ion-icon [name]="isLevelShown('index'+i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
                 </ion-item>
@@ -32,6 +36,10 @@
           </ion-card-content>
         </ion-card>
       </ion-list>
+
+      <ion-title>
+    <p id = "topics">More Topics Coming Soon!</p>
+      </ion-title>
   </ion-content>
 
 

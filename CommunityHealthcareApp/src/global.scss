@@ -12,7 +12,7 @@
 
 #first {
     text-align : right;
-    color : #d7d8da;
+    color : #cacbcc;
     font-size: 15px;
     font-weight: 400;
   }
@@ -21,4 +21,20 @@
     font-size: 35px;
     text-align: center;
     float: top;
+  }
+
+  ion-content {
+    --background: #f7f7f7;
+   
+  }
+
+  ion-list{
+    background-color: #f7f7f7 !important;
+  }
+
+  #topics{
+    text-align:center;
+    color:#7d8188;
+    font-weight:360;
+    font-size:17px;
   }
