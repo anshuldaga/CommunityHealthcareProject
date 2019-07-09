@@ -4,10 +4,6 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { Router } from '@angular/router';
-
-
-
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
@@ -20,44 +16,18 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'Health Calendar',
-      url: '/health-calendar',
-      icon: 'calendar'
-    },
-    {
-      title: 'Health Card',
-      url: '/tabs',
-      icon: 'person'
-    },
-    {
-      title: 'Health Education',
-      url: '/health-education',
-      icon: 'book'
-    },
-    {
-      title: 'Health Log',
-      url: '/health-log',
-      icon: 'document'
-    },
-    {
-      title: 'Health Resources',
-      url: '/health-resources',
-      icon: 'people'
+      title: 'List',
+      url: '/list',
+      icon: 'list'
     }
   ];
-  
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
-    private router: Router
+    private statusBar: StatusBar
   ) {
     this.initializeApp();
-  }
-
-  ngOnInit() {
-    this.router.navigate([''])
   }
 
   initializeApp() {
