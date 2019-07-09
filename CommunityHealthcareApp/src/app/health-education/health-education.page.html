@@ -2,33 +2,15 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-      <ion-back-button defaultHref = "/home"></ion-back-button>
     </ion-buttons>
-    <ion-title>
-        <p id = "first">Health Education</p> 
-       </ion-title>
+    <ion-title>Health Education</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-title>
-      <h1>
-          <b>Learning Modules</b>
-          </h1>
-          <p id = "select">Please select a module below to learn more!</p>
-  </ion-title>
-    <ion-list no lines>
-  <ion-card  class = "darks" *ngFor="let tab of healthEducationTabs" [routerLink]="['/health-education', tab.id]" [class.lights] = "tab.id == 'Healthcare Finances'">
-    <img src = {{tab.image}}>
-    <ion-card-header> 
-      <b>{{tab.title}} </b>
-    </ion-card-header>
-      <ion-card-content>
-        <p>{{tab.description1}}</p>
-        <p>{{tab.description2}}</p>
-        <p>{{tab.description3}}</p>
-        </ion-card-content>
-    </ion-card>
-    </ion-list>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let tab of healthEducationTabs" [routerLink]="['/health-education', tab.id]">
+      <ion-label> {{tab.title}} </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
-

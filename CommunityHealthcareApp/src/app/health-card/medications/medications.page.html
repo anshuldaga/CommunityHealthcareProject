@@ -9,7 +9,10 @@
         
         <ion-row>
             <ion-col>
-                <ion-button margin (click)="onAddMedication()">Add Medication</ion-button>
+                <ion-button margin (click)="onAddMedication()">Add</ion-button>
+            </ion-col>
+            <ion-col>
+                <ion-button margin *ngIf="loadedMedications.length > 0" (click)="onDeleteMedication()">{{buttonText}}</ion-button>
             </ion-col>
         </ion-row>
         
@@ -21,6 +24,9 @@
                             <h2>{{medication.medication}}</h2>
                             <p>{{medication.notes}}</p>
                         </ion-label>
+                        <ion-button *ngIf="canDelete" (click)="delete(medication.id)">
+                            <ion-icon name="trash"></ion-icon>
+                        </ion-button>
                     </ion-item>
                 </ion-list>
             </ion-col>

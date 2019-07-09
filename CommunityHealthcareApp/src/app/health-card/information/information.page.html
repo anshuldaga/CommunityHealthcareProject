@@ -15,44 +15,47 @@
         <ion-card>
             <ion-card-content>
                 <ion-card-title> Weight </ion-card-title>
-                <ion-card-subtitle> Empty </ion-card-subtitle>
+                <ion-card-subtitle> {{loadedInformation.weight}} </ion-card-subtitle>
             </ion-card-content>
         </ion-card>
         <ion-card>
                 <ion-card-content>
                     <ion-card-title> Height </ion-card-title>
-                    <ion-card-subtitle> Empty </ion-card-subtitle>
+                    <ion-card-subtitle> {{loadedInformation.height_feet}}' {{loadedInformation.height_inches}}"</ion-card-subtitle>
                 </ion-card-content>
         </ion-card>
         <ion-card>
                 <ion-card-content>
                     <ion-card-title> Blood Type </ion-card-title>
-                    <ion-card-subtitle> Empty </ion-card-subtitle>
+                    <ion-card-subtitle> {{loadedInformation.bloodtype}} </ion-card-subtitle>
                 </ion-card-content>
         </ion-card>
         <ion-card>
                 <ion-card-content>
                     <ion-card-title> Birthday </ion-card-title>
-                    <ion-card-subtitle> Empty </ion-card-subtitle>
+                    <ion-card-subtitle>{{loadedInformation.birthday | date}}</ion-card-subtitle>
                 </ion-card-content>
         </ion-card>
         <ion-card>
                 <ion-card-content>
                     <ion-card-title> Contacts</ion-card-title>
-                    <ion-card-subtitle> Empty </ion-card-subtitle>
-                </ion-card-content>
-        </ion-card>
-        <ion-card>
-                <ion-card-content>
-                    <ion-card-title> Allergies </ion-card-title>
-                    <ion-card-subtitle> Empty </ion-card-subtitle>
+                    <ion-card-subtitle>Primary: {{loadedInformation.primary_contact}}</ion-card-subtitle>
+                    <ion-card-subtitle>Secondary: {{loadedInformation.secondary_contact}}</ion-card-subtitle>
                 </ion-card-content>
         </ion-card>
         <ion-card>
                 <ion-card-content>
                     <ion-card-title> Health Insurance Providers </ion-card-title>
-                    <ion-card-subtitle> Empty </ion-card-subtitle>
+                    <ion-card-subtitle>Medical Insurance: {{loadedInformation.medical_insurance}}</ion-card-subtitle>
+                    <ion-card-subtitle>Dental Insurance: {{loadedInformation.dental_insurance}}</ion-card-subtitle>
                 </ion-card-content>
         </ion-card>
+        <ion-card>
+                <ion-card-content>
+                    <ion-card-title> Allergies </ion-card-title>
+                    <ion-card-subtitle>{{loadedInformation.allergy_notes}}</ion-card-subtitle>
+                </ion-card-content>
+        </ion-card>
+
     </ion-list>
 </ion-content>

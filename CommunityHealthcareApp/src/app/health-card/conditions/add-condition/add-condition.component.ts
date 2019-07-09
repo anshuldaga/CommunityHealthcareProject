@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, OnInit, ViewChild} from '@angular/core';
+import { ModalController, LoadingController } from '@ionic/angular';
 import { FormGroup, NgForm } from '@angular/forms';
 import { ConditionsService } from '../conditions.service';
 
@@ -12,7 +12,8 @@ export class AddConditionComponent implements OnInit {
   @ViewChild('f') form: NgForm;
 
   constructor(private modalCtrl: ModalController,
-    private conditionsService: ConditionsService) { }
+    private conditionsService: ConditionsService,
+    private loadingCtrl: LoadingController) { }
 
   ngOnInit() 
   {
@@ -23,10 +24,6 @@ export class AddConditionComponent implements OnInit {
     this.modalCtrl.dismiss(null, 'cancel');
   }
 
-  ionViewWillLeave()
-  {
-    console.log("BYE");
-  }
 
   onConditionEntered()
   {
@@ -34,10 +31,18 @@ export class AddConditionComponent implements OnInit {
     {
       return;
     }
-    this.conditionsService.addCondition(this.form.value['condition'], this.form.value['description']);
-    this.modalCtrl.dismiss( { conditionData: {
-      condition: this.form.value['condition'],
-      description: this.form.value['description']
-    }}, 'confirm');
+    this.loadingCtrl.create({
+      message: 'Updating...'
+    }).then(loadingEl => {
+      loadingEl.present();
+      this.conditionsService.addCondition(this.form.value['condition'], 
+      this.form.value['description']).subscribe(() => {
+        loadingEl.dismiss();
+        this.modalCtrl.dismiss( { conditionData: {
+          condition: this.form.value['condition'],
+          description: this.form.value['description']
+        }}, 'confirm');
+      });
+    });
   }
 }

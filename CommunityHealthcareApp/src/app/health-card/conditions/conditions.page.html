@@ -9,7 +9,10 @@
         
         <ion-row>
             <ion-col>
-                <ion-button margin (click)="onAddCondition()">Add Condition</ion-button>
+                <ion-button margin (click)="onAddCondition()">Add</ion-button>
+            </ion-col>
+            <ion-col>
+                <ion-button margin *ngIf="loadedConditions.length > 0" (click)="onDeleteCondition()">{{buttonText}}</ion-button>
             </ion-col>
         </ion-row>
         
@@ -21,6 +24,9 @@
                             <h2>{{condition.condition}}</h2>
                             <p>{{condition.description}}</p>
                         </ion-label>
+                        <ion-button *ngIf="canDelete" (click)="delete(condition.id)">
+                            <ion-icon name="trash"></ion-icon>
+                        </ion-button>
                     </ion-item>
                 </ion-list>
             </ion-col>

@@ -11,34 +11,74 @@
 </ion-header>
 
 <ion-content>
+  <form (ngSubmit)="onInformationEntered()" #f="ngForm">
   <ion-grid>
     <ion-row>
       <ion-col>
           <ion-item>
-              <ion-label position="floating">Weight</ion-label>
-              <ion-input  placeholder="140" type="number" autocomplete autocorrect></ion-input>
+              <ion-label position="floating">Height (feet)</ion-label>
+              <ion-input 
+              type="number" 
+              ngModel={{loadedInformation.height_feet}}
+              name="height_feet"
+              required></ion-input>
             </ion-item>
       </ion-col>
       <ion-col>
           <ion-item>
-              <ion-label position="floating">Height</ion-label>
-              <ion-input  placeholder="5 11" type="number" autocomplete autocorrect></ion-input>
+              <ion-label position="floating">Height (inches)</ion-label>
+              <ion-input  
+              type="number" 
+              ngModel={{loadedInformation.height_inches}}
+              name="height_inches"
+              required></ion-input>
             </ion-item>
       </ion-col>
     </ion-row>
 
+    <ion-row>
+      <ion-col>
+          <ion-item>
+              <ion-label position="floating">Weight (pounds)</ion-label>
+              <ion-input 
+              type="number" 
+              ngModel={{loadedInformation.weight}}
+              name="weight"
+              required></ion-input>
+            </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+            <ion-label position="floating">Bloodtype</ion-label>
+            <ion-input
+            type="text" 
+            ngModel="{{loadedInformation.bloodtype}}"
+            name="bloodtype"
+            required></ion-input>
+          </ion-item>
+    </ion-col>
+    </ion-row>    
+
       <ion-row>
           <ion-col>
               <ion-item>
-                  <ion-label position="floating">Primary Contact</ion-label>
-                  <ion-input  placeholder="555-555-5555" type="text" autocomplete autocorrect></ion-input>
+                  <ion-label position="floating">Primary Contact (enter with no dashes)</ion-label>
+                  <ion-input 
+                  type="number" 
+                  ngModel={{loadedInformation.primary_contact}}
+                  name="primary_contact"
+                  required></ion-input>
                 </ion-item>
           </ion-col>
 
           <ion-col>
               <ion-item>
-                  <ion-label position="floating">Secondary Contact</ion-label>
-                  <ion-input  placeholder="222-222-2222" type="text" autocomplete autocorrect></ion-input>
+                  <ion-label position="floating">Secondary Contact  (enter with no dashes)</ion-label>
+                  <ion-input 
+                  type="number" 
+                  ngModel={{loadedInformation.secondary_contact}}
+                  name="secondary_contact"
+                  required></ion-input>
                 </ion-item>
           </ion-col>
         </ion-row>
@@ -46,51 +86,61 @@
           <ion-row>
               <ion-col>
                   <ion-item>
-                      <ion-label position="floating">Dental Insurance</ion-label>
-                      <ion-input  placeholder="Delta Dental" type="text" autocomplete autocorrect></ion-input>
+                      <ion-label position="floating">Medical Insurance</ion-label>
+                      <ion-input 
+                      type="text" 
+                      ngModel="{{loadedInformation.medical_insurance}}"
+                      name="medical_insurance"
+                      required></ion-input>
                     </ion-item>
               </ion-col>
               <ion-col>
                   <ion-item>
-                      <ion-label position="floating">Medical Insurance</ion-label>
-                      <ion-input  placeholder="United Healthcare" type="text" autocomplete autocorrect></ion-input>
+                      <ion-label position="floating">Dental Insurance</ion-label>
+                      <ion-input 
+                      type="text" 
+                      ngModel="{{loadedInformation.dental_insurance}}"
+                      name="dental_insurance"
+                      required></ion-input>
                     </ion-item>
               </ion-col>
             </ion-row>
             
-            
-            <ion-row>
-                <ion-col>
-                    <ion-item>
-                        <ion-label position="floating">Bloodtype</ion-label>
-                        <ion-input  placeholder="A+" type="text" autocomplete autocorrect></ion-input>
-                      </ion-item>
-                </ion-col>
-              </ion-row>    
               
       <ion-row>
         <ion-col>
           <ion-item>
             <ion-label position="floating">Birthday</ion-label>
-          <ion-datetime placeholder="Mar 1, 1984"></ion-datetime>
+          <ion-datetime 
+          type="text" 
+          ngModel="{{loadedInformation.birthday}}"
+          name="birthday"
+          required></ion-datetime>
         </ion-item>
       </ion-col>
     </ion-row>  
     
-    
     <ion-row>
       <ion-col>
-          <ion-title>Allergies</ion-title>
+          <ion-item>
+            <ion-label position="floating">Allergy Notes</ion-label>
+            <ion-input  
+            type="text" 
+            ngModel="{{loadedInformation.allergy_notes}}"
+            name="allergy_notes"
+            required></ion-input>
+          </ion-item>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>
-          <ion-item>
-            <ion-label position="floating">Allergies</ion-label>
-            <ion-input  placeholder="Peanuts" type="text" autocomplete autocorrect></ion-input>
-          </ion-item>
-          <ion-button>Add</ion-button>
+        <ion-button
+        type="submit" 
+        color="danger"
+        expand="blocked" 
+        [disabled]="!f.valid"
+        >Update</ion-button>
       </ion-col>
     </ion-row>
 
@@ -103,4 +153,5 @@
     </ion-row>
 
   </ion-grid>
+</form>
 </ion-content>

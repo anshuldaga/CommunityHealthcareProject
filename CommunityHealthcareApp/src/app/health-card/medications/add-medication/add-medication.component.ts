@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, LoadingController} from '@ionic/angular';
 import { FormGroup, NgForm } from '@angular/forms';
 import { MedicationsService } from '../medications.service';
 
@@ -13,7 +13,8 @@ export class AddMedicationComponent implements OnInit
   @ViewChild('f') form: NgForm;
 
   constructor(private modalCtrl: ModalController,
-    private medicationsService: MedicationsService) { }
+    private medicationsService: MedicationsService,
+    private loadingCtrl: LoadingController) { }
 
   ngOnInit() 
   {
@@ -23,22 +24,25 @@ export class AddMedicationComponent implements OnInit
   {
     this.modalCtrl.dismiss(null, 'cancel');
   }
-
-  ionViewWillLeave()
-  {
-    console.log("BYE");
-  }
-
+  
   onMedicationEntered()
   {
     if(!this.form.valid)
     {
       return;
     }
-    this.medicationsService.addMedication(this.form.value['medication'], this.form.value['notes']);
-    this.modalCtrl.dismiss( { conditionData: {
-      medication: this.form.value['medication'],
-      notes: this.form.value['notes']
-    }}, 'confirm');
+    this.loadingCtrl.create({
+      message: 'Updating...'
+    }).then(loadingEl => {
+      loadingEl.present();
+      this.medicationsService.addMedication(this.form.value['medication'], this.form.value['notes']
+      ).subscribe(() => {
+        loadingEl.dismiss();
+        this.modalCtrl.dismiss( {conditionData: {
+          medication: this.form.value['medication'],
+          notes: this.form.value['notes']
+        }}, 'confirm');
+      });
+    });
   }
 }

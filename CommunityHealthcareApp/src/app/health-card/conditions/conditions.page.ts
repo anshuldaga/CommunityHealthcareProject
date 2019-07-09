@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ConditionsService} from './conditions.service'
 import {Condition} from './conditions.model';
-import { ModalController } from '@ionic/angular';
+import { ModalController, LoadingController } from '@ionic/angular';
 import { AddConditionComponent } from './add-condition/add-condition.component';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -11,32 +12,65 @@ import { AddConditionComponent } from './add-condition/add-condition.component';
   styleUrls: ['./conditions.page.scss'],
 })
 
-export class ConditionsPage implements OnInit {
+export class ConditionsPage implements OnInit, OnDestroy {
 
   loadedConditions: Condition[]; 
+  private loadedConditionsSub: Subscription;
+  public buttonText = 'Delete';
+  public canDelete: boolean = false;
 
   constructor(private conditionsService: ConditionsService,
-    private modalCtrl: ModalController) 
+    private modalCtrl: ModalController,
+    private loadingCtrl: LoadingController) 
   {
-      this.loadedConditions = this.conditionsService.getConditions();
   }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
+    this.loadedConditionsSub = this.conditionsService.conditions.subscribe(condition => {
+      this.loadedConditions= condition;
+    });
   }
 
-  ionViewWillEnter()
+  ngOnDestroy()
   {
-    console.log("HELLO");
+    if(this.loadedConditionsSub)
+    {
+        this.loadedConditionsSub.unsubscribe();
+    }
   }
-  
+
   onAddCondition()
   {
+    this.canDelete = false;
+    this.buttonText = 'Delete';
       this.modalCtrl
       .create({component: AddConditionComponent})
       .then(modalEl => {
         modalEl.present();
         return modalEl.onDidDismiss();
       });
+  }
+
+  delete(id: string)
+  {
+    this.loadingCtrl.create({
+      message: 'Updating...'
+    }).then(loadingEl => {
+      loadingEl.present();
+    this.conditionsService.deleteCondition(id).subscribe(() => {
+      loadingEl.dismiss();
+    });
+  });
+  }
+
+  onDeleteCondition()
+  {
+    this.canDelete = !this.canDelete;
+    if(this.buttonText === "Delete")
+        this.buttonText = "Done";
+    else
+      this.buttonText = "Delete";
   }
 
 }
