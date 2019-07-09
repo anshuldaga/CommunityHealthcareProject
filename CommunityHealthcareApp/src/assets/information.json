@@ -1,0 +1,48 @@
+[
+  {
+    "id": "Tech_Insider",
+    "title": "Tech Insider", 
+    "description": "Videos on what you need to know about everything tech: innovation, gadgets, how-to's, gaming, and more, from the team at Business Insider",
+    "vidSection": [
+      {
+        "videoTitle": "Why Is It So Hard To Switch From Apple to Android?",
+        "videoDescription": "iPhone users have a hard time switching over to Android because they're integrated into Apple's ecosystem. Apple's software, products, and accessories locked in. However, Google is making the switch to Android a little easier.",
+        "videoUrl": "https://www.youtube.com/embed/vyElbR6BzZ8"
+      },
+      {
+        "videoTitle": "23 iPhone Tricks To Make Your Life Easier",
+        "videoDescription": "The iPhone can do a lot of things, but many of its best features are buried in various menus you may not even know about. From perfect overhead shots to a hidden dark mode, here are some of our favorite iPhone tricks.",
+        "videoUrl": "https://www.youtube.com/embed/U52mI00gmPU"
+      }
+    ]
+  },
+  {
+    "id": "Seeker",
+    "title": "Seeker", 
+    "description": "Seeker exists where technology, innovation and the future collide. We celebrate relentless curiosity with an insatiable drive to question, inspire, and create.",
+    "vidSection": [
+      {
+        "videoTitle": "There Are Gravity Pulses Hiding in the Universe’s Most MASSIVE Stars",
+        "videoDescription": "Blue supergiant stars some of the hottest, biggest young stars in the universe, and their molten cores can reveal more about the formation of everything.",
+        "videoUrl": "https://www.youtube.com/embed/wI-vP1_JnNM"
+      }
+    ]
+  },
+  {
+    "id": "Quartz",
+    "title": "Quartz", 
+    "description": "Quartz was founded in 2012 to serve a new kind of business leader with bracingly creative and intelligent journalism that's built for users first.",
+    "vidSection": [
+      {
+        "videoTitle": "How Bill Gates remembers what he reads",
+        "videoDescription": "Bill Gates is a voracious reader. In conversation with him, i's striking how frequently he cites things he's read. So he doesn't just read a lot of books, but he remembers what he reads as well.",
+        "videoUrl": "https://www.youtube.com/embed/8xwh88cI_d8"
+      },
+      {
+        "videoTitle": "Farms under the sea could feed the world in 2050",
+        "videoDescription": "Agriculture may not be able to feed the extra 2 billion people that are estimated to inhabit Earth by 2050.",
+        "videoUrl": "https://www.youtube.com/embed/Pm58yVMT3MY"
+      }
+    ]
+  }
+]
