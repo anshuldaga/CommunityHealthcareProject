@@ -1,18 +1,18 @@
 const mysql = require('mysql');
 const express = require('express');
-const cors = require('cors');
+//const cors = require('cors');
 var app = express();
 const bodyparser = require('body-parser');
 
 
 
 app.use(bodyparser.json());
-app.use(cors());
+//app.use(cors());
 
 
 
-const user = require('./routes/userRoute');
-app.use(user);
+//const user = require('./routes/userRoute');
+//app.use(user);
 
 
 
@@ -20,7 +20,7 @@ var mysqlConnection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'password',
-    database: 'hcap',
+    database: 'EmployeeDB',
     multipleStatements: true
 });
 
