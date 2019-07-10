@@ -1,5 +1,7 @@
 {
   "name": "CommunityHealthcareApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
