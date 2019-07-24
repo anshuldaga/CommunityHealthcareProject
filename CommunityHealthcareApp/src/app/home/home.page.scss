@@ -10,6 +10,7 @@
   color: white;
   background-color: #add8e6;
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+  margin:3px;
 }
 
 .darkblues{
@@ -18,6 +19,7 @@
   color: white;
   background-color: #191970;
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+  margin:3px;
 }
 
 .seagreen {
@@ -26,6 +28,7 @@
   color: white;
   background-color: #00ced1;
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+  margin:3px;
 }
 
 #notifications{
@@ -39,6 +42,18 @@
 
 #second {
   font-size:11.3px;
+}
+
+h1 {
+  font-size: 35px;
+  text-align: center;
+  float: top;
+  margin-bottom:0px;
+  margin-top:0px;
+}
+
+ion-grid{
+  margin-top:0px;
 }
 
 

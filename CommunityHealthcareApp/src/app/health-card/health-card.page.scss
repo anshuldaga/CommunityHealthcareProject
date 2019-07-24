@@ -70,7 +70,6 @@ ion-card-title{
      margin-bottom:15px;
      width:360px;
      background-color:white;
-     box-shadow: none;
      
  }
 
@@ -88,6 +87,7 @@ ion-card-title{
      font-size:15px;
     top:13px;
     left:10px;
+    margin-bottom:5px;
  }
 
  ion-item{
@@ -96,9 +96,32 @@ ion-card-title{
      height:30px;
  }
 
- ion-content{
-     text-align:top left;
+ .tabs{
+     color:white;
+     bottom: 0px;
+     position: absolute;
+     margin-bottom: 0px;
+     padding-bottom:0px;
  }
  
+ .tab{
+     color: white;
+     --box-shadow: none;
+     --background: transparent;
+     text-transform: none;
+     font-weight:350;
+     --border: white;
+     --ripple-color: transparent; 
+ }
+
+ ion-card-content{
+    margin-top:5px;
+    
+ ion-chip{
+     height:20px;
+     font-size:13px;
+ }
+}
+
 
     

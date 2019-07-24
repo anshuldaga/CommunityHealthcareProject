@@ -17,11 +17,6 @@
     font-weight: 400;
   }
 
-  h1 {
-    font-size: 35px;
-    text-align: center;
-    float: top;
-  }
 
   ion-content {
     --background: #f7f7f7;
@@ -29,7 +24,7 @@
   }
 
   ion-list{
-    background-color: #f7f7f7 !important;
+    background-color: transparent !important;
   }
 
   #topics{

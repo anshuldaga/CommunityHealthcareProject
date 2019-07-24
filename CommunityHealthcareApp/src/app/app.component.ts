@@ -16,6 +16,16 @@ export class AppComponent {
       icon: 'home'
     },
     {
+      title: 'Health Resources',
+      url: '/health-resources',
+      icon: 'people'
+    },
+    {
+      title: 'Health Education',
+      url: '/health-education',
+      icon: 'book'
+    },
+    {
       title: 'Health Calendar',
       url: '/health-calendar',
       icon: 'calendar'
@@ -26,19 +36,9 @@ export class AppComponent {
       icon: 'person'
     },
     {
-      title: 'Health Education',
-      url: '/health-education',
-      icon: 'book'
-    },
-    {
       title: 'Health Log',
       url: '/health-log',
       icon: 'document'
-    },
-    {
-      title: 'Health Resources',
-      url: '/health-resources',
-      icon: 'people'
     }
   ];
 
