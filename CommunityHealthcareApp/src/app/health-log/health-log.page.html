@@ -4,90 +4,89 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen class="ion-padding">
+    <ion-text>
+        <h1>Weekly Health Logs</h1>
+    </ion-text>
+      
+        <ion-row>
+            <ion-col size="4" text-left>
+              <ion-button fill="clear" (click)="back()">      
+                <ion-icon name="arrow-back" slot="icon-only"></ion-icon>      
+              </ion-button>      
+            </ion-col>
+  
+            <ion-col size="4" text-center>
+                <ion-button  color="primary" (click)="today()">      
+                  current     
+                </ion-button>      
+              </ion-col>
+  
+            <ion-col size="4" text-right>      
+              <ion-button fill="clear" (click)="next()">      
+                <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>      
+              </ion-button>      
+            </ion-col>
+      </ion-row>
+      
+      <ng-template #temp let-viewDate="viewDate" let-log="log"> 
+        <div class="custom-day-header"> 
+          {{ viewDate.dayHeader.substr(0,1)}} 
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Insulin Log</ion-card-title>
-      <ion-card-subtitle>Notes</ion-card-subtitle>
-      <ion-button  [routerLink]="['/health-log/insulin-log']">
-          Details
-    </ion-button>
-    </ion-card-header>
-    <ion-card-content>
-        <ion-list>
-            <ion-checkbox></ion-checkbox>
-            <ion-checkbox></ion-checkbox>
-            <ion-checkbox></ion-checkbox>
-            <ion-checkbox></ion-checkbox>
-            <ion-checkbox></ion-checkbox>
-            <ion-checkbox></ion-checkbox>
-            <ion-checkbox></ion-checkbox>
-        </ion-list>
-    </ion-card-content>
-  </ion-card>
+          <div *ngIf="log == 'Insulin'">
+              <div *ngIf="isChecked(viewDate.date, 'isInsulin')">
+                  <ion-checkbox checked="true" (click)="deleteEvent(viewDate.date, 'isInsulin')"></ion-checkbox>
+              </div>
+              <div *ngIf="!isChecked(viewDate.date , 'isInsulin')">
+                <ion-checkbox checked="false" (click)="addEvent(viewDate.date, 'isInsulin')"></ion-checkbox>
+              </div>
+          </div>
 
-  <ion-card>
-    <ion-card-header>
-        <ion-card-title>Blood Pressure Log</ion-card-title>
-        <ion-card-subtitle>Notes</ion-card-subtitle>
-        <ion-button  [routerLink]="['/health-log/bloodpressure-log']">
-          Details
-    </ion-button>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list>
-          <ion-checkbox></ion-checkbox>
-          <ion-checkbox></ion-checkbox>
-          <ion-checkbox></ion-checkbox>
-          <ion-checkbox></ion-checkbox>
-          <ion-checkbox></ion-checkbox>
-          <ion-checkbox></ion-checkbox>
-          <ion-checkbox></ion-checkbox>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+          <div *ngIf="log == 'BP'">
+            <div *ngIf="isChecked(viewDate.date , 'isBP')">
+                <ion-checkbox checked="true" (click)="deleteEvent(viewDate.date, 'isBP')"></ion-checkbox>
+            </div>
+            <div *ngIf="!isChecked(viewDate.date , 'isBP')">
+              <ion-checkbox checked="false" (click)="addEvent(viewDate.date, 'isBP')"></ion-checkbox>
+            </div>
+        </div>
 
-  <ion-card >
-    <ion-card-header>
-        <ion-card-title>Blood Glucose Log</ion-card-title>
-        <ion-card-subtitle>Notes</ion-card-subtitle>
-        <ion-button  [routerLink]="['/health-log/bloodglucose-log']">
-          Details
-    </ion-button>
-    </ion-card-header>
-    <ion-card-content>
-        <ion-list>
-            <ion-checkbox></ion-checkbox>
-            <ion-checkbox></ion-checkbox>
-            <ion-checkbox></ion-checkbox>
-            <ion-checkbox></ion-checkbox>
-            <ion-checkbox></ion-checkbox>
-            <ion-checkbox></ion-checkbox>
-            <ion-checkbox></ion-checkbox>
-        </ion-list>
-    </ion-card-content>
-  </ion-card>
+        <div *ngIf="log == 'BG'">
+          <div *ngIf="isChecked(viewDate.date , 'isBG')">
+              <ion-checkbox checked="true" (click)="deleteEvent(viewDate.date, 'isBG')"></ion-checkbox>
+          </div>
+          <div *ngIf="!isChecked(viewDate.date , 'isBG')">
+            <ion-checkbox checked="false" (click)="addEvent(viewDate.date, 'isBG')"></ion-checkbox>
+          </div>
+      </div>
 
-  <ion-card >
-    <ion-card-header>
-        <ion-card-title>Medication Log</ion-card-title>
-        <ion-card-subtitle>Notes</ion-card-subtitle>
-        <ion-button  [routerLink]="['/health-log/medication-log']">
-          Details
-    </ion-button>
-    </ion-card-header>
-    <ion-card-content>
-        <ion-list>
-            <ion-checkbox></ion-checkbox>
-            <ion-checkbox></ion-checkbox>
-            <ion-checkbox></ion-checkbox>
-            <ion-checkbox></ion-checkbox>
-            <ion-checkbox></ion-checkbox>
-            <ion-checkbox></ion-checkbox>
-            <ion-checkbox></ion-checkbox>
-        </ion-list>
-    </ion-card-content>
-  </ion-card>
+        </div> 
+    </ng-template> 
 
-</ion-content>
+
+      <ng-template #template let-displayEvent="displayEvent">
+          <div class="calendar-event-inner">{{displayEvent.event.isInsulin}}</div>
+          <div class="calendar-event-inner">{{displayEvent.event.isBP}}</div>
+          <div class="calendar-event-inner">{{displayEvent.event.isBG}}</div>
+      </ng-template>
+
+
+        <calendar [eventSource]="eventSource"
+        [weekviewHeaderTemplate]="temp"
+        [weekviewAllDayEventTemplate]="template"
+        [calendarMode]="calendar.mode"
+        [currentDate]="calendar.currentDate"
+        (onCurrentDateChanged)="onCurrentDateChanged($event)"
+        (onRangeChanged)="reloadSource(startTime, endTime)"
+        (onEventSelected)="onEventSelected($event)"
+        (onTitleChanged)="onViewTitleChanged($event)"
+        (onTimeSelected)="onTimeSelected($event) "
+        showEventDetail=false
+        formatWeekViewDayHeader="EEE"
+        allDayLabel= "time"
+        startHour="0"
+        endHour = "0"
+        startingDayWeek="1">
+        </calendar>
+
+  </ion-content>

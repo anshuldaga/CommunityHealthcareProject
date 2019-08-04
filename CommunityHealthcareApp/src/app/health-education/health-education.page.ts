@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { HealthEducationService } from './health-education.service';
 import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import {Platform} from "@ionic/angular";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,9 @@ import { Injectable } from '@angular/core';
 export class HealthEducationPage{
   healthEducationTabs: any;  
 
-  constructor(private healthEducationService: HealthEducationService, public http: HttpClient) 
+
+  constructor(private healthEducationService: HealthEducationService, public http: HttpClient,
+    public platform:Platform) 
   {
     this.loadData();
   }

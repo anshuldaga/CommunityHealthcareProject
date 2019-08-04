@@ -44,10 +44,6 @@ const routes: Routes = [
       {
         path: 'bloodglucose-log',
         loadChildren: './health-log/details/details.module#DetailsPageModule' 
-      },
-      {
-        path: 'medication-log',
-        loadChildren: './health-log/medication-details/medication-details.module#MedicationDetailsPageModule' 
       }
     ]
   },

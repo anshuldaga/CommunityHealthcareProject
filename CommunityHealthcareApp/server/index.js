@@ -1,12 +1,74 @@
-const mysql = require('mysql');
-const express = require('express');
-//const cors = require('cors');
+var express = require('express');
+var bodyParser = require('body-parser');
+var logger = require('morgan');
+var methodOverride = require('method-override')
+var cors = require('cors');
+var mysql = require('mysql');
+
 var app = express();
-const bodyparser = require('body-parser');
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(methodOverride());
+app.use(cors());
 
+/*app.post('/checkname', function(req, res){
 
+    if(req.body.name.toLowerCase() === 'homer'){
 
-app.use(bodyparser.json());
+        res.status(401).send({message: 'Sorry, no Homer\'s!'});
+
+    } else {
+
+        res.send({
+            passed: true,
+            message: 'Welcome, friend!'
+        });
+
+    }
+
+});
+
+app.get('/checkname/:name', function(req, res){
+
+    if(req.params.name.toLowerCase() === 'homer'){
+
+        res.status(401).send({message: 'Sorry, no Homer\'s!'});
+
+    } else {
+
+        res.json('Welcome!');
+
+    }
+
+});*/
+
+var mysqlConnection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'password',
+    database: 'EmployeeDB',
+    multipleStatements: true
+});
+
+mysqlConnection.connect((err) => {
+    if(!err)
+        console.log('connected!');
+    else
+        console.log('Failed ' + JSON.stringify(err, undefined, 2))
+});
+
+app.listen(process.env.PORT || 8080);
+
+app.get('/educationtab/', (req, res) => {
+    mysqlConnection.query('SELECT * FROM educationtab', (err, rows, fields)=>{
+        if(!err)
+            res.send(rows);
+        else
+            console.log(err);
+    })
+});
+
+/*app.use(bodyparser.json());
 //app.use(cors());
 
 
@@ -33,15 +95,19 @@ mysqlConnection.connect((err) => {
         console.log('connected!');
     else
         console.log('Failed ' + JSON.stringify(err, undefined, 2))
-});
+});*/
 
 
 
-app.listen(3000, ()=>console.log('Express running at 3000!'));
+//app.listen(3000, ()=>console.log('Express running at 3000!'));
+
+
+
+
 
 //GET ALL EMPLOYEES
-app.get('/employees', (req, res) => {
-    mysqlConnection.query('SELECT * FROM Employee', (err, rows, fields)=>{
+/*app.get('/educationtab', (req, res) => {
+    mysqlConnection.query('SELECT * FROM educationtab', (err, rows, fields)=>{
         if(!err)
             res.send(rows);
         else
@@ -102,4 +168,4 @@ app.put('/employees/', (req, res) => {
         else
             console.log(err);
     })
-});
+});*/
