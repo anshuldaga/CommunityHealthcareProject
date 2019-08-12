@@ -25,12 +25,30 @@ const routes: Routes = [
       }
     ]
   },
-  { path: 'health-resources', loadChildren: './health-resources/health-resources.module#HealthResourcesPageModule' },
+  { 
+    path: 'health-resources', 
+    children: 
+    [
+      {
+        path: '',
+        loadChildren: './health-resources/health-resources.module#HealthResourcesPageModule'
+      },
+      {
+        path: ':resourceTabId',
+        loadChildren: './health-resources/health-resources-tab/health-resources-tab.module#HealthResourcesTabPageModule' 
+      }
+    ]
+  },
   { path: 'health-log', loadChildren: './health-log/health-log.module#HealthLogPageModule' },
   { path: 'health-card', loadChildren: './health-card/health-card.module#HealthCardPageModule' },
   { path: 'health-calendar', loadChildren: './health-calendar/health-calendar.module#HealthCalendarPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
-  { path: 'register', loadChildren: './register/register.module#RegisterPageModule' }
+  { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
+
+
+
+  
+
 
 
 ];
