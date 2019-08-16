@@ -10,5 +10,7 @@ export interface pageInfoSection
 export interface ResourcesTab
 {
     id: string;
+    id2: string;
+    pic: string;
     testBhar: pageInfoSection[];
 }

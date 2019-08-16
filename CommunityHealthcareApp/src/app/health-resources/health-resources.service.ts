@@ -168,26 +168,38 @@ export class HealthResourcesService
   [
     {
       id: 'Access',
+      id2: '',
+      pic: 'heart',
       testBhar: this.tab1Info
     },
     {
       id: 'General Health',
+      id2: '',
+      pic: 'heart',
       testBhar: this.tab1Info
     },
     {
       id: 'Hospitals & Clinics',
+      id2: '',
+      pic: 'medkit',
       testBhar: this.tab1Info
     },
     {
       id: 'Education',
+      id2: '',
+      pic: 'book',
       testBhar: this.tab1Info
     },
     {
       id: 'Food & Security',
+      id2: '',
+      pic: 'pizza',
       testBhar: this.tab1Info 
     },
     {
-      id: 'Women, Children & Elders',
+      id: 'Women, Children',
+      id2: '& Elders',
+      pic: 'people',
       testBhar: this.tab1Info
     }
   ];

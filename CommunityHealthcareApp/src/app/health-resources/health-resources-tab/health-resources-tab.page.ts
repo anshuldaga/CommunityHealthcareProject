@@ -9,19 +9,38 @@ import { ResourcesTab } from '../health-resources.model';
 })
 export class HealthResourcesTabPage implements OnInit {
   loadedTab: ResourcesTab;
+  showLevel: null;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private healthResourceService: HealthResourcesService) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
-      if(!paramMap.has('educationTabId')){
+      if(!paramMap.has('resourceTabId')){
         return;
       }
-      const educationTabId = paramMap.get('educationTabId');
-      this.loadedTab = this.healthResourceService.getResourceTab(educationTabId);
+      const resourceTabId = paramMap.get('resourceTabId');
+      this.loadedTab = this.healthResourceService.getResourceTab(resourceTabId);
     });
     
   }
+
+  isLevelShown(index) 
+  {
+    return this.showLevel === index;
+  };
+
+  toggleLevel(index) 
+  {
+    if (this.isLevelShown(index)) 
+    {
+      this.showLevel = null;
+    } 
+    else 
+    {
+      this.showLevel = index;
+    }
+  };
 
 }
