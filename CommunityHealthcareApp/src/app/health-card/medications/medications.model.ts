@@ -1,9 +1,10 @@
 export class Medication
 {
     constructor(
-        public id: string,
-        public medication: string,
-        public notes: string
+        public id: number,
+        public userId: number,
+        public medication_name: string,
+        public medication_notes: string
     )
     {}
 

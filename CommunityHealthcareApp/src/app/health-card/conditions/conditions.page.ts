@@ -21,9 +21,11 @@ export class ConditionsPage implements OnInit, OnDestroy {
 
   constructor(private conditionsService: ConditionsService,
     private modalCtrl: ModalController,
-    private loadingCtrl: LoadingController) 
-  {
-  }
+    private loadingCtrl: LoadingController) {}
+
+  ionViewWillEnter() {
+    this.conditionsService.fetchInformation().subscribe();
+  }  
 
   ngOnInit() 
   {
@@ -52,7 +54,7 @@ export class ConditionsPage implements OnInit, OnDestroy {
       });
   }
 
-  delete(id: string)
+  delete(id: number)
   {
     this.loadingCtrl.create({
       message: 'Updating...'

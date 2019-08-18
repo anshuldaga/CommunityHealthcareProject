@@ -8,8 +8,7 @@ import { Observable } from 'rxjs';
 
 export class HealthEducationService 
 {
-    public healthEducationTabs: any;
-
+  public healthEducationTabs: any;
 
   constructor(public http: HttpClient)
   {

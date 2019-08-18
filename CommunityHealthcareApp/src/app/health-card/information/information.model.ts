@@ -1,7 +1,7 @@
 export class Information
 {
     constructor(
-        public id: string,
+        public userId: number,
         public height_feet: number,
         public height_inches: number,
         public weight: number,

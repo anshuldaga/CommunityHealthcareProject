@@ -21,8 +21,8 @@
                 <ion-list>
                     <ion-item *ngFor="let medication of loadedMedications">
                         <ion-label>
-                            <h2>{{medication.medication}}</h2>
-                            <p>{{medication.notes}}</p>
+                            <h2>{{medication.medication_name}}</h2>
+                            <p>{{medication.medication_notes}}</p>
                         </ion-label>
                         <ion-button *ngIf="canDelete" (click)="delete(medication.id)">
                             <ion-icon name="trash"></ion-icon>

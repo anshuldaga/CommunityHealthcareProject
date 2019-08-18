@@ -21,8 +21,8 @@
                 <ion-list>
                     <ion-item *ngFor="let condition of loadedConditions">
                         <ion-label>
-                            <h2>{{condition.condition}}</h2>
-                            <p>{{condition.description}}</p>
+                            <h2>{{condition.condition_name}}</h2>
+                            <p>{{condition.condition_notes}}</p>
                         </ion-label>
                         <ion-button *ngIf="canDelete" (click)="delete(condition.id)">
                             <ion-icon name="trash"></ion-icon>

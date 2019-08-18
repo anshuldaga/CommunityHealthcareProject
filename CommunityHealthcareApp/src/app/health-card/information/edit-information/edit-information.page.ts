@@ -11,37 +11,34 @@ import { LoadingController } from '@ionic/angular';
   templateUrl: './edit-information.page.html',
   styleUrls: ['./edit-information.page.scss'],
 })
-export class EditInformationPage implements OnInit, OnDestroy{
+export class EditInformationPage implements OnInit, OnDestroy {
   @ViewChild('f') form: NgForm;
   loadedInformation: Information;
   private loadedInformationSub: Subscription;
 
   constructor(private informationService: InformationService,
     private router: Router,
-    private loadingCtrl: LoadingController) 
-  { 
+    private loadingCtrl: LoadingController) {}
+
+    
+  ionViewWillEnter() {
+    this.informationService.fetchInformation().subscribe();
   }
 
-  ngOnInit() 
-  {
+  ngOnInit(){
     this.loadedInformationSub = this.informationService.information.subscribe(information => {
       this.loadedInformation = information;
     });
   }
 
-  ngOnDestroy()
-  {
-    if(this.loadedInformationSub)
-    {
+  ngOnDestroy(){
+    if(this.loadedInformationSub){
       this.loadedInformationSub.unsubscribe();
     }
   }
 
-
-  onInformationEntered()
-  {
-    if(!this.form.valid)
-    {
+  onInformationEntered(){
+    if(!this.form.valid){
       return;
     }
     this.loadingCtrl.create({

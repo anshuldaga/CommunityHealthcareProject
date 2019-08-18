@@ -19,9 +19,11 @@ export class MedicationsPage implements OnInit, OnDestroy
 
   constructor(private medicationsService: MedicationsService,
     private modalCtrl: ModalController,
-    private loadingCtrl: LoadingController) 
-  {
-  }
+    private loadingCtrl: LoadingController) {}
+
+  ionViewWillEnter() {
+    this.medicationsService.fetchMedication().subscribe();
+  }    
 
   ngOnInit() 
   {
@@ -50,7 +52,7 @@ export class MedicationsPage implements OnInit, OnDestroy
       });
   }
 
-  delete(id: string)
+  delete(id: number)
   {
     this.loadingCtrl.create({
       message: 'Updating...'

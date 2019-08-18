@@ -1,24 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Medication } from './medications.model'
 import { BehaviorSubject } from 'rxjs';
-import {take, map, tap, delay} from 'rxjs/operators';
+import {take, map, tap, delay, switchMap} from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MedicationsService 
 {
-  public medications = new BehaviorSubject<Medication[]> ([
-    new Medication("m1", "Tylenol", "For pain"),
-    new Medication("m2", "Nyquil", "For cold")
-  ]);
+  constructor(private http: HttpClient) {}
+  public medications = new BehaviorSubject<Medication[]> ([]);
+
+  fetchMedication(){
+    return this.http.get<{[key: string]: Medication}>('http://localhost:3000/usermedication/8778/').pipe(
+      map(res => {
+        if(!(Object.keys(res).length === 0)) {
+          const _medications = [];
+          for(const key in res){
+            if(res.hasOwnProperty(key)){
+              _medications.push(new Medication(res[key].id, 8778, res[key].medication_name, res[key].medication_notes));
+            }
+          }
+          return _medications;
+        }
+    }),
+    tap(_medications => {
+      this.medications.next(_medications);
+    }
+    ));
+  }
 
   getMedications()
   {
     return this.medications.asObservable();
   }
 
-  getMedication(id: string)
+  getMedication(id: number)
   {
     return this.medications.pipe(
       take(1),
@@ -28,28 +46,31 @@ export class MedicationsService
     );
   }
 
-  addMedication(medication: string, notes: string)
+  addMedication(medication_name: string, medication_notes: string)
   {
-    const newMedication = new Medication(Math.random().toString(), medication, notes);
-    return this.medications.pipe(
+    const newMedication = new Medication(0, 8778, medication_name, medication_notes);
+
+    return this.http.put(`http://localhost:3000/usermedication/`, newMedication).pipe(
+      switchMap(() => {
+        return this.medications;
+      }), 
       take(1),
-      delay(3000),
       tap(medications => {
           this.medications.next(medications.concat(newMedication));
       })
     );
   }
 
-  deleteMedication(id: string)
-  { 
-    return this.medications.pipe(
+  deleteMedication(id: number)
+  {
+    return this.http.delete(`http://localhost:3000/usermedication/${id}/`).pipe(
+      switchMap(() => {
+        return this.medications;
+      }), 
       take(1),
-      delay(3000),
       tap(medications => {
         this.medications.next(medications.filter(item => item.id !== id));
       })
     );
   }
-
-  constructor() { }
 }

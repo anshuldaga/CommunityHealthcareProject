@@ -8,16 +8,22 @@ import {Subscription} from 'rxjs';
   templateUrl: './information.page.html',
   styleUrls: ['./information.page.scss'],
 })
-export class InformationPage implements OnInit, OnDestroy{
+
+export class InformationPage implements OnInit, OnDestroy {
   loadedInformation: Information; 
   private loadedInformationSub: Subscription;
+  public isLoading = false;
 
-  constructor(private informationService: InformationService) 
-  { 
+  constructor(private informationService: InformationService) {}
+
+  ionViewWillEnter() {
+    this.isLoading = true;
+    this.informationService.fetchInformation().subscribe(() => {
+      this.isLoading = false;
+    });
   }
 
-  ngOnInit() 
-  {
+  ngOnInit() {
     this.loadedInformationSub = this.informationService.information.subscribe(information => {
       this.loadedInformation = information;
     });
@@ -25,8 +31,7 @@ export class InformationPage implements OnInit, OnDestroy{
 
   ngOnDestroy()
   {
-    if(this.loadedInformationSub)
-    {
+    if(this.loadedInformationSub) {
       this.loadedInformationSub.unsubscribe();
     }
   }

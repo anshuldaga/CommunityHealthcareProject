@@ -1,9 +1,10 @@
 export class Condition
 {
     constructor(
-        public id: string,
-        public condition: string,
-        public description: string
+        public id: number,
+        public userId: number,
+        public condition_name: string,
+        public condition_notes: string
     )
     {}
 
