@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild, Inject, LOCALE_ID } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CalendarComponent } from 'ionic2-calendar/calendar';
 
 @Component({
-  selector: 'app-health-log',
-  templateUrl: './health-log.page.html',
-  styleUrls: ['./health-log.page.scss'],
+  selector: 'app-medlogs',
+  templateUrl: './medlogs.page.html',
+  styleUrls: ['./medlogs.page.scss'],
 })
-export class HealthLogPage implements OnInit 
+export class MedlogsPage implements OnInit 
 {
   
   day = new Date();
@@ -62,8 +62,6 @@ export class HealthLogPage implements OnInit
     mode: 'week',
     currentDate: new Date(),
   };
-
-
 
   @ViewChild(CalendarComponent) myCal: CalendarComponent;
 
@@ -188,17 +186,6 @@ export class HealthLogPage implements OnInit
 
     this.myCal.loadEvents();
     this.resetEvent();
-  }
-
-  next() {
-    var swiper = document.querySelector('.swiper-container')['swiper'];
-    swiper.slideNext();
-
-  }
-
-  back() {
-    var swiper = document.querySelector('.swiper-container')['swiper'];
-    swiper.slidePrev();
   }
 
   today() 

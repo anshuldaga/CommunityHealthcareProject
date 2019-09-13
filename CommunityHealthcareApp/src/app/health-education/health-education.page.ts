@@ -27,7 +27,7 @@ export class HealthEducationPage{
   loadData()
   {
     let data:Observable<any>;
-    data = this.http.get('assets/information.json');
+    data = this.http.get('http://localhost:3000/educationtabs');
     data.subscribe(result => {
         this.healthEducationTabs = result;
       })

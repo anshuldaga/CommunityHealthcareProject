@@ -127,10 +127,14 @@ app.put('/usermedication/', function(req, res){
     })
 });
 
+//health education page
 
-//GET ALL EMPLOYEES
-/*app.get('/educationtab', (req, res) => {
-    mysqlConnection.query('SELECT * FROM educationtab', (err, rows, fields)=>{
+//GET education tabs info
+app.get('/educationtabs', (req, res) => {
+    mysqlConnection.query('SELECT educationtabs.tab_title, educationtabs.tab_description,  tabvideos.vidSection\
+  FROM educationtabs \
+      LEFT JOIN ( SELECT tab_id, JSON_ARRAYAGG(JSON_OBJECT("vid_title", vid_title, "vid_description", vid_description, "vid_link", vid_link)) vidSection FROM tabvideos GROUP BY tab_id\
+      ) tabvideos ON tabvideos.tab_id = educationtabs.tab_id', (err, rows, fields)=>{
         if(!err)
             res.send(rows);
         else
@@ -138,10 +142,11 @@ app.put('/usermedication/', function(req, res){
     })
 });
 
+///health-log page
 
-//GET EMPLOYEE ID - 1
-app.get('/employees/:id', (req, res) => {
-    mysqlConnection.query('SELECT * FROM Employee where id = ?', [req.params.id], (err, rows, fields)=>{
+//GET
+app.get('/log/:userId/', (req, res) => {
+    mysqlConnection.query('SELECT * FROM log where userId = ?', [req.params.userId], (err, rows, fields)=>{
         if(!err)
             res.send(rows);
         else
@@ -149,43 +154,30 @@ app.get('/employees/:id', (req, res) => {
     })
 });
 
+//ADD or UPDATE
+app.put('/log/', function(req, res){
+    let info = req.body;
+    var sql = "SET @id = ?; SET @userId = ?; SET @startTime=?; SET @endTime=?;\
+    SET @allDay=?;SET @isInsulin=?;SET @isBP=?;SET @isBG=?;\
+    SET @insulinValue=?;SET @BPValue=?;SET @BGValue=?;\
+    CALL LogAddOrEdit(@id, @userId, @startTime, @endTime, @allDay,  @isInsulin, @isBP, @isBG, @insulinValue, @BPValue, @BGValue);";
+    mysqlConnection.query(sql, [info.id, info.userId, info.startTime, info.endTime, info.allDay, info.isInsulin, info.isBP, info.isBG, info.insulinValue, info.BPValue, info.BGValue], (err, rows, fields)=>{
+        if(err){
+            console.log(err);
+        }
+        else 
+        {
+            res.send(rows);
+        }    
+    })
+});
 
-
-//DELETE EMPLOYEE ID
-app.delete('/employees/:id', (req, res) => {
-    mysqlConnection.query('DELETE FROM Employee where id = ?', [req.params.id], (err, rows, fields)=>{
+//DELETE ??
+app.delete('/log/:id/', (req, res) => {
+    mysqlConnection.query('DELETE FROM log where id = ?', [req.params.id], (err, rows, fields)=>{
         if(!err)
-            res.send('Delete successful!');
+            res.send(rows);
         else
             console.log(err);
     })
 });
-
-
-
-//POST EMPLOYEE ID
-app.post('/employees/', (req, res) => {
-    let emp = req.body;
-    var sql = "SET @id = ?; SET @name=?; SET @salary=?; SET @number=?;\
-    CALL EmployeeAddOrEdit(@id, @name, @salary, @number);";
-    mysqlConnection.query(sql, [emp.id, emp.name, emp.salary, emp.number], (err, rows, fields)=>{
-        if(!err)
-            res.send('Updated Successfully!');
-        else
-            console.log(err);
-    })
-
-});
-
-//UPDATE EMPLOYEE ID
-app.put('/employees/', (req, res) => {
-    let emp = req.body;
-    var sql = "SET @id = ?; SET @name=?; SET @salary=?; SET @number=?;\
-    CALL EmployeeAddOrEdit(@id, @name, @salary, @number);";
-    mysqlConnection.query(sql, [emp.id, emp.name, emp.salary, emp.number], (err, rows, fields)=>{
-        if(!err)
-            res.send('Updated Successfully!');
-        else
-            console.log(err);
-    })
-});*/

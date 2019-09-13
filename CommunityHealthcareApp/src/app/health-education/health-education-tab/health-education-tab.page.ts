@@ -13,6 +13,7 @@ export class HealthEducationTabPage implements OnInit {
   loadedTab: any;
   showLevel: null;
   healthEducationTabs: any;
+  vidSection: any;
 
   constructor(private activatedRoute: ActivatedRoute,
     private healthEducationService: HealthEducationService,
@@ -28,6 +29,7 @@ export class HealthEducationTabPage implements OnInit {
       }
       const educationTabId = paramMap.get('educationTabId');
       this.loadedTab = this.healthEducationService.getEducationTab(educationTabId);
+      this.vidSection = eval(this.loadedTab.vidSection);
     });
   }
 

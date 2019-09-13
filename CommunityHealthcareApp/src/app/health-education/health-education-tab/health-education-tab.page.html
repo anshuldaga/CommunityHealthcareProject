@@ -5,7 +5,7 @@
       <ion-back-button defaultHref="/health-education" color="danger"></ion-back-button>
     </ion-buttons>
     <ion-title>
-        {{loadedTab.title}}
+        {{loadedTab.tab_title}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,20 +14,20 @@
 
   <ion-content>
       <ion-list no-lines>
-        <ion-card *ngFor="let tab of loadedTab.vidSection; let i=index" text-wrap (click)="toggleLevel('index'+i)" [ngClass]="{active: isLevelShown('index'+i)}">
+        <ion-card *ngFor="let tab of vidSection; let i=index" text-wrap (click)="toggleLevel('index'+i)" [ngClass]="{active: isLevelShown('index'+i)}">
           <ion-card-header>
               <ion-item lines="none">
                   <ion-avatar>
                       <img src="https://img.youtube.com/vi/vyElbR6BzZ8/mqdefault.jpg">
                     </ion-avatar>
-                    <ion-card-title>{{tab.videoTitle}}</ion-card-title>
+                    <ion-card-title>{{tab.vid_title}}</ion-card-title>
                     <ion-icon [name]="isLevelShown('index'+i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
                 </ion-item>
           </ion-card-header>
           
           <ion-card-content *ngIf="isLevelShown('index'+i)">
-              <ion-card-subtitle>{{tab.videoDescription}}</ion-card-subtitle>
-              <iframe width="100%" height="315"  [src]="getTrustedHTML(tab.videoUrl)"  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+              <ion-card-subtitle>{{tab.vid_description}}</ion-card-subtitle>
+              <iframe width="100%" height="315"  [src]="getTrustedHTML(tab.vid_link)"  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </ion-card-content>
         </ion-card>
       </ion-list>

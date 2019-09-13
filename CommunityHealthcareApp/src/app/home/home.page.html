@@ -1,68 +1,65 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Home
-    </ion-title>
-  </ion-toolbar>
+<ion-header no-border> 
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <div style="font-size: 12px">
+          <p><b>HOME</b></p>
+      </div>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
-    <ion-list no-lines>
-      <ion-grid>
+    <ion-grid style="background-color:#FFFFFF">
         <ion-row>
           <ion-col>
-              <ion-card [routerLink]="['/health-resources']">
-                <ion-card-content>
-                    <ion-card-title> Community Resources </ion-card-title>
-                </ion-card-content>
-              </ion-card>
+            <ion-card [routerLink]="['/health-resources']">
+              <ion-card-header style="background-color:#FFFFFF;"> 
+                <ion-card-subtitle>Community Resources</ion-card-subtitle>                         
+              </ion-card-header>
+            </ion-card>
           </ion-col>
           <ion-col>
               <ion-card [routerLink]="['/health-education']">
-                <ion-card-content>
-                    <ion-card-title> Health Education </ion-card-title>
-                </ion-card-content>
+                <ion-card-header style="background-color:#FFFFFF">
+                  <ion-card-subtitle>Health Education</ion-card-subtitle>
+                </ion-card-header>
               </ion-card>
-          </ion-col>
+            </ion-col>
         </ion-row>
 
         <ion-row>
+          <ion-col>            
+          <ion-card [routerLink]="['/health-calendar']">
+            <ion-card-header style="background-color:#FFFFFF">    
+              <ion-card-subtitle>Health Calendar</ion-card-subtitle>                            
+            </ion-card-header>
+          </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card [routerLink]="['/logtabs']">
+                <ion-card-header style="background-color:#FFFFFF">    
+                  <ion-card-subtitle>Health Log</ion-card-subtitle>                          
+                </ion-card-header>
+              </ion-card>
+          </ion-col>
+        </ion-row>
+      
+        <ion-row>
             <ion-col>
-                <ion-card [routerLink]="['/health-calendar']">
-                  <ion-card-content>
-                      <ion-card-title> Health Calendar </ion-card-title>
-                  </ion-card-content>
-                </ion-card>
+              <ion-card [routerLink]="['/tabs']">
+                  <ion-card-header style="background-color:#FFFFFF">    
+                    <ion-card-subtitle>Health Card</ion-card-subtitle>                           
+                  </ion-card-header>
+              </ion-card>
             </ion-col>
             <ion-col>
-                <ion-card [routerLink]="['/tabs']">
-                  <ion-card-content>
-                      <ion-card-title> Health Card </ion-card-title>
-                  </ion-card-content>
-                </ion-card>
+                <ion-card [routerLink]="['/home']">
+                  <ion-card-header style="background-color:#FFFFFF">    
+                    <ion-card-subtitle>About</ion-card-subtitle>                         
+                  </ion-card-header>
+              </ion-card>
             </ion-col>
           </ion-row>
-
-          <ion-row>
-              <ion-col>
-                  <ion-card [routerLink]="['/health-log']">
-                    <ion-card-content>
-                        <ion-card-title> Health Log </ion-card-title>
-                    </ion-card-content>
-                  </ion-card>
-              </ion-col>
-              <ion-col>
-                  <ion-card [routerLink]="['/home']">
-                    <ion-card-content>
-                        <ion-card-title> More Help </ion-card-title>
-                    </ion-card-content>
-                  </ion-card>
-              </ion-col>
-            </ion-row>
       </ion-grid>
-    </ion-list>
 </ion-content>

@@ -18,7 +18,7 @@ export class HealthEducationService
   loadData()
   {
     let data:Observable<any>;
-    data = this.http.get('assets/information.json');
+    data = this.http.get('http://localhost:3000/educationtabs');
     data.subscribe(result => {
         this.healthEducationTabs = result;
       })
@@ -28,7 +28,7 @@ export class HealthEducationService
   {
     return{
       ...this.healthEducationTabs.find(educationTab =>{
-        return educationTab.id === educationTabId;
+        return educationTab.tab_title === educationTabId;
       })
     };
   }

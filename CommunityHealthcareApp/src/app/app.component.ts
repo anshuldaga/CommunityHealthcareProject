@@ -36,7 +36,7 @@ export class AppComponent {
     },
     {
       title: 'Health Log',
-      url: '/health-log',
+      url: '/logtabs',
       icon: 'document'
     },
     {
