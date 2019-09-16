@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="logo">
+      <img src="http://placehold.it/50x50">
+    </div>
+
+    <ion-item>
+      <ion-input type="username" [(ngModel)]="username" name="username" placeholder="Username"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-input type="password" [(ngModel)]="password" name="password" placeholder="Password"></ion-input>
+    </ion-item>
+    <ion-button block class="loginBtn" routerDirection="root" (click)="loginPage()">Login</ion-button>
+    <br>
+    <ion-button block class="signup" routerLink="/register">Sign Up</ion-button>
+  
+</ion-content>
