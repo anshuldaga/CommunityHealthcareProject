@@ -8,6 +8,7 @@ import { HttpModule } from '@angular/http';
 
 import { HomePage } from './home.page';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -24,4 +25,8 @@ import { HomePage } from './home.page';
   ],
   declarations: [HomePage]
 })
-export class HomePageModule {}
+export class HomePageModule 
+{
+
+}
+

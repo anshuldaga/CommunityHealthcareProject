@@ -9,6 +9,11 @@ import { map } from 'rxjs/operators';
 })
 export class HomePage {
 
-    constructor(private http: Http) {}
-
+    constructor(private http: Http) 
+    {
+    }
+    ngOnInit()
+    {    }
+    
 }
+
