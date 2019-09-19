@@ -32,7 +32,9 @@
     "ionic2-calendar": "^0.5.2",
     "mysql": "^2.17.1",
     "rxjs": "~6.5.1",
+    "striptags": "^3.1.1",
     "tslib": "^1.9.0",
+    "youtube-captions-scraper": "^1.0.3",
     "zone.js": "~0.8.29"
   },
   "devDependencies": {
