@@ -3,7 +3,7 @@ tab_id int(11) NOT NULL AUTO_INCREMENT,
 tab_title varchar(255) NOT NULL,
 tab_description varchar(255) DEFAULT NULL,
 PRIMARY KEY (tab_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 CREATE TABLE tabvideos (
 vid_id int(11) NOT NULL AUTO_INCREMENT,
@@ -13,7 +13,7 @@ vid_description varchar(255) DEFAULT NULL,
 vid_link varchar(255) NOT NULL,
 PRIMARY KEY (vid_id),
 FOREIGN KEY (tab_id) REFERENCES educationtabs(tab_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 CREATE TABLE log (
 id int(11) NOT NULL AUTO_INCREMENT,
@@ -28,7 +28,7 @@ BPvalue int(11) DEFAULT NULL,
 BGvalue int(11) DEFAULT NULL,
 PRIMARY KEY (id),
 FOREIGN KEY (userID) REFERENCES usercredentials(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 CREATE TABLE medlog (
 id int(11) NOT NULL AUTO_INCREMENT,
@@ -43,7 +43,7 @@ med2name varchar(255) DEFAULT NULL,
 med3name varchar(255) DEFAULT NULL,
 PRIMARY KEY (id),
 FOREIGN KEY (userID) REFERENCES usercredentials(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 CREATE TABLE userHealth (
 id int(11) NOT NULL AUTO_INCREMENT,
@@ -60,7 +60,7 @@ birthday varchar(50),
 allergy_notes mediumtext,
 PRIMARY KEY (id),
 FOREIGN KEY (userID) REFERENCES usercredentials(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 CREATE TABLE userMedication (
 id int(11) NOT NULL AUTO_INCREMENT,
@@ -69,7 +69,7 @@ medication_name varchar(50) NOT NULL,
 medication_notes varchar(255),
 PRIMARY KEY (id),
 FOREIGN KEY (userID) REFERENCES usercredentials(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 CREATE TABLE userCondition (
 id int(11) NOT NULL AUTO_INCREMENT,
@@ -78,7 +78,7 @@ condition_name varchar(50) NOT NULL,
 condition_notes varchar(255),
 PRIMARY KEY (id),
 FOREIGN KEY (userID) REFERENCES usercredentials(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LogAddOrEdit`(
