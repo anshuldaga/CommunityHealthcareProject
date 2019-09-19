@@ -16,9 +16,35 @@ export class AppComponent {
       icon: 'home'
     },
     {
+
       title: 'List',
       url: '/list',
       icon: 'list'
+
+      title: 'Health Calendar',
+      url: '/health-calendar',
+      icon: 'calendar'
+    },
+    {
+      title: 'Health Card',
+      url: '/tabs',
+      icon: 'person'
+    },
+    {
+      title: 'Health Education',
+      url: '/health-education',
+      icon: 'book'
+    },
+    {
+      title: 'Health Log',
+      url: '/logtabs',
+      icon: 'document'
+    },
+    {
+      title: 'Health Resources',
+      url: '/health-resources',
+      icon: 'people'
+
     }
   ];
 
@@ -29,6 +55,12 @@ export class AppComponent {
   ) {
     this.initializeApp();
   }
+
+
+  ngOnInit() {
+   // this.router.navigate([''])
+  }
+
 
   initializeApp() {
     this.platform.ready().then(() => {

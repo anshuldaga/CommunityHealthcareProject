@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Medications</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        
+        <ion-row>
+            <ion-col>
+                <ion-button margin (click)="onAddMedication()">Add</ion-button>
+            </ion-col>
+            <ion-col>
+                <ion-button margin *ngIf="loadedMedications.length > 0" (click)="onDeleteMedication()">{{buttonText}}</ion-button>
+            </ion-col>
+        </ion-row>
+        
+        <ion-row>
+            <ion-col>
+                <ion-list>
+                    <ion-item *ngFor="let medication of loadedMedications">
+                        <ion-label>
+                            <h2>{{medication.medication_name}}</h2>
+                            <p>{{medication.medication_notes}}</p>
+                        </ion-label>
+                        <ion-button *ngIf="canDelete" (click)="delete(medication.id)">
+                            <ion-icon name="trash"></ion-icon>
+                        </ion-button>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+</ion-content>
