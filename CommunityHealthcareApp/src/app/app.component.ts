@@ -20,7 +20,8 @@ export class AppComponent {
       title: 'List',
       url: '/list',
       icon: 'list'
-
+    },
+    {
       title: 'Health Calendar',
       url: '/health-calendar',
       icon: 'calendar'

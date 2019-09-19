@@ -9,22 +9,26 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
-    path: 'logtabs',
+    path: 'tabs',
     component: TabsPage,
     children:[
-      /*{
-        path: 'logs',
-        loadChildren: '../logs/logs.module#LogsPageModule',
-      },*/
       {
-        path: 'medlogs',
-        loadChildren: '../medlogs/medlogs.module#MedlogsPageModule'
+        path: 'information',
+        loadChildren: '../information/information.module#InformationPageModule'
+      },
+      {
+        path: 'medications',
+        loadChildren: '../medications/medications.module#MedicationsPageModule'
+      },
+      {
+        path: 'conditions',
+        loadChildren: '../conditions/conditions.module#ConditionsPageModule'
       }
     ]
   },
   {
     path: '',
-    redirectTo: 'logtabs/logs',
+    redirectTo: 'tabs/information',
     pathMatch: 'full'
   }
 ];
