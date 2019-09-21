@@ -80,7 +80,7 @@ PRIMARY KEY (id),
 FOREIGN KEY (userID) REFERENCES usercredentials(id)
 );
 
-
+DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LogAddOrEdit`(
 IN _id int(11),
 IN _userId int(11),
@@ -113,9 +113,12 @@ BEGIN
         WHERE userId = _userId AND id = _id;
     END IF;
     SELECT _userId AS 'userId';
-END
+    
+    END$$
+DELIMITER ;
 
 
+DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `UserConditionAddOrEdit`(
 IN _id int(11),
 IN _userId int(11),
@@ -134,9 +137,10 @@ BEGIN
         WHERE userId = _userId AND id = _id;
     END IF;
     SELECT _userId AS 'userId';
-END
+ END$$
+DELIMITER ;
 
-
+DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `UserhealthAddOrEdit`(
 IN _userId int(11),
 IN _height_feet int(11),
@@ -172,9 +176,11 @@ BEGIN
         WHERE userId = _userId;
     END IF;
     SELECT _userId AS 'userId';
-END
+END$$
+DELIMITER ;
 
 
+DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `UserMedicationAddOrEdit`(
 IN _id int(11),
 IN _userId int(11),
@@ -193,6 +199,5 @@ BEGIN
         WHERE userId = _userId AND id = _id;
     END IF;
     SELECT _userId AS 'userId';
-END
-
-Collapse
+END$$
+DELIMITER ;
