@@ -1,22 +1,35 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var logger = require('morgan');
-var methodOverride = require('method-override')
-var cors = require('cors');
-var mysql = require('mysql');
+// var express = require('express');
+// var bodyParser = require('body-parser');
+// // var logger = require('morgan');
+// var methodOverride = require('method-override')
+// var cors = require('cors');
+// var mysql = require('mysql');
 
+// var app = express();
+// app.use(logger('dev'));
+// app.use(bodyParser.json());
+// app.use(methodOverride());
+// app.use(cors());
+
+const mysql = require('mysql');
+const express = require('express');
+const cors = require('cors');
 var app = express();
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(methodOverride());
+const bodyparser = require('body-parser');
+
+app.use(bodyparser.json());
 app.use(cors());
+
+const user = require('./routes/userRoute');
+
+app.use(user);
 
 
 var mysqlConnection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'password',
-    database: 'EmployeeDB',
+    database: 'healthcareapp',
     multipleStatements: true
 });
 
