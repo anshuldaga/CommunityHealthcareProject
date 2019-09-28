@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Condition</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="onConditionEntered()" #f="ngForm">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+          <ion-item>
+              <ion-label position="floating">Condition</ion-label>
+              <ion-input 
+              type="text" 
+              ngModel
+              name="condition"
+              required></ion-input>
+            </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+          <ion-item>
+              <ion-label position="floating">Description</ion-label>
+              <ion-input
+              type="text"
+              ngModel
+              name="description"
+              required
+              ></ion-input>
+            </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+          <ion-button 
+          type="submit" 
+          color="danger"
+          expand="blocked" 
+          [disabled]="!f.valid">
+          Add!</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </form>
+</ion-content>
