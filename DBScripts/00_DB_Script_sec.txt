@@ -9,3 +9,4 @@
 09_usermedicationDBdata.sql
 10_logDBdata.sql
 11_medlogDBdata.sql
+04_appointment.sql
