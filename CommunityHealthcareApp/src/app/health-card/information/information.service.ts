@@ -15,7 +15,7 @@ export class InformationService {
     null, null, null, null));
 
   fetchInformation(){
-    return this.http.get<{[key: string]: Information}>('http://localhost:3000/userhealth/87710/').pipe(
+    return this.http.get<{[key: string]: Information}>('http://localhost:3000/userhealth/877/').pipe(
       take(1),
       tap(res => {
         if(!(Object.keys(res).length === 0)) {
@@ -45,7 +45,7 @@ export class InformationService {
       take(1), 
         switchMap(information => {
           information = {
-          userId: 87710,
+          userId: 877,
           height_feet: height_feet,
           height_inches: height_inches,
           weight: weight,
@@ -59,7 +59,7 @@ export class InformationService {
         };
         return this.http.put('http://localhost:3000/userhealth/', information);
       }), tap(()=> {
-        this.information.next(new Information(87710, height_feet, height_inches, weight,
+        this.information.next(new Information(877, height_feet, height_inches, weight,
         bloodtype, primary_contact, secondary_contact, medical_insurance, dental_insurance,
         birthday, allergy_notes));
       })
