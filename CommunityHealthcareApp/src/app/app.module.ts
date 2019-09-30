@@ -26,7 +26,6 @@ import { TokenInterceptorService } from './service/token-interceptor.service';
     AuthGuard,
     DatePipe,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true},
     EmployeeService,
     RegisterService
   ],
