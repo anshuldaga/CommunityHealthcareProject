@@ -10,7 +10,7 @@ export class LoginService {
 
   authenticationState = new BehaviorSubject(false);
 
-  constructor(private http: HttpClient, private storage: Storage, private plt: Platform) { }
+  constructor(private http: HttpClient, private plt: Platform) { }//private storage: Storage,
 
 
   loginUser(username, password):Observable<any>{

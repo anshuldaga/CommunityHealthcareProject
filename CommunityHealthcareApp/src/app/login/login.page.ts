@@ -14,7 +14,7 @@ export class LoginPage implements OnInit {
   username: string;
   password: string;
 
-  constructor(private loginService: LoginService, private storage: Storage,
+  constructor(private loginService: LoginService,
     private router: Router) { }
 
   ngOnInit() {
@@ -46,7 +46,7 @@ export class LoginPage implements OnInit {
       localStorage.setItem('token', res.token);
       //console.log("1111  Insde loginPage -- retrive localStorage - myToken:" + localStorage.getItem("token"));
 
-      this.router.navigate(['/calendar'])
+      this.router.navigate(['/home'])
     });
   }
 }
