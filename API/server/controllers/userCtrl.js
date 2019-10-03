@@ -38,7 +38,6 @@ exports.loginUser = (req, res) => {
             }
             // to generate the new token & send it
             let token = jwt.sign({user: user}, 'jk23!+!97', {expiresIn: '1min'});
-            console.log("222inside exports.loginUser Token created & going to send. Token:" + token);
             res.status(200).send({token});
         }
     })

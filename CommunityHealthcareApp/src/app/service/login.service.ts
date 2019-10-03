@@ -14,7 +14,6 @@ export class LoginService {
 
 
   loginUser(username, password):Observable<any>{
-    console.log("~~~~~ loginUser method" );
 
     return this.http.post('http://localhost:3000/login/user',
     { 

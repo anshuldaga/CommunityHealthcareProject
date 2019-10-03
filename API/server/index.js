@@ -16,6 +16,7 @@ const express = require('express');
 const cors = require('cors');
 var app = express();
 const bodyparser = require('body-parser');
+const jwt = require('jsonwebtoken');
 
 app.use(bodyparser.json());
 app.use(cors());
@@ -45,16 +46,15 @@ app.listen(3000, ()=>console.log('Express running at 3000!'));
 
 //health-card information
 
-// app.get('/userhealth/:userId/', (req, res) => {
-//     console.log('akshat');
-//     mysqlConnection.query('SELECT * FROM userhealth where userId = ?', [req.params.userId], (err, rows, fields)=>{
-//         if(!err){
-//             res.send(rows);
-//         }
-//         else
-//             console.log(err);
-//     })
-// });
+app.get('/userhealth/:userId/', (req, res) => {
+    mysqlConnection.query('SELECT * FROM userhealth where userId = ?', [req.params.userId], (err, rows, fields)=>{
+        if(!err){
+            res.send(rows);
+        }
+        else
+            console.log(err);
+    })
+});
 
 // app.put('/userhealth/', function(req, res){
 //     let info = req.body;
@@ -109,15 +109,24 @@ app.listen(3000, ()=>console.log('Express running at 3000!'));
 //     })
 // });
 
-// //health-card medication
-// app.get('/usermedication/:userId/', (req, res) => {
-//     mysqlConnection.query('SELECT * FROM usermedication where userId = ?', [req.params.userId], (err, rows, fields)=>{
-//         if(!err)
-//             res.send(rows);
-//         else
-//             console.log(err);
-//     })
-// });
+//health-card medication
+app.get('/usermedication/:userId/', checkToken, (req, res) => {
+
+    jwt.verify(req.token, 'jk23!+!97', (err, rows) => {
+        if(err){
+            console.log('ERROR: Could not connect to the protected route');
+            res.sendStatus(403);
+        }
+        else{
+            mysqlConnection.query('SELECT * FROM usermedication where userId = ?', [req.params.userId], (err, rows, fields)=>{
+                if(!err)
+                    res.send(rows);
+                else
+                    console.log(err);
+            })
+        }
+    })
+});
 
 // app.delete('/usermedication/:id/', (req, res) => {
 //     mysqlConnection.query('DELETE FROM usermedication where id = ?', [req.params.id], (err, rows, fields)=>{
@@ -145,7 +154,7 @@ app.listen(3000, ()=>console.log('Express running at 3000!'));
 
 // //health education page
 
-// //GET education tabs info
+//GET education tabs info
 // app.get('/educationtabs', (req, res) => {
 //     mysqlConnection.query('SELECT educationtabs.tab_title, educationtabs.tab_description,  tabvideos.vidSection\
 //   FROM educationtabs \
@@ -197,3 +206,20 @@ app.listen(3000, ()=>console.log('Express running at 3000!'));
 //             console.log(err);
 //     })
 // });
+
+
+//Check to make sure header is not undefined, if so, return Forbidden (403)
+const checkToken = (req, res, next) => {
+    const header = req.headers['authorization'];
+
+    if(typeof header !== 'undefined') {
+        const bearer = header.split(' ');
+        const token = bearer[1];
+
+        req.token = token;
+        next();
+    } else {
+        //If header is undefined return Forbidden (403)
+        res.sendStatus(403)
+    }
+}
