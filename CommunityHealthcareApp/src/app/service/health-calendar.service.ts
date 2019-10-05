@@ -14,7 +14,7 @@ export class HealthCalendarService {
    addEvent(title, description, startTime, endTime, location, isMedication):Observable<any>{
     return this.http
     .post('http://localhost:3000/health-calendar', {
-      userId: 1,
+      userId: 877,
       title: title,
       description: description,
       startTime: startTime,
