@@ -14,7 +14,7 @@ const routes: Routes = [
     children:[
       {
         path: 'logs',
-        loadChildren: '../logs/logs.module#LogsPageModule',
+        loadChildren: '../log/logs.module#LogsPageModule',
       },
       {
         path: 'medlogs',
