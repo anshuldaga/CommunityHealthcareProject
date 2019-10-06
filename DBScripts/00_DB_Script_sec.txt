@@ -10,3 +10,4 @@
 10_logDBdata.sql
 11_medlogDBdata.sql
 04_appointment.sql
+12_updateLog.sql
