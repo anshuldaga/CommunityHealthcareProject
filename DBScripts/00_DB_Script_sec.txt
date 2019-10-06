@@ -11,3 +11,4 @@
 11_medlogDBdata.sql
 04_appointment.sql
 12_updateLog.sql
+13_updateLogAgain.sql
