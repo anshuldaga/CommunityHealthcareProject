@@ -12,10 +12,10 @@ const routes: Routes = [
     path: 'logtabs',
     component: TabsPage,
     children:[
-      /*{
+      {
         path: 'logs',
-        loadChildren: '../logs/logs.module#LogsPageModule',
-      },*/
+        loadChildren: '../log/logs.module#LogsPageModule',
+      },
       {
         path: 'medlogs',
         loadChildren: '../medlogs/medlogs.module#MedlogsPageModule'

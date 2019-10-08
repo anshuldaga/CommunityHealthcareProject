@@ -18,10 +18,10 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
   }
 
-  userSignup(){
-    this.reg.registerUser(this.username, this.password)
-    .subscribe(res => {
-      console.log(res)
-    });
-  }
+  // userSignup(){
+  //   this.reg.registerUser(this.username, this.password)
+  //   .subscribe(res => {
+  //     console.log(res)
+  //   });
+  // }
 }

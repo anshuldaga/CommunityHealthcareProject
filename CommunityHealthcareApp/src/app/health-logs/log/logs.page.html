@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>health-log</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding">
+    <ion-text>
+        <h1>Weekly Health Logs</h1>
+    </ion-text>
+      
+        <ion-row>
+            <ion-col size="4" text-center>
+                <ion-button  color="primary" (click)="today()">      
+                  current     
+                </ion-button>      
+              </ion-col>
+      </ion-row>
+
+      <ng-template #temp let-viewDate="viewDate" let-log="log"> 
+        <div class="custom-day-header"> 
+          {{ viewDate.dayHeader.substr(0,1)}} 
+
+          <div *ngIf="log == 'Insulin'">
+              <div *ngIf="isChecked(viewDate.date, 'isInsulin')">
+                  <ion-checkbox checked="true" (click)="deleteEvent(viewDate.date, 'isInsulin')"></ion-checkbox>
+              </div>
+              <div *ngIf="!isChecked(viewDate.date , 'isInsulin')">
+                <ion-checkbox checked="false" (click)="addEvent(viewDate.date, 'isInsulin')"></ion-checkbox>
+              </div>
+              <p style="font-size: 12px" *ngIf="getValue(viewDate.date, 'isInsulin') != null">{{getValue(viewDate.date, 'isInsulin')}} <b>ml</b></p>
+              <p style="font-size: 12px" *ngIf="getValue(viewDate.date, 'isInsulin') == null">na <b>ml</b></p>
+          </div>
+
+          <div *ngIf="log == 'BP'">
+            <div *ngIf="isChecked(viewDate.date , 'isBP')">
+                <ion-checkbox checked="true" (click)="deleteEvent(viewDate.date, 'isBP')"></ion-checkbox>
+            </div>
+            <div *ngIf="!isChecked(viewDate.date , 'isBP')">
+              <ion-checkbox checked="false" (click)="addEvent(viewDate.date, 'isBP')"></ion-checkbox>
+            </div>
+            <p style="font-size: 12px" *ngIf="getValue(viewDate.date, 'isBP') != null">{{getValue(viewDate.date, 'isBP')}} <b>ml</b></p>
+            <p style="font-size: 12px" *ngIf="getValue(viewDate.date, 'isBP') == null">na <b>ml</b></p>
+        </div>
+
+        <div *ngIf="log == 'BG'">
+          <div *ngIf="isChecked(viewDate.date , 'isBG')">
+              <ion-checkbox checked="true" (click)="deleteEvent(viewDate.date, 'isBG')"></ion-checkbox>
+          </div>
+          <div *ngIf="!isChecked(viewDate.date , 'isBG')">
+            <ion-checkbox checked="false" (click)="addEvent(viewDate.date, 'isBG')"></ion-checkbox>
+          </div>
+          <p style="font-size: 12px" *ngIf="getValue(viewDate.date, 'isBG') != null">{{getValue(viewDate.date, 'isBG')}} <b>ml</b></p>
+          <p style="font-size: 12px" *ngIf="getValue(viewDate.date, 'isBG') == null">na <b>ml</b></p>
+      </div>
+
+        </div> 
+    </ng-template> 
+
+      <ng-template #template let-displayEvent="displayEvent">
+          <div class="calendar-event-inner">{{displayEvent.event.isInsulin}}</div>
+          <div class="calendar-event-inner">{{displayEvent.event.isBP}}</div>
+          <div class="calendar-event-inner">{{displayEvent.event.isBG}}</div>
+      </ng-template>
+        <calendar [eventSource]="eventSource"
+        [weekviewHeaderTemplate]="temp"
+        [weekviewAllDayEventTemplate]="template"
+        [calendarMode]="calendar.mode"
+        [currentDate]="calendar.currentDate"
+        (onCurrentDateChanged)="onCurrentDateChanged($event)"
+        (onRangeChanged)="reloadSource(startTime, endTime)"
+        (onEventSelected)="onEventSelected($event)"
+        (onTitleChanged)="onViewTitleChanged($event)"
+        (onTimeSelected)="onTimeSelected($event) "
+        showEventDetail=false
+        formatWeekViewDayHeader="EEE"
+        allDayLabel= "time"
+        startHour="0"
+        endHour = "0"
+        startingDayWeek="1">
+        </calendar>
+
+  </ion-content>

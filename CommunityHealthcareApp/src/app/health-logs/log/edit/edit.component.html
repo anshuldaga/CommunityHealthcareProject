@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Enter Value</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="onValueEntered()" #f="ngForm">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+          <ion-item>
+              <ion-label position="floating">Value</ion-label>
+              <ion-input 
+              type="number" 
+              ngModel
+              name="val"
+              required></ion-input>
+            </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+          <ion-button 
+          type="submit" 
+          color="danger"
+          expand="blocked" 
+          [disabled]="!f.valid">
+          Submit</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </form>
+</ion-content>
