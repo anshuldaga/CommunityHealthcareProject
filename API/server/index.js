@@ -1,16 +1,3 @@
-// var express = require('express');
-// var bodyParser = require('body-parser');
-// // var logger = require('morgan');
-// var methodOverride = require('method-override')
-// var cors = require('cors');
-// var mysql = require('mysql');
-
-// var app = express();
-// app.use(logger('dev'));
-// app.use(bodyParser.json());
-// app.use(methodOverride());
-// app.use(cors());
-
 const mysql = require('mysql');
 const express = require('express');
 const cors = require('cors');
@@ -23,6 +10,7 @@ app.use(cors());
 const user = require('./routes/userRoute');
 
 app.use(user);
+  
 
 
 var mysqlConnection = mysql.createConnection({
@@ -42,15 +30,13 @@ mysqlConnection.connect((err) => {
 
 app.listen(3000, ()=>console.log('Express running at 3000!'));
 
-
+////////////Rachana backend code
 //health-card information
 
 app.get('/userhealth/:userId/', (req, res) => {
-    console.log('akshat');
     mysqlConnection.query('SELECT * FROM userhealth where userId = ?', [req.params.userId], (err, rows, fields)=>{
-        if(!err){
+        if(!err)
             res.send(rows);
-        }
         else
             console.log(err);
     })
@@ -197,3 +183,5 @@ app.delete('/log/:id/', (req, res) => {
             console.log(err);
     })
 });
+
+
