@@ -1,3 +1,4 @@
+DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LogAddOrEdit`(
 IN _id int(11),
 IN _userId int(11),
@@ -30,4 +31,5 @@ BEGIN
         VALUES (_userId, _startTime, _endTime, _allDay, _isInsulin, _isBP, _isBG, _insulinValue, _BPValue, _BGValue);
     END IF;
     SELECT _userId AS 'userId';
-END
+END$$
+DELIMITER ;
