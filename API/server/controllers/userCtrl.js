@@ -31,13 +31,14 @@ exports.loginUser = (req, res) => {
         }
         else{
             console.log("111Inside exports.loginUser - going to get user credentional frm DB & than going to generate token");
+            //const id = rows[0].id;
             const user = {
                 id: rows[0].id,
                 username: rows[0].username,
                 password: rows[0].password
             }
             // to generate the new token & send it
-            let token = jwt.sign({user: user}, 'jk23!+!97', {expiresIn: '1min'});
+            let token = jwt.sign({user}, 'jk23!+!97', {expiresIn: '1h'});
             res.status(200).send({token});
         }
     })
@@ -53,4 +54,30 @@ exports.addEvent = (req, res, next) => {
         else
             console.log(err);
     });
+}
+
+exports.getUserHealth = (req, res, next) => {
+
+    mysqlConnection.query('SELECT * FROM userhealth where userId = ?', [req.params.userId], (err, rows, fields)=>{
+        if(!err){
+            res.send(rows);
+        }
+        else
+            console.log(err);
+    })
+}
+
+exports.checkToken = (req, res, next) => {
+     const header = req.headers['authorization'];
+    console.log(header);
+    if(typeof header !== 'undefined') {
+        const bearer = header.split(' ');
+        const token = bearer[1];
+
+        req.token = token;
+        next();
+    } else {
+        //If header is undefined return Forbidden (403)
+        res.sendStatus(403)
+    }
 }

@@ -46,15 +46,34 @@ app.listen(3000, ()=>console.log('Express running at 3000!'));
 
 //health-card information
 
-app.get('/userhealth/:userId/', (req, res) => {
-    mysqlConnection.query('SELECT * FROM userhealth where userId = ?', [req.params.userId], (err, rows, fields)=>{
-        if(!err){
-            res.send(rows);
-        }
-        else
-            console.log(err);
-    })
-});
+//Check to make sure header is not undefined, if so, return Forbidden (403)
+// const checkToken = (req, res, next) => {
+//     const header = req.headers['authorization'];
+
+//     if(typeof header !== 'undefined') {
+//         const bearer = header.split(' ');
+//         const token = bearer[1];
+
+//         req.token = token;
+//         next();
+//     } else {
+//         //If header is undefined return Forbidden (403)
+//         res.sendStatus(403)
+//     }
+// }
+
+// app.get('/userhealth/:userId/', checkToken, (req, res) => {
+//     console.log('akshat')
+//     jwt.verify(req.token, 'secretkey', (err, authData) => {
+//         mysqlConnection.query('SELECT * FROM userhealth where userId = ?', [req.params.userId], (err, rows, fields)=>{
+//             if(!err){
+//                 res.send(rows);
+//             }
+//             else
+//                 console.log(err);
+//         })
+//     })
+// });
 
 // app.put('/userhealth/', function(req, res){
 //     let info = req.body;
@@ -109,24 +128,26 @@ app.get('/userhealth/:userId/', (req, res) => {
 //     })
 // });
 
-//health-card medication
-app.get('/usermedication/:userId/', checkToken, (req, res) => {
 
-    jwt.verify(req.token, 'jk23!+!97', (err, rows) => {
-        if(err){
-            console.log('ERROR: Could not connect to the protected route');
-            res.sendStatus(403);
-        }
-        else{
-            mysqlConnection.query('SELECT * FROM usermedication where userId = ?', [req.params.userId], (err, rows, fields)=>{
-                if(!err)
-                    res.send(rows);
-                else
-                    console.log(err);
-            })
-        }
-    })
-});
+
+// //health-card medication
+// app.get('/usermedication/:userId/', checkToken, (req, res) => {
+
+//     jwt.verify(req.token, 'jk23!+!97', (err, rows) => {
+//         if(err){
+//             console.log('ERROR: Could not connect to the protected route');
+//             res.sendStatus(403);
+//         }
+//         else{
+//             mysqlConnection.query('SELECT * FROM usermedication where userId = ?', [req.params.userId], (err, rows, fields)=>{
+//                 if(!err)
+//                     res.send(rows);
+//                 else
+//                     console.log(err);
+//             })
+//         }
+//     })
+// });
 
 // app.delete('/usermedication/:id/', (req, res) => {
 //     mysqlConnection.query('DELETE FROM usermedication where id = ?', [req.params.id], (err, rows, fields)=>{
@@ -206,20 +227,3 @@ app.get('/usermedication/:userId/', checkToken, (req, res) => {
 //             console.log(err);
 //     })
 // });
-
-
-//Check to make sure header is not undefined, if so, return Forbidden (403)
-const checkToken = (req, res, next) => {
-    const header = req.headers['authorization'];
-
-    if(typeof header !== 'undefined') {
-        const bearer = header.split(' ');
-        const token = bearer[1];
-
-        req.token = token;
-        next();
-    } else {
-        //If header is undefined return Forbidden (403)
-        res.sendStatus(403)
-    }
-}
