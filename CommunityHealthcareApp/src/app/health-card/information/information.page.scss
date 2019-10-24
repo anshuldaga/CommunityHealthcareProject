@@ -9,6 +9,15 @@
     font-weight:310;
 }
 
+.basics{
+    color:white;
+    width:95px;
+    height:100px;
+    border-radius:12px;
+    margin:7px;
+    padding:2px;
+}
+
 .basics1{
     top:2px;
     left:1px;
@@ -29,4 +38,11 @@ color:white;
 font-weight:200;
  top:-6px;
 left:23px;
+}
+
+ion-card-header {
+    text-align: center;
+    color: white;
+    font-size:50px;
+    top:85px;
 }

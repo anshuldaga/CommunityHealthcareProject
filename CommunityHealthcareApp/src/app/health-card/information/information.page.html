@@ -12,21 +12,23 @@
 
 <ion-content class = "ion-padding">
         <ion-button shape = "round" color = "danger" id = "edit" [routerLink] = "['edit-information']">Edit</ion-button>
-    <ion-list no-lines>
-        <ion-card>
-            <ion-card-content>
-                <ion-card-title> Weight </ion-card-title>
-                <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null">{{loadedInformation.weight}}  lbs</ion-card-subtitle>
-                <ion-card-subtitle *ngIf="isLoading || loadedInformation.weight == null">n/a</ion-card-subtitle>
-            </ion-card-content>
+    <ion-grid class = "ion-padding">
+        <ion-row>
+            <ion-col>
+        <ion-card style = " background-color: #00ced1;"class = "basics">
+                <ion-card-header class = "basics1" *ngIf="!isLoading && loadedInformation.weight != null"><b>{{loadedInformation.weight}}  lbs</b></ion-card-header>
+                <ion-card-header class = "basics1" *ngIf="isLoading || loadedInformation.weight == null"><b>n/a</b></ion-card-header>
+                <ion-card-subtitle class = "basics2">Weight lbs</ion-card-subtitle>
         </ion-card>
-        <ion-card>
-                <ion-card-content>
-                    <ion-card-title> Height </ion-card-title>
-                    <ion-card-subtitle *ngIf="isLoading || loadedInformation.height_feet == null || loadedInformation.height_inches == null">n/a</ion-card-subtitle>
-                    <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null"> {{loadedInformation.height_feet}}' {{loadedInformation.height_inches}}"</ion-card-subtitle>
-                </ion-card-content>
+        </ion-col>
+        <ion-col>
+        <ion-card style = " background-color: #87c4d8;" class = "basics">
+                    <ion-card-header class = "basics1" *ngIf="isLoading || loadedInformation.height_feet == null || loadedInformation.height_inches == null"><b>n/a</b></ion-card-header>
+                    <ion-card-header class = "basics1" *ngIf="!isLoading && loadedInformation.weight != null"><b>{{loadedInformation.height_feet}}' {{loadedInformation.height_inches}}"</b></ion-card-header>
+                    <ion-card-subtitle> Height </ion-card-subtitle>
         </ion-card>
+    </ion-col>
+        <ion-col>
         <ion-card>
                 <ion-card-content>
                     <ion-card-title> Blood Type </ion-card-title>
@@ -34,6 +36,9 @@
                     <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null"> {{loadedInformation.bloodtype}} </ion-card-subtitle>
                 </ion-card-content>
         </ion-card>
+        </ion-col>
+        </ion-row>
+    </ion-grid>
         <ion-card>
                 <ion-card-content>
                     <ion-card-title> Birthday </ion-card-title>
@@ -67,5 +72,4 @@
                 </ion-card-content>
         </ion-card>
 
-    </ion-list>
 </ion-content>
