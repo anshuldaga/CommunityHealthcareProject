@@ -21,9 +21,9 @@ const jwt = require('jsonwebtoken');
 app.use(bodyparser.json());
 app.use(cors());
 
-const user = require('./routes/userRoute');
+const user = require('./routes/userRoute');//user -> router
 
-app.use(user);
+app.use(user);//router
 
 
 var mysqlConnection = mysql.createConnection({

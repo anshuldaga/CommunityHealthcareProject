@@ -29,7 +29,10 @@ import { TokenInterceptorService } from './service/token-interceptor.service';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     EmployeeService,
     RegisterService,
-    LoginService
+    LoginService,
+    { 
+      provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

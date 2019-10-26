@@ -60,7 +60,8 @@ exports.getUserHealth = (req, res, next) => {
     const header = req.headers['authorization'];
     const bearer = header.split(' ');
     const token = bearer[1];
-    var payload = jwt.verify(token, 'jk23!+!97');
+    
+     var payload = jwt.verify(token, 'jk23!+!97');
     mysqlConnection.query('SELECT * FROM userhealth where userId = ?', payload.id, (err, rows, fields)=>{
         if(!err){
             res.send(rows);
@@ -70,17 +71,17 @@ exports.getUserHealth = (req, res, next) => {
     })
 }
 
-exports.checkToken = (req, res, next) => {
-     const header = req.headers['authorization'];
-    console.log(header);
-    if(typeof header !== 'undefined') {
-        const bearer = header.split(' ');
-        const token = bearer[1];
+// exports.checkToken = (req, res, next) => {
+//      const header = req.headers['authorization'];
+//     console.log(header);
+//     if(typeof header !== 'undefined') {
+//         const bearer = header.split(' ');
+//         const token = bearer[1];
 
-        req.token = token;
-        next();
-    } else {
-        //If header is undefined return Forbidden (403)
-        res.sendStatus(403)
-    }
-}
+//         req.token = token;
+//         next();
+//     } else {
+//         //If header is undefined return Forbidden (403)
+//         res.sendStatus(403)
+//     }
+// }
