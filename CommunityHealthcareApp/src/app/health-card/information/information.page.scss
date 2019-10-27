@@ -11,11 +11,11 @@
 
 .basics{
     color:white;
-    width:95px;
+    //width:95px;
     height:100px;
     border-radius:12px;
-    margin:7px;
-    padding:2px;
+    margin:4px;
+    //padding:2px;
 }
 
 .basics1{
@@ -46,3 +46,30 @@ ion-card-header {
     font-size:50px;
     top:85px;
 }
+
+.facts{
+    border-radius:0px;
+    margin-left:20px;
+    margin-right:20px;
+    margin-top:0px;
+    margin-bottom:15px;
+    width:340px;
+    background-color:white;
+    }
+
+    #avatars{
+        float:left;
+        width:55px;
+        height:55px;
+        margin:12px;
+        padding-left:13px;
+        padding-top:11px;
+    }
+
+    .titles{
+        color:gray;
+        font-size:15px;
+       top:13px;
+       left:10px;
+       margin-bottom:5px;
+    }
