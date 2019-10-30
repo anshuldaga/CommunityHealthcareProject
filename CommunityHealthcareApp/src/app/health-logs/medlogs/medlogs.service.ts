@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { event } from './logs.model';
+import { event } from './medlogs.model';
 import { BehaviorSubject } from 'rxjs';
 import { take, map, tap, delay, switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class LogsService {
+export class MedlogsService {
   constructor(private http: HttpClient) {}
 
   day = new Date();
@@ -15,7 +15,7 @@ export class LogsService {
 
   fetchLogs() {
     return this.http
-      .get<{ [key: string]: event }>('http://localhost:3000/log/8778/')
+      .get<{ [key: string]: event }>('http://localhost:3000/medlog/877/')
       .pipe(
         map(res => {
           if (!(Object.keys(res).length === 0)) {
@@ -31,12 +31,9 @@ export class LogsService {
                     new Date(res[key].startTime),
                     new Date(res[key].endTime),
                     true,
-                    res[key].isInsulin,
-                    res[key].isBP,
-                    res[key].isBG,
-                    res[key].insulinValue,
-                    res[key].BPValue,
-                    res[key].BGValue
+                    res[key].isMed1,
+                    res[key].isMed2,
+                    res[key].isMed3
                   )
                 );
               }
@@ -67,12 +64,9 @@ export class LogsService {
       startTime: new Date(day),
       endTime: new Date(day),
       allDay: true,
-      isInsulin: false,
-      isBP: false,
-      isBG: false,
-      insulinValue: null,
-      BPValue: null,
-      BGValue: null
+      isMed1: false,
+      isMed2: false,
+      isMed3: false
     };
     if (eventCopy.allDay) {
       eventCopy.startTime = new Date(
@@ -82,30 +76,27 @@ export class LogsService {
         Date.UTC(day.getUTCFullYear(), day.getUTCMonth(), day.getUTCDate() + 1)
       );
       // tslint:disable-next-line: triple-equals
-      if (property == 'isInsulin') {
-        eventCopy.isInsulin = true;
+      if (property == 'isMed1') {
+        eventCopy.isMed1 = true;
         // tslint:disable-next-line: triple-equals
-      } else if (property == 'isBP') {
-        eventCopy.isBP = true;
+      } else if (property == 'isMed2') {
+        eventCopy.isMed2 = true;
         // tslint:disable-next-line: triple-equals
-      } else if (property == 'isBG') {
-        eventCopy.isBG = true;
+      } else if (property == 'isMed3') {
+        eventCopy.isMed3 = true;
       }
     }
     const ev = new event(
       0,
-      8778,
+      877,
       eventCopy.startTime,
       eventCopy.endTime,
-      eventCopy.allDay,
-      eventCopy.isInsulin,
-      eventCopy.isBP,
-      eventCopy.isBG,
-      eventCopy.insulinValue,
-      eventCopy.BPValue,
-      eventCopy.BGValue
+      true,
+      eventCopy.isMed1,
+      eventCopy.isMed2,
+      eventCopy.isMed3
     );
-    return this.http.put(`http://localhost:3000/log/`, ev).pipe(
+    return this.http.put(`http://localhost:3000/medlog/`, ev).pipe(
       switchMap(() => {
         return this.eventSource;
       }),
@@ -118,7 +109,7 @@ export class LogsService {
 
   delete(ev: event) {
     const id = ev.id;
-    return this.http.delete(`http://localhost:3000/log/${id}/`).pipe(
+    return this.http.delete(`http://localhost:3000/medlog/${id}/`).pipe(
       switchMap(() => {
         return this.eventSource;
       }),
@@ -130,7 +121,7 @@ export class LogsService {
   }
 
   update(eventCopy: event) {
-    return this.http.put(`http://localhost:3000/log/`, eventCopy).pipe(
+    return this.http.put(`http://localhost:3000/medlog/`, eventCopy).pipe(
       switchMap(() => {
         return this.eventSource;
       }),
@@ -146,12 +137,9 @@ export class LogsService {
           eventCopy.startTime,
           eventCopy.endTime,
           eventCopy.allDay,
-          eventCopy.isInsulin,
-          eventCopy.isBP,
-          eventCopy.isBG,
-          eventCopy.insulinValue,
-          eventCopy.BPValue,
-          eventCopy.BGValue
+          eventCopy.isMed1,
+          eventCopy.isMed2,
+          eventCopy.isMed3
         );
         this.eventSource.next(updatedEvents);
       })

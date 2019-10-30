@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { LogsPage } from './logs.page';
-import { NgCalendarModule} from 'ionic2-calendar'
+import { NgCalendarModule } from 'ionic2-calendar';
 
 import { EditComponent } from './edit/edit.component';
 
