@@ -81,11 +81,17 @@
                     <ion-chip outline = "true" *ngIf="!isLoading && loadedInformation.weight != null">Dental Insurance: {{loadedInformation.dental_insurance}}</ion-chip>
                 </ion-card-content>
         </ion-card>
-        <ion-card>
+        <ion-card class = "facts">
+                        <ion-avatar style = "background-color: #191970;" id = "avatars">
+                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                        width="31" height="31"
+                                        viewBox="0 0 172 172"
+                                        style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M70.83802,17.2l2.46354,91.73333h25.30729l2.55312,-91.73333zM86.04479,126.13333c-9.41986,0 -15.29635,5.46853 -15.29635,14.37812c0,8.82934 5.88222,14.28854 15.29635,14.28854c9.41413,0 15.21797,-5.45921 15.21797,-14.28854c0,-8.90959 -5.7981,-14.37812 -15.21797,-14.37812z"></path></g></g></svg>
+                         </ion-avatar>
+                <ion-card-subtitle class = "titles"><b>Allergies</b></ion-card-subtitle>
                 <ion-card-content>
-                    <ion-card-title> Allergies </ion-card-title>
-                    <ion-card-subtitle *ngIf="isLoading || loadedInformation.allergy_notes == null ">n/a</ion-card-subtitle>
-                    <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null">{{loadedInformation.allergy_notes}}</ion-card-subtitle>
+                    <ion-chip outline = "true" *ngIf="isLoading || loadedInformation.allergy_notes == null ">n/a</ion-chip>
+                    <ion-chip outline = "true" *ngIf="!isLoading && loadedInformation.weight != null">{{loadedInformation.allergy_notes}}</ion-chip>
                 </ion-card-content>
         </ion-card>
         </ion-list>
