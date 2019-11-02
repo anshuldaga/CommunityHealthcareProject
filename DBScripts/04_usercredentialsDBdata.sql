@@ -1,9 +1,3 @@
-/*
--- Query: SELECT * FROM employeedb.usercredentials
-LIMIT 0, 1000
-
--- Date: 2019-09-29 20:30
-*/
 
 USE `HealthCareApp`;
 INSERT INTO `usercredentials` (`id`,`username`,`password`, `lastUpdatedDT`) VALUES (877,'usd','pasd', '2019-09-27');

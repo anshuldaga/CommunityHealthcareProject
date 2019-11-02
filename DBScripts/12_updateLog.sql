@@ -2,7 +2,7 @@ ALTER TABLE log CHANGE `BPvalue` `BPValue` int(11);
 ALTER TABLE log CHANGE `BGvalue` `BGValue` int(11);
 
 USE `HealthCareApp`;
-
+DROP PROCEDURE `healthcareapp`.`LogAddOrEdit`;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LogAddOrEdit`(
 IN _id int(11),
