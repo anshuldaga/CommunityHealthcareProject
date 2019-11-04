@@ -13,7 +13,7 @@ export class MedicationsService
   public medications = new BehaviorSubject<Medication[]> ([]);
 
   fetchMedication(){
-    return this.http.get<{[key: string]: Medication}>('http://localhost:3000/usermedication/8779/').pipe(
+    return this.http.get<{[key: string]: Medication}>('http://localhost:3000/usermedication/877/').pipe(
       map(res => {
         if(!(Object.keys(res).length === 0)) {
           const _medications = [];
