@@ -1,16 +1,3 @@
-// var express = require('express');
-// var bodyParser = require('body-parser');
-// // var logger = require('morgan');
-// var methodOverride = require('method-override')
-// var cors = require('cors');
-// var mysql = require('mysql');
-
-// var app = express();
-// app.use(logger('dev'));
-// app.use(bodyParser.json());
-// app.use(methodOverride());
-// app.use(cors());
-
 const mysql = require('mysql');
 const express = require('express');
 const cors = require('cors');
@@ -29,7 +16,7 @@ app.use(user);//router
 var mysqlConnection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'oliverkahn',
+    password: 'password',
     database: 'healthcareapp',
     multipleStatements: true
 });
@@ -43,7 +30,7 @@ mysqlConnection.connect((err) => {
 
 app.listen(3000, ()=>console.log('Express running at 3000!'));
 
-
+////////////Rachana backend code
 //health-card information
 
 //Check to make sure header is not undefined, if so, return Forbidden (403)

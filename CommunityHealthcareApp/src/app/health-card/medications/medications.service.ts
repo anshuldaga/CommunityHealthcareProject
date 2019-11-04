@@ -13,13 +13,13 @@ export class MedicationsService
   public medications = new BehaviorSubject<Medication[]> ([]);
 
   fetchMedication(){
-    return this.http.get<{[key: string]: Medication}>('http://localhost:3000/usermedication/877/').pipe(
+    return this.http.get<{[key: string]: Medication}>('http://localhost:3000/usermedication/8779/').pipe(
       map(res => {
         if(!(Object.keys(res).length === 0)) {
           const _medications = [];
           for(const key in res){
             if(res.hasOwnProperty(key)){
-              _medications.push(new Medication(res[key].id, 8778, res[key].medication_name, res[key].medication_notes));
+              _medications.push(new Medication(res[key].id, 8779, res[key].medication_name, res[key].medication_notes));
             }
           }
           return _medications;
@@ -48,7 +48,7 @@ export class MedicationsService
 
   addMedication(medication_name: string, medication_notes: string)
   {
-    const newMedication = new Medication(0, 8778, medication_name, medication_notes);
+    const newMedication = new Medication(0, 8779, medication_name, medication_notes);
 
     return this.http.put(`http://localhost:3000/usermedication/`, newMedication).pipe(
       switchMap(() => {
