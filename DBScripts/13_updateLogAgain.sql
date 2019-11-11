@@ -1,3 +1,8 @@
+
+USE `HealthCareApp`;
+
+DROP PROCEDURE `healthcareapp`.`LogAddOrEdit`;
+
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LogAddOrEdit`(
 IN _id int(11),
