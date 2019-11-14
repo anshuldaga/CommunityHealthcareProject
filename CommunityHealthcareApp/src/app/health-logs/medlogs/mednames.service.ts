@@ -16,7 +16,7 @@ export class MednamesService {
 
   fetchMednames() {
     return this.http
-      .get<{ [key: string]: Mednames }>('http://localhost:3000/mednames/877/')
+      .get<{ [key: string]: Mednames }>('http://localhost:3000/mednames/')
       .pipe(
         take(1),
         tap(res => {
