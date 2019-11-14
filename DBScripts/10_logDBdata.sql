@@ -5,6 +5,7 @@ LIMIT 0, 1000
 -- Date: 2019-09-29 20:32
 */
 
+USE `HealthCareApp`;
 ALTER TABLE `healthcareapp`.`log` 
 ADD COLUMN `allDay` TINYINT(1) NULL AFTER `BGvalue`;
 

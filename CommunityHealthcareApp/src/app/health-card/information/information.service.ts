@@ -3,6 +3,7 @@ import { Information } from './information.model'
 import { BehaviorSubject, of } from 'rxjs';
 import {take, tap, switchMap} from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class InformationService {
     null, null, null, null));
 
   fetchInformation(){
-    return this.http.get<{[key: string]: Information}>('http://localhost:3000/userhealth/877/').pipe(
+    return this.http.get<{[key: string]: Information}>('http://localhost:3000/userhealth/').pipe(
       take(1),
       tap(res => {
         if(!(Object.keys(res).length === 0)) {

@@ -1,11 +1,11 @@
-CREATE TABLE educationtabs (
+CREATE TABLE `HealthCareApp`.`educationtabs` (
 tab_id int(11) NOT NULL AUTO_INCREMENT,
 tab_title varchar(255) NOT NULL,
 tab_description varchar(255) DEFAULT NULL,
 PRIMARY KEY (tab_id)
 );
 
-CREATE TABLE tabvideos (
+CREATE TABLE `HealthCareApp`.`tabvideos` (
 vid_id int(11) NOT NULL AUTO_INCREMENT,
 tab_id int(11) NOT NULL,
 vid_title varchar(255) NOT NULL,
@@ -15,7 +15,7 @@ PRIMARY KEY (vid_id),
 FOREIGN KEY (tab_id) REFERENCES educationtabs(tab_id)
 );
 
-CREATE TABLE log (
+CREATE TABLE `HealthCareApp`.`log` (
 id int(11) NOT NULL AUTO_INCREMENT,
 userId int(11) NOT NULL,
 startTime varchar(50) NOT NULL,
@@ -30,7 +30,7 @@ PRIMARY KEY (id),
 FOREIGN KEY (userID) REFERENCES usercredentials(id)
 );
 
-CREATE TABLE medlog (
+CREATE TABLE `HealthCareApp`.`medlog` (
 id int(11) NOT NULL AUTO_INCREMENT,
 userId int(11) NOT NULL,
 startTime varchar(50) NOT NULL,
@@ -45,7 +45,7 @@ PRIMARY KEY (id),
 FOREIGN KEY (userID) REFERENCES usercredentials(id)
 );
 
-CREATE TABLE userHealth (
+CREATE TABLE `HealthCareApp`.`userHealth` (
 id int(11) NOT NULL AUTO_INCREMENT,
 userId int(11) NOT NULL,
 height_feet int(11),
@@ -62,7 +62,7 @@ PRIMARY KEY (id),
 FOREIGN KEY (userID) REFERENCES usercredentials(id)
 );
 
-CREATE TABLE userMedication (
+CREATE TABLE `HealthCareApp`.`userMedication` (
 id int(11) NOT NULL AUTO_INCREMENT,
 userId int(11) NOT NULL,
 medication_name varchar(50) NOT NULL,
@@ -71,7 +71,7 @@ PRIMARY KEY (id),
 FOREIGN KEY (userID) REFERENCES usercredentials(id)
 );
 
-CREATE TABLE userCondition (
+CREATE TABLE `HealthCareApp`.`userCondition` (
 id int(11) NOT NULL AUTO_INCREMENT,
 userId int(11) NOT NULL,
 condition_name varchar(50) NOT NULL,
@@ -79,6 +79,8 @@ condition_notes varchar(255),
 PRIMARY KEY (id),
 FOREIGN KEY (userID) REFERENCES usercredentials(id)
 );
+
+USE `HealthCareApp`;
 
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `LogAddOrEdit`(
