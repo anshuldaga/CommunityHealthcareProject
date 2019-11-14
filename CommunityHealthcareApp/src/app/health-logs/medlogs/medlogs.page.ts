@@ -1,201 +1,176 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { CalendarComponent } from 'ionic2-calendar/calendar';
+import { Subscription } from 'rxjs';
+import { MedlogsService } from './medlogs.service';
+import { MednamesService } from './mednames.service';
+import { event } from './medlogs.model';
+import { Mednames } from './mednames.model';
+import { ModalController, LoadingController } from '@ionic/angular';
+import { EditComponent } from './edit/edit.component';
 
 @Component({
   selector: 'app-medlogs',
   templateUrl: './medlogs.page.html',
-  styleUrls: ['./medlogs.page.scss'],
+  styleUrls: ['./medlogs.page.scss']
 })
-export class MedlogsPage implements OnInit 
-{
-  
-  day = new Date();
+export class MedlogsPage implements OnInit, OnDestroy {
+  alldaylabel = '';
 
+  event: event;
+  constructor(
+    private medlogsService: MedlogsService,
+    private mednamesService: MednamesService,
+    private modalCtrl: ModalController,
+    private loadingCtrl: LoadingController
+  ) {}
+  eventSource: event[];
+  private eventSourceSub: Subscription;
 
-  event = 
-  {
-    startTime: '',
-    endTime: '',
-    allDay: true,
-    isInsulin: false,
-    isBP: false,
-    isBG: false
-  };
-
-  minDate = new Date().toISOString();
-  eventSource = [
-    {
-      startTime: new Date(Date.UTC(this.day.getUTCFullYear(), this.day.getUTCMonth(), this.day.getUTCDate())),
-      endTime: new Date(Date.UTC(this.day.getUTCFullYear(), this.day.getUTCMonth(), this.day.getUTCDate() + 1)),
-      allDay: true,
-      isInsulin: false,
-      isBP: true,
-      isBG: false
-    },
-    {
-      startTime: new Date(Date.UTC(this.day.getUTCFullYear(), this.day.getUTCMonth(), this.day.getUTCDate() + 1)),
-      endTime: new Date(Date.UTC(this.day.getUTCFullYear(), this.day.getUTCMonth(), this.day.getUTCDate() + 2)),
-      allDay: true,
-      isInsulin: true,
-      isBP: true,
-      isBG: false
-    },
-    {
-      startTime: new Date(Date.UTC(this.day.getUTCFullYear(), this.day.getUTCMonth(), this.day.getUTCDate() + 4)),
-      endTime: new Date(Date.UTC(this.day.getUTCFullYear(), this.day.getUTCMonth(), this.day.getUTCDate() + 5)),
-      allDay: true,
-      isInsulin: true,
-      isBP: true,
-      isBG: true
-    },
-    {
-      startTime: new Date(Date.UTC(this.day.getUTCFullYear(), this.day.getUTCMonth(), this.day.getUTCDate() + 7)),
-      endTime: new Date(Date.UTC(this.day.getUTCFullYear(), this.day.getUTCMonth(), this.day.getUTCDate() + 8)),
-      allDay: true,
-      isInsulin: true,
-      isBP: false,
-      isBG: true
-    }
-  ];
+  mednames: Mednames;
+  private mednamesSub: Subscription;
 
   calendar = {
     mode: 'week',
-    currentDate: new Date(),
+    currentDate: new Date()
   };
 
   @ViewChild(CalendarComponent) myCal: CalendarComponent;
 
-  ngOnInit()
-  {
+  ionViewWillEnter() {
+    this.medlogsService.fetchLogs().subscribe();
+    this.mednamesService.fetchMednames().subscribe();
+  }
+
+  ngOnInit() {
+    this.eventSourceSub = this.medlogsService.eventSource.subscribe(ev => {
+      this.eventSource = ev;
+    });
+    this.mednamesSub = this.mednamesService.mednames.subscribe(data => {
+      this.mednames = data;
+      this.alldaylabel =
+        this.mednames.med1name +
+        '||' +
+        this.mednames.med2name +
+        '||' +
+        this.mednames.med3name +
+        '||' +
+        this.mednames.med1notes +
+        '||' +
+        this.mednames.med2notes +
+        '||' +
+        this.mednames.med3notes;
+    });
     this.resetEvent();
   }
 
-  resetEvent() 
-  {
-    this.event = {
-      startTime: new Date().toISOString(),
-      endTime: new Date().toISOString(),
-      allDay: true,
-      isInsulin: false,
-      isBP: false,
-      isBG: false
-    };
-  }
-
-  isChecked(date: Date, property: string): boolean 
-  {
-    if(property == "isInsulin")
-    {
-      return this.getEvent(date).isInsulin;
+  ngOnDestroy() {
+    if (this.eventSourceSub) {
+      this.eventSourceSub.unsubscribe();
     }
-    else if(property == "isBP")
-    {
-      return this.getEvent(date).isBP;
-    }
-    else if(property == "isBG")
-    {
-      return this.getEvent(date).isBG;
+    if (this.mednamesSub) {
+      this.mednamesSub.unsubscribe();
     }
   }
 
-  getEvent(date: Date)
-  {
-    return{
-      ...this.eventSource.find(event =>{
-        return event.endTime.getDate()  === date.getDate();
-      })
-    };
-  }
-
-  addEvent(day: Date, property: string) 
-  {
-    var index = this.eventSource.findIndex(x => x.endTime.getDate() === day.getDate());
-    if (index !== -1) 
-    {
-      if(property == "isInsulin")
-      {
-        this.eventSource[index].isInsulin = true;
-      }
-      else if(property == "isBP")
-      {
-        this.eventSource[index].isBP = true;
-      }
-      else if(property == "isBG")
-      {
-        this.eventSource[index].isBG = true;
-      }
-    }
-    else
-    {
-      let eventCopy = {
-        startTime:  new Date(day),
-        endTime: new Date(day),
-        allDay: true,
-        isInsulin: false,
-        isBP: false,
-        isBG: false
-      }
-      if(eventCopy.allDay)
-      {
-        let start = eventCopy.startTime;
-        let end = eventCopy.endTime;
-        eventCopy.startTime = new Date(Date.UTC(day.getUTCFullYear(), day.getUTCMonth(), day.getUTCDate()));
-        eventCopy.endTime = new Date(Date.UTC(day.getUTCFullYear(), day.getUTCMonth(), day.getUTCDate() + 1));
-        if(property == "isInsulin")
-        {
-          eventCopy.isInsulin = true;
-        }
-        else if(property == "isBP")
-        {
-          eventCopy.isBP = true;
-        }
-        else if(property == "isBG")
-        {
-          eventCopy.isBG = true;
-        }
-      }
-      this.eventSource.push(eventCopy);
-    }
-    this.myCal.loadEvents();
-    this.resetEvent();
-  }
-
-  deleteEvent(day: Date, property: string)
-  {
-    var index = this.eventSource.findIndex(x => x.endTime.getDate() === day.getDate());
-    if (index !== -1) 
-    {
-      if(property == "isInsulin")
-      {
-        this.eventSource[index].isInsulin = false;
-      }
-      else if(property == "isBP")
-      {
-        this.eventSource[index].isBP = false;
-      }
-      else if(property == "isBG")
-      {
-        this.eventSource[index].isBG = false;
-      }
-    }    
-
-    if(this.getEvent(day).isInsulin == false && this.getEvent(day).isBP == false && this.getEvent(day).isBG == false)
-    {
-      this.eventSource.splice(index, 1);
-    }
-
-    this.myCal.loadEvents();
-    this.resetEvent();
-  }
-
-  today() 
-  {
+  today() {
     this.calendar.currentDate = new Date();
   }
 
-  onCurrentDateChanged(ev){}
-  reloadSource(start,end){}
-  onEventSelected(ev){}
-  onViewTitleChanged(ev){}
+  resetEvent() {
+    this.event = {
+      id: null,
+      userId: 877,
+      startTime: new Date(),
+      endTime: new Date(),
+      allDay: true,
+      isMed1: false,
+      isMed2: false,
+      isMed3: false
+    };
+  }
+
+  onCurrentDateChanged(ev) {}
+  reloadSource(start, end) {}
+  onEventSelected(ev) {}
+  onViewTitleChanged(ev) {}
   onTimeSelected(ev) {}
+
+  isChecked(date: Date, property: string): boolean {
+    const index = this.eventSource.findIndex(
+      x => x.endTime.getDate() === date.getDate()
+    );
+    if (index !== -1) {
+      if (property == 'isMed1') {
+        return this.eventSource[index].isMed1;
+      } else if (property == 'isMed2') {
+        return this.eventSource[index].isMed2;
+      } else if (property == 'isMed3') {
+        return this.eventSource[index].isMed3;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  addEvent(day: Date, property: string) {
+    // update existing event
+    const index = this.eventSource.findIndex(
+      x => x.endTime.getDate() === day.getDate()
+    );
+    const temp = this.eventSource[index];
+    if (index !== -1) {
+      if (property == 'isMed1') {
+        temp.isMed1 = true;
+      } else if (property == 'isMed2') {
+        temp.isMed2 = true;
+      } else if (property == 'isMed3') {
+        temp.isMed3 = true;
+      }
+      this.medlogsService.update(temp).subscribe();
+    } else {
+      this.medlogsService.add(day, property).subscribe();
+    }
+    this.myCal.loadEvents();
+    this.resetEvent();
+  }
+
+  deleteEvent(day: Date, property: string) {
+    // update existing event
+    const index = this.eventSource.findIndex(
+      x => x.endTime.getDate() === day.getDate()
+    );
+    const temp = this.eventSource[index];
+    if (index !== -1) {
+      if (property == 'isMed1') {
+        this.eventSource[index].isMed1 = false;
+      } else if (property == 'isMed2') {
+        this.eventSource[index].isMed2 = false;
+      } else if (property == 'isMed3') {
+        this.eventSource[index].isMed3 = false;
+      }
+      this.medlogsService.update(temp).subscribe();
+    }
+
+    // delete entire event
+    if (
+      this.eventSource[index].isMed1 == false &&
+      this.eventSource[index].isMed2 == false &&
+      this.eventSource[index].isMed3 == false
+    ) {
+      this.medlogsService.delete(temp).subscribe();
+    }
+    this.myCal.loadEvents();
+    this.resetEvent();
+  }
+
+  onEdit() {
+    this.modalCtrl
+      .create({
+        component: EditComponent
+      })
+      .then(modalEl => {
+        modalEl.present();
+        return modalEl.onDidDismiss();
+      });
+  }
 }
