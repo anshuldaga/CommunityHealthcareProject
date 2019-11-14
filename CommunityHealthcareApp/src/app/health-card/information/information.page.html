@@ -1,69 +1,99 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-title>Information</ion-title>
-        <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
-            <ion-back-button defaultHref = "/home"></ion-back-button>
-        </ion-buttons>
-    </ion-toolbar>
-</ion-header>
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                <ion-menu-button></ion-menu-button>
+                  <ion-back-button defaultHref = "/home" color = "danger"></ion-back-button>
+              </ion-buttons>
+              <ion-title>
+                    <p id = "first">Health Card</p> 
+                </ion-title>
+        </ion-toolbar>
+      </ion-header>
 
-<ion-content>
-    <ion-button [routerLink]="['/edit-information']">Edit</ion-button>
-    <ion-list no-lines>
-        <ion-card>
-            <ion-card-content>
-                <ion-card-title> Weight </ion-card-title>
-                <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null">{{loadedInformation.weight}}  lbs</ion-card-subtitle>
-                <ion-card-subtitle *ngIf="isLoading || loadedInformation.weight == null">n/a</ion-card-subtitle>
-            </ion-card-content>
+<ion-content class = "ion-padding">
+        <ion-button shape = "round" color = "danger" id = "edit" [routerLink] = "['edit-information']">Edit</ion-button>
+    <ion-grid class = "ion-padding" style = "margin-top: 10px;">
+        <ion-row>
+            <ion-col>
+        <ion-card style = " background-color: #00ced1;"class = "basics">
+                <ion-card-header class = "basics1" *ngIf="!isLoading && loadedInformation.weight != null"><b>{{loadedInformation.weight}}</b></ion-card-header>
+                <ion-card-header class = "basics1" *ngIf="isLoading || loadedInformation.weight == null"><b>n/a</b></ion-card-header>
+                <ion-card-subtitle class = "basics2">Weight lbs</ion-card-subtitle>
         </ion-card>
-        <ion-card>
-                <ion-card-content>
-                    <ion-card-title> Height </ion-card-title>
-                    <ion-card-subtitle *ngIf="isLoading || loadedInformation.height_feet == null || loadedInformation.height_inches == null">n/a</ion-card-subtitle>
-                    <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null"> {{loadedInformation.height_feet}}' {{loadedInformation.height_inches}}"</ion-card-subtitle>
+        </ion-col>
+        <ion-col>
+        <ion-card style = " background-color: #87c4d8;" class = "basics">
+                    <ion-card-header class = "basics1" *ngIf="isLoading || loadedInformation.height_feet == null || loadedInformation.height_inches == null"><b>n/a</b></ion-card-header>
+                    <ion-card-header class = "basics1" *ngIf="!isLoading && loadedInformation.weight != null"><b>{{loadedInformation.height_feet}}'{{loadedInformation.height_inches}}"</b></ion-card-header>
+                    <ion-card-subtitle id = "height"> Height </ion-card-subtitle>
+        </ion-card>
+    </ion-col>
+        <ion-col>
+        <ion-card style = " background-color: #191970;" class = "basics">
+                    <ion-card-header class = "basics1" *ngIf="isLoading || loadedInformation.bloodtype == null "><b>n/a</b></ion-card-header>
+                    <ion-card-header class = "basics1" *ngIf="!isLoading && loadedInformation.weight != null"><b>{{loadedInformation.bloodtype}}</b> </ion-card-header>
+                    <ion-card-subtitle class = "basics2"> Blood Type </ion-card-subtitle>
+        </ion-card>
+        </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-list no lines>
+        <ion-card class = "facts">
+                <ion-avatar style = "background-color: #191970;"id = "avatars">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                        width="28" height="28"
+                        viewBox="0 0 172 172"
+                        style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><g id="surface1"><path d="M42.355,3.44c-6.63812,0 -11.58312,2.21719 -14.5125,5.6975c-2.92937,3.48031 -3.7625,7.80719 -3.7625,11.5025c0,8.78813 4.75688,15.92344 11.2875,20.5325c2.01563,1.42438 4.15219,2.55313 6.45,3.5475h-38.3775v37.84h65.36v-34.4h34.4v34.4h65.36v-37.84h-38.3775c2.29781,-0.99437 4.43438,-2.12312 6.45,-3.5475c6.53063,-4.60906 11.2875,-11.74437 11.2875,-20.5325c0,-3.69531 -0.83312,-8.02219 -3.7625,-11.5025c-2.92937,-3.48031 -7.87437,-5.6975 -14.5125,-5.6975c-6.86656,0 -12.41625,2.9025 -16.555,6.88c-4.13875,3.9775 -7.10844,8.98969 -9.89,13.76c-2.78156,4.77031 -5.40187,9.3525 -8.17,12.47c-2.76812,3.1175 -5.29437,4.73 -9.03,4.73c-3.73562,0 -6.26187,-1.6125 -9.03,-4.73c-2.76812,-3.1175 -5.38844,-7.69969 -8.17,-12.47c-2.78156,-4.77031 -5.75125,-9.7825 -9.89,-13.76c-4.13875,-3.9775 -9.68844,-6.88 -16.555,-6.88zM42.355,10.32c5.03906,0 8.47906,1.8275 11.7175,4.945c3.23844,3.1175 6.08719,7.56531 8.815,12.255c2.72781,4.68969 5.40188,9.5675 8.9225,13.545c0.06719,0.08063 0.14781,0.13438 0.215,0.215h-13.545c-6.93375,0 -14.09594,-2.06937 -19.2425,-5.6975c-5.14656,-3.62812 -8.2775,-8.53281 -8.2775,-14.9425c0,-2.59344 0.61813,-5.16 2.15,-6.9875c1.53188,-1.8275 4.04469,-3.3325 9.245,-3.3325zM129.645,10.32c5.18688,0 7.71313,1.505 9.245,3.3325c1.53188,1.8275 2.15,4.39406 2.15,6.9875c0,6.40969 -3.13094,11.31438 -8.2775,14.9425c-5.14656,3.62813 -12.30875,5.6975 -19.2425,5.6975h-13.545c0.06719,-0.08062 0.14781,-0.13437 0.215,-0.215c3.52063,-3.9775 6.19469,-8.85531 8.9225,-13.545c2.72781,-4.68969 5.57656,-9.1375 8.815,-12.255c3.23844,-3.1175 6.67844,-4.945 11.7175,-4.945zM10.32,89.44v79.12h151.36v-79.12h-58.48v72.24h-34.4v-72.24z"></path></g></g></g></svg>
+                        </ion-avatar>
+                    <ion-card-subtitle class = "titles"><b>Birthday</b></ion-card-subtitle>
+                    <ion-card-content>
+                            <ion-chip *ngIf="isLoading || loadedInformation.birthday== null " outline = "true">N/A</ion-chip>
+                            <ion-chip *ngIf="!isLoading && loadedInformation.weight != null" outline = "true">{{loadedInformation.birthday | date}}</ion-chip>
                 </ion-card-content>
         </ion-card>
-        <ion-card>
+        <ion-card class = "facts">
+                <ion-avatar style = "background-color: #87c4d8;"id = "avatars">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+            width="28" height="28"
+            viewBox="0 0 172 172"
+            style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><g id="surface1"><path d="M134.2675,161.68c-0.05375,0 -0.1075,0 -0.16125,0c-25.85375,-0.84656 -56.14187,-25.9075 -77.01031,-46.78937c-20.89531,-20.88188 -45.95625,-51.18344 -46.7625,-76.91625c-0.29562,-9.03 21.86281,-25.08781 22.09125,-25.24906c5.75125,-4.00438 12.13406,-2.58 14.75438,1.04812c1.77375,2.45906 18.57062,27.90969 20.39812,30.79875c1.89469,2.99656 1.6125,7.45781 -0.7525,11.9325c-1.30344,2.48594 -5.63031,10.09156 -7.65937,13.63906c2.19031,3.1175 7.98187,10.76344 19.94125,22.72281c11.97281,11.95937 19.60531,17.76437 22.73625,19.95469c3.5475,-2.02906 11.15312,-6.35594 13.63906,-7.65937c4.4075,-2.33813 8.84187,-2.63375 11.86531,-0.77938c3.09063,1.89469 28.47406,18.77219 30.81219,20.39813c1.96187,1.38406 3.225,3.74906 3.48031,6.50375c0.24188,2.78156 -0.61812,5.72437 -2.40531,8.29094c-0.14781,0.215 -16.0175,22.10469 -24.96688,22.10469z"></path></g></g></g></svg>
+                        </ion-avatar>
+                        <ion-card-subtitle class = "titles"><b>Contacts</b></ion-card-subtitle>
                 <ion-card-content>
-                    <ion-card-title> Blood Type </ion-card-title>
-                    <ion-card-subtitle *ngIf="isLoading || loadedInformation.bloodtype == null ">n/a</ion-card-subtitle>
-                    <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null"> {{loadedInformation.bloodtype}} </ion-card-subtitle>
+                    <ion-chip outline = "true" *ngIf="isLoading || loadedInformation.primary_contact == null ">Primary: n/a</ion-chip>
+                    <ion-chip outline = "true" *ngIf="isLoading || loadedInformation.secondary_contact == null ">Secondary: n/a</ion-chip>
+                    <ion-chip outline = "true" *ngIf="!isLoading && loadedInformation.weight != null">Primary: {{loadedInformation.primary_contact}}</ion-chip>
+                    <ion-chip outline = "true" *ngIf="!isLoading && loadedInformation.weight != null">Secondary: {{loadedInformation.secondary_contact}}</ion-chip>
                 </ion-card-content>
         </ion-card>
-        <ion-card>
+        <ion-card class = "facts">
+                <ion-avatar style = "background-color: #00ced1;"id = "avatars">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                        width="28" height="28"
+                        viewBox="0 0 172 172"
+                        style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><g id="surface1"><path d="M86.06719,171.32813l-1.505,-0.69875c-0.7525,-0.33594 -74.24219,-35.48844 -74.24219,-140.27406v-2.76813l2.70094,-0.59125c25.46406,-5.59 40.50063,-13.50469 51.47906,-19.28281c8.53281,-4.47469 14.68719,-7.71313 21.5,-7.71313c6.81281,0 12.96719,3.23844 21.5,7.71313c10.97844,5.77812 26.015,13.69281 51.47906,19.28281l2.70094,0.59125v2.76813c0,101.30531 -73.38219,139.83062 -74.12125,140.22031z"></path></g></g></g></svg>
+                        </ion-avatar>
+                        <ion-card-subtitle class = "titles"><b>Health Insurance Providers</b></ion-card-subtitle>
                 <ion-card-content>
-                    <ion-card-title> Birthday </ion-card-title>
-                    <ion-card-subtitle *ngIf="isLoading || loadedInformation.birthday== null ">n/a</ion-card-subtitle>
-                    <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null">{{loadedInformation.birthday | date}}</ion-card-subtitle>
+                    <ion-chip outline = "true" *ngIf="isLoading || loadedInformation.medical_insurance == null ">Medical Insurance: n/a</ion-chip>
+                    <ion-chip outline = "true" *ngIf="isLoading || loadedInformation.dental_insurance == null ">Dental Insurance: n/a</ion-chip>
+                    <ion-chip outline = "true" *ngIf="!isLoading && loadedInformation.weight != null">Medical Insurance: {{loadedInformation.medical_insurance}}</ion-chip>
+                    <ion-chip outline = "true" *ngIf="!isLoading && loadedInformation.weight != null">Dental Insurance: {{loadedInformation.dental_insurance}}</ion-chip>
                 </ion-card-content>
         </ion-card>
-        <ion-card>
+        <ion-card class = "facts">
+                        <ion-avatar style = "background-color: #191970;" id = "avatars">
+                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                        width="31" height="31"
+                                        viewBox="0 0 172 172"
+                                        style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M70.83802,17.2l2.46354,91.73333h25.30729l2.55312,-91.73333zM86.04479,126.13333c-9.41986,0 -15.29635,5.46853 -15.29635,14.37812c0,8.82934 5.88222,14.28854 15.29635,14.28854c9.41413,0 15.21797,-5.45921 15.21797,-14.28854c0,-8.90959 -5.7981,-14.37812 -15.21797,-14.37812z"></path></g></g></svg>
+                         </ion-avatar>
+                <ion-card-subtitle class = "titles"><b>Allergies</b></ion-card-subtitle>
                 <ion-card-content>
-                    <ion-card-title> Contacts</ion-card-title>
-                    <ion-card-subtitle *ngIf="isLoading || loadedInformation.primary_contact == null ">Primary: n/a</ion-card-subtitle>
-                    <ion-card-subtitle *ngIf="isLoading || loadedInformation.secondary_contact == null ">Secondary: n/a</ion-card-subtitle>
-                    <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null">Primary: {{loadedInformation.primary_contact}}</ion-card-subtitle>
-                    <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null">Secondary: {{loadedInformation.secondary_contact}}</ion-card-subtitle>
+                    <ion-chip outline = "true" *ngIf="isLoading || loadedInformation.allergy_notes == null ">n/a</ion-chip>
+                    <ion-chip outline = "true" *ngIf="!isLoading && loadedInformation.weight != null">{{loadedInformation.allergy_notes}}</ion-chip>
                 </ion-card-content>
         </ion-card>
-        <ion-card>
-                <ion-card-content>
-                    <ion-card-title> Health Insurance Providers </ion-card-title>
-                    <ion-card-subtitle *ngIf="isLoading || loadedInformation.medical_insurance == null ">Medical Insurance: n/a</ion-card-subtitle>
-                    <ion-card-subtitle *ngIf="isLoading || loadedInformation.dental_insurance == null ">Dental Insurance: n/a</ion-card-subtitle>
-                    <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null">Medical Insurance: {{loadedInformation.medical_insurance}}</ion-card-subtitle>
-                    <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null">Dental Insurance: {{loadedInformation.dental_insurance}}</ion-card-subtitle>
-                </ion-card-content>
-        </ion-card>
-        <ion-card>
-                <ion-card-content>
-                    <ion-card-title> Allergies </ion-card-title>
-                    <ion-card-subtitle *ngIf="isLoading || loadedInformation.allergy_notes == null ">n/a</ion-card-subtitle>
-                    <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null">{{loadedInformation.allergy_notes}}</ion-card-subtitle>
-                </ion-card-content>
-        </ion-card>
+        </ion-list>
 
-    </ion-list>
 </ion-content>
