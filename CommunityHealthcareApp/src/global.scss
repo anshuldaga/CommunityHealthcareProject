@@ -9,27 +9,3 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
-
-#first {
-    text-align : right;
-    color : #cacbcc;
-    font-size: 15px;
-    font-weight: 400;
-  }
-
-
-  ion-content {
-    --background: #f7f7f7;
-   
-  }
-
-  ion-list{
-    background-color: transparent !important;
-  }
-
-  #topics{
-    text-align:center;
-    color:#7d8188;
-    font-weight:360;
-    font-size:17px;
-  }
