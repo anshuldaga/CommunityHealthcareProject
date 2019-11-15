@@ -11,6 +11,4 @@ export class HomePage {
 
     constructor(private http: Http) {}
 
-    calendar_Notifications = 5;
- log_Notifications = 6;
 }
