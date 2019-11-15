@@ -1,0 +1,53 @@
+#add{
+    color:white;
+    float:left;
+    height:30px;
+    text-transform: none;
+    font-weight:310;
+}
+
+#delete{
+    color:white;
+    float:right;
+    height:30px;
+    text-transform: none;
+    font-weight:310;
+}
+
+.facts{
+    border-radius:0px;
+    margin-left:20px;
+    margin-right:20px;
+    margin-top:0px;
+    margin-bottom:15px;
+    width:360px;
+    background-color:white;
+    
+}
+
+.titles{
+    color:gray;
+    font-size:15px;
+   top:13px;
+   left:10px;
+   margin-bottom:5px;
+}
+
+ion-card-content{
+    margin-top:5px;
+    
+ ion-chip{
+     height:20px;
+     font-size:13px;
+ }
+}
+
+#avatars{
+    float:left;
+    width:55px;
+    height:55px;
+    margin:12px;
+    padding-left:13px;
+    padding-top:11px;
+}
+
