@@ -6,7 +6,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { MedlogsPage } from './medlogs.page';
-import { NgCalendarModule} from 'ionic2-calendar'
+import { NgCalendarModule } from 'ionic2-calendar';
+
+import { EditComponent } from './edit/edit.component';
 
 const routes: Routes = [
   {
@@ -23,6 +25,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     NgCalendarModule
   ],
-  declarations: [MedlogsPage]
+  declarations: [MedlogsPage, EditComponent],
+  entryComponents: [EditComponent]
 })
 export class MedlogsPageModule {}

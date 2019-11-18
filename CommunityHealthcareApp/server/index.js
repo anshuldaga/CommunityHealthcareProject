@@ -15,7 +15,7 @@ app.use(user);
 var mysqlConnection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'password',
+    password: 'MyCubical@11',
     database: 'healthcareapp',
     multipleStatements: true
 });
