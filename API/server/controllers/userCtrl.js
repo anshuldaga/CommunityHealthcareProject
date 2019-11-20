@@ -4,48 +4,56 @@ const jwt = require('jsonwebtoken');
 var mysqlConnection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'password',
   database: 'healthcareapp',
   multipleStatements: true
 });
 
-// exports.createUser = (req, res, next) => {
-//     let user = req.body;
-//     var sql = "INSERT INTO usercredentials(username, password) VALUES (?, ?);"
-//     mysqlConnection.query(sql, [user.username, user.password], (err, rows, fields)=>{
-//         if(!err)
-//             res.send('Insert successful!');
-//         else
-//             console.log(err);
-//     })
-// }
+exports.createUser = (req, res, next) => {
+    let user = req.body;
+    var checkUsernameSql = 'SELECT COUNT(*) AS count FROM usercredentials WHERE username = ?;';
+    mysqlConnection.query(checkUsernameSql, [user.username], (err, rows) => {
+      if(err){
+        res.status(400).send("Error occurred");
+      }
+      else{
+        if(rows[0].count > 0){
+          return res.status(400).send("User already registered.");
+        }
+        else{
+          var sql = 'INSERT INTO usercredentials(firstName, lastName, address, username, password, lastUpdatedDT) VALUES (?, ?, ?, ?, ?, now());';
+          mysqlConnection.query(sql, [user.firstName, user.lastName, user.address, user.username, user.password], (err, rows, fields)=>{
+              if(!err){
+                let id = res.insertId;
+                let token = jwt.sign({ id }, 'jk23!+!97', { expiresIn: '1h' });
+                res.status(200).send({ token });
+              }
+              else{
+                return res.status(500).send("There was a problem registering the user");
+              }
+            });
+          }
+        }
+    });
+}
 
 exports.loginUser = (req, res) => {
   let user = req.body;
-  var sql =
-    'SELECT * FROM usercredentials WHERE username = ? AND password = ?;';
-  mysqlConnection.query(sql, [user.username, user.password], function(
-    err,
-    rows
-  ) {
+  var sql = 'SELECT * FROM usercredentials WHERE username = ? AND password = ?;';
+  mysqlConnection.query(sql, [user.username, user.password], function(err, rows) {
     if (err) {
-      console.log(
-        '000Inside loginUser - got error while getting user data frm DB. Error:' +
-          err
-      );
-    } else {
-      console.log(
-        '111Inside exports.loginUser - going to get user credentional frm DB & than going to generate token'
-      );
-      const id = rows[0].id;
-      // const user = {
-      //     id: rows[0].id,
-      //     username: rows[0].username,
-      //     password: rows[0].password
-      // }
-      // to generate the new token & send it
-      let token = jwt.sign({ id }, 'jk23!+!97', { expiresIn: '1h' });
-      res.status(200).send({ token });
+      res.status(400).send("Error occurred");
+    } 
+    else {
+      if(rows.length > 0){
+        if(rows[0].password == user.password){
+          const id = rows[0].id;
+          let token = jwt.sign({ id }, 'jk23!+!97', { expiresIn: '1h' });
+          res.status(200).send({ token });
+        }
+      }
+      else{
+        res.status(400).send("Username and/or password doesn't match");
+      }
     }
   });
 };
@@ -89,18 +97,3 @@ exports.getUserHealth = (req, res, next) => {
     }
   );
 };
-
-// exports.checkToken = (req, res, next) => {
-//      const header = req.headers['authorization'];
-//     console.log(header);
-//     if(typeof header !== 'undefined') {
-//         const bearer = header.split(' ');
-//         const token = bearer[1];
-
-//         req.token = token;
-//         next();
-//     } else {
-//         //If header is undefined return Forbidden (403)
-//         res.sendStatus(403)
-//     }
-// }
