@@ -37,7 +37,8 @@ const routes: Routes = [
   { path: 'health-calendar', loadChildren: './health-calendar/health-calendar.module#HealthCalendarPageModule' },
   { path: 'tabs', loadChildren: './health-card/tabs/tabs.module#TabsPageModule' },
   { path: 'edit-information', loadChildren: './health-card/information/edit-information/edit-information.module#EditInformationPageModule' },
-  { path: 'logtabs', loadChildren: './health-logs/tabs/tabs.module#TabsPageModule' }
+  { path: 'logtabs', loadChildren: './health-logs/tabs/tabs.module#TabsPageModule' },
+  { path: 'register', loadChildren: './register/register.module#RegisterPageModule' }
 
 ];
 
