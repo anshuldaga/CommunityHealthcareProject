@@ -1,24 +1,23 @@
-<ion-content class = 'ion-padding' style = "--background: linear-gradient(#9fd9ec,#30307c ) !important;">
-    <ion-title>
-      <b>HCAP</b>
-      <ion-icon name="add-circle"></ion-icon>
-    </ion-title>
-    <ion-list>
-      <ion-item>
-          <ion-icon style = "margin-right: 15px;" name="contact"></ion-icon>
-        <ion-input type="username" [(ngModel)]="username" name="username" placeholder="Username"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-          <ion-icon style = "margin-right: 15px;" name="lock"></ion-icon>
-          <ion-input type="password" [(ngModel)]="password" name="password" placeholder="Password"></ion-input>
-      </ion-item>
-      <ion-button block class="loginBtn" routerDirection="root" (click)="loginPage()">Login
-          <ion-icon name="play"></ion-icon>
-      </ion-button>
-    </ion-list>
-      <p>Don't have an Account?  <span><a routerLink ="/register">SIGN UP</a> </span></p>
-    
-    
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="logo">
+      <img src="http://placehold.it/50x50">
+    </div>
+
+    <ion-item>
+      <ion-input type="username" [(ngModel)]="username" name="username" placeholder="Username"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-input type="password" [(ngModel)]="password" name="password" placeholder="Password"></ion-input>
+    </ion-item>
+    <ion-button block class="loginBtn" routerDirection="root" (click)="loginPage()">Login</ion-button>
+    <br>
+    <ion-button block class="signup" routerLink="/register">Sign Up</ion-button>
   
 </ion-content>
