@@ -11,6 +11,7 @@ VALUES(877, '2019-10-14T00:00:00.000Z', '2019-10-15T00:00:00.000Z', false, true,
 INSERT INTO medlog(userId, startTime, endTime, isMed1, isMed2, isMed3)
 VALUES(877, '2019-10-15T00:00:00.000Z', '2019-10-16T00:00:00.000Z', true, true, true);
 
+DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `MedlogAddOrEdit`(
 IN _id int(11),
 IN _userId int(11),
