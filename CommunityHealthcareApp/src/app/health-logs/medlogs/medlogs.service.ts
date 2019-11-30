@@ -15,7 +15,7 @@ export class MedlogsService {
 
   fetchLogs() {
     return this.http
-      .get<{ [key: string]: event }>('http://localhost:3000/medlog/')
+      .get<{ [key: string]: event }>('http://localhost:3000/medlog/877/')
       .pipe(
         map(res => {
           if (!(Object.keys(res).length === 0)) {
@@ -88,7 +88,7 @@ export class MedlogsService {
     }
     const ev = new event(
       0,
-      null,
+      877,
       eventCopy.startTime,
       eventCopy.endTime,
       true,
