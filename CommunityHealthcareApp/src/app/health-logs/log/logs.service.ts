@@ -15,7 +15,7 @@ export class LogsService {
 
   fetchLogs() {
     return this.http
-      .get<{ [key: string]: event }>('http://localhost:3000/log/8778/')
+      .get<{ [key: string]: event }>('http://localhost:3000/log/')
       .pipe(
         map(res => {
           if (!(Object.keys(res).length === 0)) {
@@ -94,7 +94,7 @@ export class LogsService {
     }
     const ev = new event(
       0,
-      8778,
+      null,
       eventCopy.startTime,
       eventCopy.endTime,
       eventCopy.allDay,

@@ -13,3 +13,4 @@
 12_updateLog.sql
 13_updateLogAgain.sql
 14_medlogDBUpdates.sql
+15_addUserAcrossAllTables.sql
