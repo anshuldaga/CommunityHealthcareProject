@@ -18,16 +18,17 @@
           <ion-card-header>
               <ion-item lines="none">
                   <ion-avatar>
-                      <img src="https://img.youtube.com/vi/vyElbR6BzZ8/mqdefault.jpg">
-                    </ion-avatar>
-                    <ion-card-title>{{tab.vid_title}}</ion-card-title>
-                    <ion-icon [name]="isLevelShown('index'+i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+                      <img [src]="getImg(tab.vid_link)">
+                  </ion-avatar>
+                  <ion-label>{{tab.vid_title}}</ion-label>
+                  <ion-icon [name]="isLevelShown('index'+i) ? 'arrow-dropdown' : 'arrow-dropright'" color="danger"></ion-icon>
                 </ion-item>
           </ion-card-header>
           
           <ion-card-content *ngIf="isLevelShown('index'+i)">
-              <ion-card-subtitle>{{tab.vid_description}}</ion-card-subtitle>
-              <iframe width="100%" height="315"  [src]="getTrustedHTML(tab.vid_link)"  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+              <p>{{tab.vid_description}}</p>
+              <br />
+              <iframe width="100%" height="315"  [src]="getURL(tab.vid_link)"  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </ion-card-content>
         </ion-card>
       </ion-list>
