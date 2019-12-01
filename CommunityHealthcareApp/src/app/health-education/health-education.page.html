@@ -1,16 +1,37 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Health Education</ion-title>
-  </ion-toolbar>
+<ion-header> 
+    <ion-toolbar class="toolbar">
+      <ion-buttons slot="start">
+        <ion-menu-button color="danger"></ion-menu-button>
+      </ion-buttons>
+      <ion-text color="medium">
+          education
+      </ion-text>
+    </ion-toolbar>
 </ion-header>
 
+
 <ion-content>
-  <ion-list>
+  <div class="page-title">
+      <ion-text>
+          <h1><b>Health Education</b></h1>
+      </ion-text>
+  </div>
+
+  <div class="img">
+      <ion-img src="../../assets/icons/heart.svg"></ion-img>
+  </div>
+
+<ion-list>
+    <ion-list-header color="danger">
+      Learning Modules
+    </ion-list-header>
+    
     <ion-item *ngFor="let tab of healthEducationTabs" [routerLink]="['/health-education', tab.tab_title]">
-      <ion-label> {{tab.tab_title}} </ion-label>
+        <ion-label>
+          <h2>{{tab.tab_title}}</h2>
+          <p>{{tab.tab_description}}</p>
+        </ion-label>
     </ion-item>
-  </ion-list>
+</ion-list>
+
 </ion-content>
