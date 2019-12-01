@@ -1,65 +1,71 @@
-<ion-header no-border> 
-    <ion-toolbar color="primary">
+<ion-header> 
+    <ion-toolbar >
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <div style="font-size: 12px">
-          <p><b>HOME</b></p>
+      <div>
+        home
       </div>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-grid style="background-color:#FFFFFF">
-        <ion-row>
-          <ion-col>
-            <ion-card [routerLink]="['/health-resources']">
-              <ion-card-header style="background-color:#FFFFFF;"> 
-                <ion-card-subtitle>Community Resources</ion-card-subtitle>                         
-              </ion-card-header>
-            </ion-card>
-          </ion-col>
-          <ion-col>
-              <ion-card [routerLink]="['/health-education']">
-                <ion-card-header style="background-color:#FFFFFF">
-                  <ion-card-subtitle>Health Education</ion-card-subtitle>
-                </ion-card-header>
-              </ion-card>
-            </ion-col>
-        </ion-row>
+    <div class="page-title">
+      <ion-text color="primary">
+          <h1><b>Health Data</b></h1>
+      </ion-text>
+    </div>
 
-        <ion-row>
-          <ion-col>            
-          <ion-card [routerLink]="['/health-calendar']">
-            <ion-card-header style="background-color:#FFFFFF">    
-              <ion-card-subtitle>Health Calendar</ion-card-subtitle>                            
-            </ion-card-header>
-          </ion-card>
-          </ion-col>
-          <ion-col>
-            <ion-card [routerLink]="['/logtabs']">
-                <ion-card-header style="background-color:#FFFFFF">    
-                  <ion-card-subtitle>Health Log</ion-card-subtitle>                          
-                </ion-card-header>
-              </ion-card>
-          </ion-col>
-        </ion-row>
+    <div class="square-container">
+        <div class="square">
+          <div class="content" id="resources" [routerLink]="['/home']">
+              <ion-text><h6>Resources</h6></ion-text>
+              <div class="icon">
+                <ion-img src="../../assets/icons/resources.svg"></ion-img>
+              </div>
+          </div>
+        </div>
       
-        <ion-row>
-            <ion-col>
-              <ion-card [routerLink]="['/tabs']">
-                  <ion-card-header style="background-color:#FFFFFF">    
-                    <ion-card-subtitle>Health Card</ion-card-subtitle>                           
-                  </ion-card-header>
-              </ion-card>
-            </ion-col>
-            <ion-col>
-                <ion-card [routerLink]="['/home']">
-                  <ion-card-header style="background-color:#FFFFFF">    
-                    <ion-card-subtitle>About</ion-card-subtitle>                         
-                  </ion-card-header>
-              </ion-card>
-            </ion-col>
-          </ion-row>
-      </ion-grid>
+        <div class="square">
+          <div class="content" id="calendar" [routerLink]="['/health-calendar']">
+            <ion-text><h6>Calendar</h6></ion-text>
+            <div class="icon">
+              <ion-img src="../../assets/icons/calendar.svg"></ion-img>
+            </div>
+          </div>
+        </div>
+
+        <div class="square">
+          <div class="content" id="education" [routerLink]="['/health-education']">
+              <ion-text><h6>Education</h6></ion-text>
+              <div class="icon">
+                <ion-img src="../../assets/icons/books.svg"></ion-img>
+              </div>
+          </div>
+        </div>
+        
+        <div class="square">
+          <div class="content" id="log" [routerLink]="['/logtabs']">
+            <ion-text><h6>Log</h6></ion-text>
+            <div class="icon">
+              <ion-img src="../../assets/icons/forms.svg"></ion-img>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <ion-list class="list">
+        <ion-item [routerLink]="['/tabs']">
+          <ion-icon slot="start" name="person" id="profile"></ion-icon>
+          <ion-label>Profile</ion-label>
+        </ion-item>
+        <ion-item [routerLink]="['/home']">
+          <ion-icon slot="start" name="information-circle" id="about"></ion-icon>
+          <ion-label>About</ion-label>
+        </ion-item>
+    </ion-list>
+
 </ion-content>
+
+
+

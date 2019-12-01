@@ -1,16 +1,68 @@
-.welcome-card ion-img {
-  max-height: 35vh;
-  overflow: hidden;
+* {
+  box-sizing: border-box;
 }
 
-
-.my-width{
-  width: 100px;
+.list{
+  float: left;
+  width: 100%;
 }
 
-/*ion-toolbar {
-  --min-height: 100px;
-  --background: #fff url('../../assets/img/wavy.png') no-repeat center center / cover;
-}*/
+.square-container {
+  padding: 8px;
+}
+
+.square {
+  width: calc(100% / 2);
+  float: left;
+  position: relative;
+  padding-bottom: calc(100% / 2);
+}
+
+.square .content {
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
+    margin: 8px;
+    padding: 16px;
+    position: absolute;
+    color: white;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+    text-align: center;
+}
+
+.icon{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+#resources{
+  background-color: #182628;
+}
+
+#education{
+  background-color:  #57BA98;
+}
+
+#calendar{
+  background-color: #3B945E;
+}
+
+#log{
+  background-color: #65CCB8;
+}
+
+#profile{
+  color: #EEBF00;
+}
+
+#about{
+  color: #182628
+}
+
+.page-title{
+  padding-left: 16px;
+}
 
 
