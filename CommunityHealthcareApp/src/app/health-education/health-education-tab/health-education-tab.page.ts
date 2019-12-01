@@ -13,6 +13,7 @@ export class HealthEducationTabPage implements OnInit {
   showLevel: null;
   healthEducationTabs: any;
   vidSection: any;
+  isInitPage: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -30,6 +31,7 @@ export class HealthEducationTabPage implements OnInit {
         educationTabId
       );
       this.vidSection = eval(this.loadedTab.vidSection);
+      this.isInitPage = true;
     });
   }
 
@@ -49,10 +51,13 @@ export class HealthEducationTabPage implements OnInit {
     return this.showLevel === index;
   }
 
+  isInit() {
+    return this.isInitPage;
+  }
+
   toggleLevel(index) {
-    if (this.isLevelShown(index)) {
-      this.showLevel = index;
-    } else {
+    this.isInitPage = false;
+    if (!this.isLevelShown(index)) {
       this.showLevel = index;
     }
   }

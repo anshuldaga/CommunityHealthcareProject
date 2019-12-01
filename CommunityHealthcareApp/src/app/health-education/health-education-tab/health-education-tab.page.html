@@ -5,7 +5,7 @@
         <ion-icon name="arrow-back" [routerLink]="['/health-education']" color="danger"></ion-icon>
       </ion-buttons>
       <ion-text color="medium">
-          {{loadedTab.tab_title}}
+          module
       </ion-text>
     </ion-toolbar>
 </ion-header>
@@ -13,22 +13,33 @@
 
 
   <ion-content>
+      <div class="page-title">
+          <ion-text>
+              <h1><b>{{loadedTab.tab_title}}</b></h1>
+          </ion-text>
+          <ion-text color="medium">
+              <p>{{loadedTab.tab_description}}</p>
+          </ion-text>
+      </div>
+
       <ion-list no-lines>
-        <ion-card *ngFor="let tab of vidSection; let i=index" text-wrap (click)="toggleLevel('index'+i)" [ngClass]="{active: isLevelShown('index'+i)}">
-          <ion-card-header>
-              <ion-item lines="none">
+        <ion-card *ngFor="let tab of vidSection; let i=index" text-wrap (click)="toggleLevel('index'+ i)" [ngClass]="{active: isLevelShown('index'+i)}">
+          <ion-card-header color="primary">
+              <ion-item lines="none" color="primary">
                   <ion-avatar>
                       <img [src]="getImg(tab.vid_link)">
                   </ion-avatar>
+                  &nbsp; 
+                  &nbsp; 
                   <ion-label>{{tab.vid_title}}</ion-label>
-                  <ion-icon [name]="isLevelShown('index'+i) ? 'arrow-dropdown' : 'arrow-dropright'" color="danger"></ion-icon>
+                  <ion-icon [name]="isLevelShown('index'+i) || (i==0 && isInit()) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
                 </ion-item>
           </ion-card-header>
           
-          <ion-card-content *ngIf="isLevelShown('index'+i)">
+          <ion-card-content *ngIf="isLevelShown('index'+ i) || (i==0 && isInit())">
               <p>{{tab.vid_description}}</p>
               <br />
-              <iframe width="100%" height="315"  [src]="getURL(tab.vid_link)"  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+              <iframe style="background: #000000;" width="100%" height="315"  [src]="getURL(tab.vid_link)"  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </ion-card-content>
         </ion-card>
       </ion-list>
