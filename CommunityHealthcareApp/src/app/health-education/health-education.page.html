@@ -26,7 +26,7 @@
       Learning Modules
     </ion-list-header>
     
-    <ion-item *ngFor="let tab of healthEducationTabs" [routerLink]="['/health-education', tab.tab_title]">
+    <ion-item *ngFor="let tab of healthEducationTabs"  details="true" [routerLink]="['/health-education', tab.tab_title]">
         <ion-label>
           <h2>{{tab.tab_title}}</h2>
           <p>{{tab.tab_description}}</p>

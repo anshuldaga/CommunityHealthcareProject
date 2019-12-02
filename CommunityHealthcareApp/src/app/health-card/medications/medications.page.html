@@ -1,21 +1,34 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-title>Medications</ion-title>
-    </ion-toolbar>
+<ion-header> 
+        <ion-toolbar class="toolbar">
+          <ion-buttons slot="start">
+            <ion-menu-button color="danger"></ion-menu-button>
+          </ion-buttons>
+          <ion-text color="medium">
+            Profile
+          </ion-text>
+        </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-grid>
-        
-        <ion-row>
-            <ion-col>
-                <ion-button margin (click)="onAddMedication()">Add</ion-button>
-            </ion-col>
-            <ion-col>
-                <ion-button margin *ngIf="loadedMedications.length > 0" (click)="onDeleteMedication()">{{buttonText}}</ion-button>
-            </ion-col>
-        </ion-row>
-        
+    <div class="gradient">
+        <div class="circle">
+            <div class="circle-inner">
+                <ion-text class="name">
+                    <b>JS</b>
+                </ion-text>
+            </div>
+        </div>
+    </div>  
+    
+    <ion-list>
+            <ion-list-header color="primary">
+                My Medications
+                <ion-button (click)="onAddMedication()"  color="primary" style="text-transform: none;"><b>add</b></ion-button>
+                <ion-button *ngIf="loadedMedications.length > 0" (click)="onDeleteMedication()" color="primary" style="text-transform: none;"><b>{{buttonText}}</b></ion-button>
+            </ion-list-header>
+    </ion-list>
+
+    <ion-grid>        
         <ion-row>
             <ion-col>
                 <ion-list>
