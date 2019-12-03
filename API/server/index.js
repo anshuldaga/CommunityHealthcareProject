@@ -29,7 +29,7 @@ app.use(medNames); //router
 var mysqlConnection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'MyCubical@11',
+  password: 'password',
   database: 'healthcareapp',
   multipleStatements: true
 });

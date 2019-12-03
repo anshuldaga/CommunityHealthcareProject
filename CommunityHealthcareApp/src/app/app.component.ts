@@ -16,12 +16,6 @@ export class AppComponent {
       icon: 'home'
     },
     {
-
-      title: 'List',
-      url: '/list',
-      icon: 'list'
-    },
-    {
       title: 'Health Calendar',
       url: '/health-calendar',
       icon: 'calendar'
@@ -45,7 +39,6 @@ export class AppComponent {
       title: 'Health Resources',
       url: '/health-resources',
       icon: 'people'
-
     }
   ];
 
@@ -57,11 +50,7 @@ export class AppComponent {
     this.initializeApp();
   }
 
-
-  ngOnInit() {
-   // this.router.navigate([''])
-  }
-
+  ngOnInit() {}
 
   initializeApp() {
     this.platform.ready().then(() => {

@@ -13,14 +13,20 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { EmployeeService } from './service/employee.service';
 import { RegisterService } from './service/register.service';
-import { LoginService } from './service/login.service'
+import { LoginService } from './service/login.service';
 import { AuthGuard } from '../auth.guard';
 import { TokenInterceptorService } from './service/token-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpModule, HttpClientModule], //, IonicStorageModule.forRoot()
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    HttpModule,
+    HttpClientModule
+  ], //, IonicStorageModule.forRoot()
   providers: [
     StatusBar,
     SplashScreen,
@@ -30,8 +36,10 @@ import { TokenInterceptorService } from './service/token-interceptor.service';
     EmployeeService,
     RegisterService,
     LoginService,
-    { 
-      provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]
