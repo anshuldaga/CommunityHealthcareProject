@@ -11,12 +11,15 @@ export class RegisterService {
 
    }
 
-  //  registerUser(username, password):Observable<any>{
-  //    return this.http
-  //    .post('http://localhost:3000/signup/user', {
-  //      username: username,
-  //      password: password
-  //    },
-  //    {responseType: 'text'});
-  //  }
+   registerUser(firstname, lastname, address, username, password):Observable<any>{
+     return this.http
+     .post('http://localhost:3000/signup/user', 
+     {
+       firstName: firstname,
+       lastName: lastname,
+       address: address,
+       username: username,
+       password: password
+     });
+   }
 }

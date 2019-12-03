@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NavController, NavParams } from '@ionic/angular';
 
 import { RegisterService } from '../service/register.service'
@@ -10,18 +11,23 @@ import { RegisterService } from '../service/register.service'
 })
 export class RegisterPage implements OnInit {
 
+  firstname: string;
+  lastname: string;
+  address: string;
   username: string;
   password: string;
 
-  constructor(private reg: RegisterService) { }
+  constructor(private reg: RegisterService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  // userSignup(){
-  //   this.reg.registerUser(this.username, this.password)
-  //   .subscribe(res => {
-  //     console.log(res)
-  //   });
-  // }
+  userSignup(){
+    this.reg.registerUser(this.firstname, this.lastname, this.address, this.username, this.password)
+    .subscribe(res => {
+      console.log(res)
+      localStorage.setItem('token', res.token);
+      this.router.navigate(['/home'])
+    });
+  }
 }

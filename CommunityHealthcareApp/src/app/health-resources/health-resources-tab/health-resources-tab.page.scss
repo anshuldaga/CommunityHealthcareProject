@@ -1,0 +1,49 @@
+h1 {
+    font-size: 30px;
+    float: top;
+    margin-top:0px;
+  }
+
+  .logo {
+      color:white;
+      height:45px;
+      width:45px;
+  }
+
+  .avatars{
+      background-color: #add8e6;
+      height: 60px;
+      width: 60px;
+      padding-left: 8.5px;
+      padding-top:10px;
+  }
+
+  ion-item{
+    --background: transparent; 
+    margin: 0px;
+  }
+
+  ion-card-header{
+      font-weight:bold;
+      font-size:15px;
+      color:black;
+  }
+
+  .dropdown{
+      width:30px;
+      height:20px;
+      background-color:#191970;
+      float:right;
+      padding-right:25px;
+      padding-bottom:33px;
+      margin: 0px;
+      ion-icon{
+          color: white;
+          width:33px;
+          height:35px;
+      }
+  }
+
+  ion-card-subtitle{
+      font-weight:400;
+  }

@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button defaultHref = "/health-resources" color = "danger"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+     <p id = "first">Community Resources</p> 
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item lines = "none" text-wrap>
+      <ion-avatar class = "avatars">
+          <ion-icon class = "logo" name = {{loadedTab.pic}}></ion-icon>
+        </ion-avatar>
+      <ion-title *ngIf = "loadedTab.id != 'Women, Children & Elders'">
+          <h1 style = "text-align: center;">
+            <b>{{loadedTab.id}}</b>
+        </h1>      
+      </ion-title>
+  </ion-item>
+  <ion-title *ngIf = "loadedTab.id2 != ''">
+      <h1 style = "text-align: right;">
+          <b>{{loadedTab.id2}}</b>
+      </h1> 
+  </ion-title>
+
+  <ion-list no-lines>
+      <ion-card style = "background-color:white; padding: 0px;" *ngFor="let tab of loadedTab.testBhar; let i=index" (click)="toggleLevel('index'+i)" [ngClass]="{active: isLevelShown('index'+i)}">
+        <ion-card-header>   
+                  {{tab.infoTitle}}
+                  <ion-avatar class = "dropdown">
+                      <ion-icon [name]="isLevelShown('index'+i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+                  </ion-avatar>
+        </ion-card-header>
+        <ion-card-content>
+        <ion-card-subtitle>{{tab.infoDescription}}</ion-card-subtitle>
+        </ion-card-content>
+        
+        <ion-card-content *ngIf="isLevelShown('index'+i)">
+            <ion-chip text-wrap outline = "true" *ngFor = "let detail of tab.infoDetails">
+              <ion-label style = "font-size:13px;">{{detail.infoName}}:
+                <br>
+            <b text-wrap style = "color: black;" >{{detail.info}}</b>
+            </ion-label>
+            </ion-chip>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+</ion-content>
