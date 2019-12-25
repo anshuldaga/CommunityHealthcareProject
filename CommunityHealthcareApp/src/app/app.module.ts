@@ -16,11 +16,12 @@ import { RegisterService } from './service/register.service';
 import { LoginService } from './service/login.service'
 import { AuthGuard } from '../auth.guard';
 import { TokenInterceptorService } from './service/token-interceptor.service';
+import { NgCalendarModule } from 'ionic2-calendar';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpModule, HttpClientModule], //, IonicStorageModule.forRoot()
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpModule, HttpClientModule, NgCalendarModule], //, IonicStorageModule.forRoot()
   providers: [
     StatusBar,
     SplashScreen,

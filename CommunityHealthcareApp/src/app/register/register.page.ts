@@ -25,7 +25,6 @@ export class RegisterPage implements OnInit {
   userSignup(){
     this.reg.registerUser(this.firstname, this.lastname, this.address, this.username, this.password)
     .subscribe(res => {
-      console.log(res)
       localStorage.setItem('token', res.token);
       this.router.navigate(['/home'])
     });

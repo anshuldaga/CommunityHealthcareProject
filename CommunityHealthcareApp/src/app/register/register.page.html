@@ -1,39 +1,41 @@
 <ion-content class = 'ion-padding' style = "--background: linear-gradient(#9fd9ec,#30307c ) !important;">
-    <ion-icon routerLink = "/login" id = "red" name="arrow-round-back"></ion-icon>
-    <ion-title>
-        <b>HCAP</b>
-        <ion-icon name="add-circle"></ion-icon>
-      </ion-title>
-      <ion-list>
-          <ion-item>
-              <ion-icon style = "margin-right: 15px;" name="person"></ion-icon>
-        <ion-input type = "text" [(ngModel)]="firstname" placeholder = "First Name">
-        </ion-input>
-          </ion-item>
+  <ion-icon routerLink = "/login" id = "red" name="arrow-round-back"></ion-icon>
+  <ion-title>
+      <b>HCAP</b>
+      <ion-icon name="add-circle"></ion-icon>
+    </ion-title>
+    <ion-list>
+        <ion-item>
+            <ion-icon style = "margin-right: 15px;" name="person"></ion-icon>
+      <ion-input type = "text" [(ngModel)]="firstname" name="firstname" placeholder = "First Name">
+      </ion-input>
+        </ion-item>
 
-          <ion-item>
-              <ion-icon style = "margin-right: 15px;" name="person"></ion-icon>
-              <ion-input type = "text" [(ngModel)]="lastname" placeholder = "Last Name">
-        </ion-input>
-          </ion-item>
+        <ion-item>
+            <ion-icon style = "margin-right: 15px;" name="person"></ion-icon>
+            <ion-input type = "text" [(ngModel)]="lastname" name="lastname" placeholder = "Last Name">
+      </ion-input>
+        </ion-item>
 
-          <ion-item>
-              <ion-icon style = "margin-right: 15px;" name="pin"></ion-icon>
-              <ion-input type = "address" [(ngModel)]="address" placeholder = "Address">
-        </ion-input>
-          </ion-item>
+        <ion-item>
+            <ion-icon style = "margin-right: 15px;" name="pin"></ion-icon>
+            <ion-input type = "address" [(ngModel)]="address" name="address" placeholder = "Address">
+      </ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-input type="username" [(ngModel)]="username" name="username" placeholder="Username"></ion-input>
-    </ion-item>
+  <ion-item>
+      <ion-icon style = "margin-right: 15px;" name="contact"></ion-icon>
+    <ion-input type="username" [(ngModel)]="username" name="username" placeholder="Username"></ion-input>
+  </ion-item>
 
-    <ion-item>
-        <ion-input type="password" [(ngModel)]="password" name="password" placeholder="Password"></ion-input>
-    </ion-item>
-    <ion-button block class="signup" (click)="userSignup()">Sign Up</ion-button>
-    <br>
-    <ion-button block class="loginBtn" routerLink="/login">Already have an account? Login</ion-button>
+  <ion-item>
+      <ion-icon style = "margin-right: 15px;" name="lock"></ion-icon>
+      <ion-input type="password" [(ngModel)]="password" name="password" placeholder="Password"></ion-input>
+  </ion-item>
+  <ion-button block class="signup" (click)="userSignup()">Sign Up
+      <ion-icon name="play"></ion-icon>
+  </ion-button>
+</ion-list>
 
-  </div>
-
+<p>Already have an Account?  <span><a routerLink = "/login">LOG IN</a></span></p>
 </ion-content>

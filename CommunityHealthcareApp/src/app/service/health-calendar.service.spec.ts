@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HealthCalendarService } from './health-calendar.service';
+import { HealthCalendarService } from '../health-calendar/health-calendar.service';
 
 describe('HealthCalendarService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
