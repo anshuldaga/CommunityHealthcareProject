@@ -13,6 +13,7 @@ export class LoginPage implements OnInit {
 
   username: string;
   password: string;
+  public errorMsg;
 
   constructor(private loginService: LoginService,
     private router: Router) { }
@@ -47,6 +48,7 @@ export class LoginPage implements OnInit {
       //console.log("1111  Insde loginPage -- retrive localStorage - myToken:" + localStorage.getItem("token"));
 
       this.router.navigate(['/home'])
-    });
+    },
+          error => this.errorMsg = error);
   }
 }
