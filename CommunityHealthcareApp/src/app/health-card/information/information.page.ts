@@ -11,15 +11,11 @@ import { Subscription } from 'rxjs';
 export class InformationPage implements OnInit, OnDestroy {
   loadedInformation: Information;
   private loadedInformationSub: Subscription;
-  public isLoading = false;
 
   constructor(private informationService: InformationService) {}
 
   ionViewWillEnter() {
-    this.isLoading = true;
-    this.informationService.fetchInformation().subscribe(() => {
-      this.isLoading = false;
-    });
+    this.informationService.fetchInformation().subscribe(() => {});
   }
 
   ngOnInit() {
