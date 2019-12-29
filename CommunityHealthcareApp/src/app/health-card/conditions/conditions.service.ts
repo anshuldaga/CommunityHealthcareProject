@@ -16,8 +16,8 @@ export class ConditionsService {
       .get<{ [key: string]: Condition }>('http://localhost:3000/usercondition/')
       .pipe(
         map(res => {
-          if (!(Object.keys(res).length === 0)) {
-            const _conditions = [];
+          const _conditions = [];
+          if (Object.keys(res) != null) {
             for (const key in res) {
               if (res.hasOwnProperty(key)) {
                 _conditions.push(
