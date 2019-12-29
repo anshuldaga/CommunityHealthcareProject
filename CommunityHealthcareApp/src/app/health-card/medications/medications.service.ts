@@ -18,7 +18,7 @@ export class MedicationsService {
       )
       .pipe(
         map(res => {
-          if (!(Object.keys(res).length === 0)) {
+          if (Object.keys(res) != null) {
             const _medications = [];
             for (const key in res) {
               if (res.hasOwnProperty(key)) {
