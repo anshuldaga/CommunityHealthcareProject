@@ -29,54 +29,54 @@
         <ion-card>
                 <ion-card-content>
                     <ion-card-title> Weight </ion-card-title>
-                    <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null">{{loadedInformation.weight}}  lbs</ion-card-subtitle>
-                    <ion-card-subtitle *ngIf="isLoading || loadedInformation.weight == null">n/a</ion-card-subtitle>
+                    <ion-card-subtitle *ngIf="loadedInformation.weight != null">{{loadedInformation.weight}}  lbs</ion-card-subtitle>
+                    <ion-card-subtitle *ngIf="loadedInformation.weight == null">n/a</ion-card-subtitle>
                 </ion-card-content>
             </ion-card>
             <ion-card>
                     <ion-card-content>
                         <ion-card-title> Height </ion-card-title>
-                        <ion-card-subtitle *ngIf="isLoading || loadedInformation.height_feet == null || loadedInformation.height_inches == null">n/a</ion-card-subtitle>
-                        <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null"> {{loadedInformation.height_feet}}' {{loadedInformation.height_inches}}"</ion-card-subtitle>
+                        <ion-card-subtitle *ngIf="loadedInformation.height_feet == null || loadedInformation.height_inches == null">n/a</ion-card-subtitle>
+                        <ion-card-subtitle *ngIf="loadedInformation.weight != null"> {{loadedInformation.height_feet}}' {{loadedInformation.height_inches}}"</ion-card-subtitle>
                     </ion-card-content>
             </ion-card>
             <ion-card>
                     <ion-card-content>
                         <ion-card-title> Blood Type </ion-card-title>
-                        <ion-card-subtitle *ngIf="isLoading || loadedInformation.bloodtype == null ">n/a</ion-card-subtitle>
-                        <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null"> {{loadedInformation.bloodtype}} </ion-card-subtitle>
+                        <ion-card-subtitle *ngIf="loadedInformation.bloodtype == null ">n/a</ion-card-subtitle>
+                        <ion-card-subtitle *ngIf="loadedInformation.weight != null"> {{loadedInformation.bloodtype}} </ion-card-subtitle>
                     </ion-card-content>
             </ion-card>
             <ion-card>
                     <ion-card-content>
                         <ion-card-title> Birthday </ion-card-title>
-                        <ion-card-subtitle *ngIf="isLoading || loadedInformation.birthday== null ">n/a</ion-card-subtitle>
-                        <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null">{{loadedInformation.birthday | date}}</ion-card-subtitle>
+                        <ion-card-subtitle *ngIf="loadedInformation.birthday== null ">n/a</ion-card-subtitle>
+                        <ion-card-subtitle *ngIf="loadedInformation.weight != null">{{loadedInformation.birthday | date}}</ion-card-subtitle>
                     </ion-card-content>
             </ion-card>
             <ion-card>
                     <ion-card-content>
                         <ion-card-title> Contacts</ion-card-title>
-                        <ion-card-subtitle *ngIf="isLoading || loadedInformation.primary_contact == null ">Primary: n/a</ion-card-subtitle>
-                        <ion-card-subtitle *ngIf="isLoading || loadedInformation.secondary_contact == null ">Secondary: n/a</ion-card-subtitle>
-                        <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null">Primary: {{loadedInformation.primary_contact}}</ion-card-subtitle>
-                        <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null">Secondary: {{loadedInformation.secondary_contact}}</ion-card-subtitle>
+                        <ion-card-subtitle *ngIf="loadedInformation.primary_contact == null ">Primary: n/a</ion-card-subtitle>
+                        <ion-card-subtitle *ngIf="loadedInformation.secondary_contact == null ">Secondary: n/a</ion-card-subtitle>
+                        <ion-card-subtitle *ngIf="loadedInformation.weight != null">Primary: {{loadedInformation.primary_contact}}</ion-card-subtitle>
+                        <ion-card-subtitle *ngIf="loadedInformation.weight != null">Secondary: {{loadedInformation.secondary_contact}}</ion-card-subtitle>
                     </ion-card-content>
             </ion-card>
             <ion-card>
                     <ion-card-content>
                         <ion-card-title> Health Insurance Providers </ion-card-title>
-                        <ion-card-subtitle *ngIf="isLoading || loadedInformation.medical_insurance == null ">Medical Insurance: n/a</ion-card-subtitle>
-                        <ion-card-subtitle *ngIf="isLoading || loadedInformation.dental_insurance == null ">Dental Insurance: n/a</ion-card-subtitle>
-                        <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null">Medical Insurance: {{loadedInformation.medical_insurance}}</ion-card-subtitle>
-                        <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null">Dental Insurance: {{loadedInformation.dental_insurance}}</ion-card-subtitle>
+                        <ion-card-subtitle *ngIf="loadedInformation.medical_insurance == null ">Medical Insurance: n/a</ion-card-subtitle>
+                        <ion-card-subtitle *ngIf="loadedInformation.dental_insurance == null ">Dental Insurance: n/a</ion-card-subtitle>
+                        <ion-card-subtitle *ngIf="loadedInformation.weight != null">Medical Insurance: {{loadedInformation.medical_insurance}}</ion-card-subtitle>
+                        <ion-card-subtitle *ngIf="loadedInformation.weight != null">Dental Insurance: {{loadedInformation.dental_insurance}}</ion-card-subtitle>
                     </ion-card-content>
             </ion-card>
             <ion-card>
                     <ion-card-content>
                         <ion-card-title> Allergies </ion-card-title>
-                        <ion-card-subtitle *ngIf="isLoading || loadedInformation.allergy_notes == null ">n/a</ion-card-subtitle>
-                        <ion-card-subtitle *ngIf="!isLoading && loadedInformation.weight != null">{{loadedInformation.allergy_notes}}</ion-card-subtitle>
+                        <ion-card-subtitle *ngIf="loadedInformation.allergy_notes == null ">n/a</ion-card-subtitle>
+                        <ion-card-subtitle *ngIf="loadedInformation.weight != null">{{loadedInformation.allergy_notes}}</ion-card-subtitle>
                     </ion-card-content>
             </ion-card>
 
