@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
+import {Observable} from 'rxjs';
 import { Platform } from '@ionic/angular';
+// import 'rxjs/add/operator/catch';
+// import 'rxjs/add/observable/throw';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +23,13 @@ export class LoginService {
     { 
       username: username, 
       password: password 
-    });
+    })
+    .pipe(catchError(this.errorHandler));
+  }
+
+  errorHandler(error:HttpErrorResponse){
+        // return Observable.throw(error.message || "Server Error");
+        return Observable.throw("Server Error");
   }
 
   loggedIn(){

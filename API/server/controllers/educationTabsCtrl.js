@@ -1,7 +1,9 @@
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 
+
 var mysqlConnection = require('../mysqlConnection');
+
 
 exports.getEducationTabs = (req, res, next) => {
   mysqlConnection.query(

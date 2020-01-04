@@ -23,7 +23,9 @@ app.use(log); //router
 app.use(medlog); //router
 app.use(medNames); //router
 
+
 var mysqlConnection = require('./mysqlConnection');
+
 
 mysqlConnection.connect(err => {
   if (!err) console.log('connected!');

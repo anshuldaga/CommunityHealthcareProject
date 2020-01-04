@@ -1,7 +1,9 @@
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 
+
 var mysqlConnection = require('../mysqlConnection');
+
 
 exports.createUser = (req, res, next) => {
   let user = req.body;
@@ -68,19 +70,23 @@ exports.loginUser = (req, res) => {
 
 exports.addEvent = (req, res, next) => {
   //res.send('akshat3');
+  const header = req.headers['authorization'];
+  const bearer = header.split(' ');
+  const token = bearer[1];
+
+  var payload = jwt.verify(token, 'jk23!+!97');
   let event = req.body;
   var sql =
-    'INSERT INTO appointment(userId, title, description, startTime, endTime, location, isMedication) VALUES(?, ?, ?, ?, ?, ?, ?);';
+    'INSERT INTO appointment(userId, title, description, startTime, endTime, location) VALUES(?, ?, ?, ?, ?, ?);';
   mysqlConnection.query(
     sql,
     [
-      event.userId,
+      payload.id,
       event.title,
       event.description,
       event.startTime,
       event.endTime,
-      event.location,
-      event.isMedication
+      event.location
     ],
     (err, rows, fields) => {
       if (!err) console.log('Event inserted succesfully');
@@ -97,6 +103,23 @@ exports.getUserHealth = (req, res, next) => {
   var payload = jwt.verify(token, 'jk23!+!97');
   mysqlConnection.query(
     'SELECT * FROM userhealth where userId = ?',
+    payload.id,
+    (err, rows, fields) => {
+      if (!err) {
+        res.send(rows);
+      } else console.log(err);
+    }
+  );
+};
+
+exports.getAppointment = (req, res, next) => {
+  const header = req.headers['authorization'];
+  const bearer = header.split(' ');
+  const token = bearer[1];
+
+  var payload = jwt.verify(token, 'jk23!+!97');
+  mysqlConnection.query(
+    'SELECT * FROM appointment where userId = ?',
     payload.id,
     (err, rows, fields) => {
       if (!err) {

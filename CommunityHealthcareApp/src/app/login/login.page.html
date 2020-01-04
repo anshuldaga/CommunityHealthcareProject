@@ -4,6 +4,7 @@
       <ion-icon name="add-circle"></ion-icon>
     </ion-title>
     <ion-list>
+      <p style = "color: red;font-size:10px;text-align:left;margin-left:13px;" *ngIf = "errorMsg != null">Username/Password does not match or exist. Please enter again.</p>
       <ion-item>
           <ion-icon style = "margin-right: 15px;" name="contact"></ion-icon>
         <ion-input type="username" [(ngModel)]="username" name="username" placeholder="Username"></ion-input>
