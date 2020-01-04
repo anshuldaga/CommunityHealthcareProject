@@ -1,10 +1,7 @@
-const mysql = require('mysql');
 const express = require('express');
 const cors = require('cors');
 var app = express();
 const bodyparser = require('body-parser');
-const jwt = require('jsonwebtoken');
-
 app.use(bodyparser.json());
 app.use(cors());
 
@@ -26,13 +23,9 @@ app.use(log); //router
 app.use(medlog); //router
 app.use(medNames); //router
 
-var mysqlConnection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'MyCubical@11',
-  database: 'healthcareapp',
-  multipleStatements: true
-});
+
+var mysqlConnection = require('./mysqlConnection');
+
 
 mysqlConnection.connect(err => {
   if (!err) console.log('connected!');

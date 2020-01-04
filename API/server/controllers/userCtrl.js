@@ -1,13 +1,9 @@
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 
-var mysqlConnection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'MyCubical@11',
-  database: 'healthcareapp',
-  multipleStatements: true
-});
+
+var mysqlConnection = require('../mysqlConnection');
+
 
 exports.createUser = (req, res, next) => {
   let user = req.body;
