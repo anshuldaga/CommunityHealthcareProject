@@ -1,13 +1,7 @@
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 
-var mysqlConnection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'password',
-  database: 'healthcareapp',
-  multipleStatements: true
-});
+var mysqlConnection = require('../mysqlConnection');
 
 exports.getMedlog = (req, res, next) => {
   const header = req.headers['authorization'];
