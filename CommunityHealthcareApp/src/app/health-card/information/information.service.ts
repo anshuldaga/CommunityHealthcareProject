@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Information } from './information.model';
 import { BehaviorSubject, of } from 'rxjs';
-import { take, tap, switchMap } from 'rxjs/operators';
+import { take, tap, switchMap, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -32,8 +32,9 @@ export class InformationService {
       .get<{ [key: string]: Information }>('http://localhost:3000/userhealth/')
       .pipe(
         take(1),
-        tap(res => {
-          if (Object.keys(res) != null) {
+        map(res => {
+          console.log(Object.keys(res));
+          if (!(Object.keys(res).length === 0)) {
             this.information.next(
               new Information(
                 res[0].userId,
