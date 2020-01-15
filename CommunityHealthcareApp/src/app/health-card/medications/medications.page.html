@@ -41,7 +41,7 @@
                         <ion-button *ngIf="canDelete" (click)="delete(medication.id)">
                             <ion-icon name="trash"></ion-icon>
                         </ion-button>
-                        <ion-button *ngIf="canEdit">
+                        <ion-button *ngIf="canEdit" (click)="onEditItem(medication.id)">
                             <ion-icon name="create"></ion-icon>
                         </ion-button>
                     </ion-item>

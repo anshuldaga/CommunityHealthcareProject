@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { MedicationsPage } from './medications.page';
 import { AddMedicationComponent } from './add-medication/add-medication.component';
+import { EditMedicationComponent } from './edit-medication/edit-medication.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,11 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [MedicationsPage, AddMedicationComponent],
-  entryComponents: [AddMedicationComponent]
+  declarations: [
+    MedicationsPage,
+    AddMedicationComponent,
+    EditMedicationComponent
+  ],
+  entryComponents: [AddMedicationComponent, EditMedicationComponent]
 })
 export class MedicationsPageModule {}

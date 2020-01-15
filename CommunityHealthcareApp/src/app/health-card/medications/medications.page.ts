@@ -3,6 +3,7 @@ import { MedicationsService } from './medications.service';
 import { Medication } from './medications.model';
 import { ModalController, LoadingController } from '@ionic/angular';
 import { AddMedicationComponent } from './add-medication/add-medication.component';
+import { EditMedicationComponent } from './edit-medication/edit-medication.component';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,8 +14,8 @@ import { Subscription } from 'rxjs';
 export class MedicationsPage implements OnInit, OnDestroy {
   public deleteButtonText = 'delete';
   public editButtonText = 'edit';
-  public canEdit: boolean = false;
-  public canDelete: boolean = false;
+  public canEdit = false;
+  public canDelete = false;
   loadedMedications: Medication[];
   private loadedMedicationsSub: Subscription;
 
@@ -50,6 +51,15 @@ export class MedicationsPage implements OnInit, OnDestroy {
     this.canDelete = false;
     this.modalCtrl
       .create({ component: AddMedicationComponent })
+      .then(modalEl => {
+        modalEl.present();
+        return modalEl.onDidDismiss();
+      });
+  }
+
+  onEditItem(id: number) {
+    this.modalCtrl
+      .create({ component: EditMedicationComponent })
       .then(modalEl => {
         modalEl.present();
         return modalEl.onDidDismiss();
