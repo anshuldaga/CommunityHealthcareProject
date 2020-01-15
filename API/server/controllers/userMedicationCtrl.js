@@ -1,9 +1,7 @@
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 
-
 var mysqlConnection = require('../mysqlConnection');
-
 
 exports.getUserMedication = (req, res, next) => {
   const header = req.headers['authorization'];

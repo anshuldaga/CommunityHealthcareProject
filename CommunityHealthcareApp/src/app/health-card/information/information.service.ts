@@ -33,7 +33,6 @@ export class InformationService {
       .pipe(
         take(1),
         map(res => {
-          console.log(Object.keys(res));
           if (!(Object.keys(res).length === 0)) {
             this.information.next(
               new Information(

@@ -37,21 +37,14 @@ export class EditMedicationComponent implements OnInit {
       .then(loadingEl => {
         loadingEl.present();
         this.medicationsService
-          .addMedication(
+          .editMedication(
+            this.id,
             this.form.value['medication'],
             this.form.value['notes']
           )
           .subscribe(() => {
             loadingEl.dismiss();
-            this.modalCtrl.dismiss(
-              {
-                conditionData: {
-                  medication: this.form.value['medication'],
-                  notes: this.form.value['notes']
-                }
-              },
-              'confirm'
-            );
+            this.modalCtrl.dismiss('confirm');
           });
       });
   }
