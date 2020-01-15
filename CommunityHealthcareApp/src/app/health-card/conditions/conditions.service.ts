@@ -39,6 +39,37 @@ export class ConditionsService {
       );
   }
 
+  editCondition(id: number, condition_name: string, condition_notes: string) {
+    const existingCondition = new Condition(
+      id,
+      0,
+      condition_name,
+      condition_notes
+    );
+    console.log(existingCondition);
+    return this.http
+      .put(`http://localhost:3000/usercondition/`, existingCondition)
+      .pipe(
+        switchMap(() => {
+          return this.conditions;
+        }),
+        take(1),
+        tap(conditions => {
+          const itemIndex = conditions.findIndex(
+            ev => ev.id === existingCondition.id
+          );
+          const updatedConditions = [...conditions];
+          updatedConditions[itemIndex] = new Condition(
+            existingCondition.id,
+            existingCondition.userId,
+            existingCondition.condition_name,
+            existingCondition.condition_notes
+          );
+          this.conditions.next(updatedConditions);
+        })
+      );
+  }
+
   getConditions() {
     return this.conditions.asObservable();
   }
