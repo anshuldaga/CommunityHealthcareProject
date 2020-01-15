@@ -9,6 +9,9 @@ import { MedicationsService } from '../medications.service';
   styleUrls: ['./edit-medication.component.scss']
 })
 export class EditMedicationComponent implements OnInit {
+  id;
+  medication_name;
+  medication_notes;
   @ViewChild('f') form: NgForm;
 
   constructor(

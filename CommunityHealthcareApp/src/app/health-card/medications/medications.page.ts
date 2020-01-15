@@ -5,6 +5,7 @@ import { ModalController, LoadingController } from '@ionic/angular';
 import { AddMedicationComponent } from './add-medication/add-medication.component';
 import { EditMedicationComponent } from './edit-medication/edit-medication.component';
 import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-medications',
@@ -57,9 +58,20 @@ export class MedicationsPage implements OnInit, OnDestroy {
       });
   }
 
-  onEditItem(id: number) {
+  getItem(med_id: number) {
+    return this.loadedMedications.filter(x => x.id === med_id)[0];
+  }
+
+  onEditItem(med_id: number) {
     this.modalCtrl
-      .create({ component: EditMedicationComponent })
+      .create({
+        component: EditMedicationComponent,
+        componentProps: {
+          id: med_id,
+          medication_name: this.getItem(med_id).medication_name,
+          medication_notes: this.getItem(med_id).medication_notes
+        }
+      })
       .then(modalEl => {
         modalEl.present();
         return modalEl.onDidDismiss();
