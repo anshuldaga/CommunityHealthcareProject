@@ -1,19 +1,22 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ModalController, LoadingController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
-import { MedicationsService } from '../medications.service';
+import { ModalController, LoadingController } from '@ionic/angular';
+import { ConditionsService } from '../conditions.service';
 
 @Component({
-  selector: 'app-add-medication',
-  templateUrl: './add-medication.component.html',
-  styleUrls: ['./add-medication.component.scss']
+  selector: 'app-edit-condition',
+  templateUrl: './edit-condition.component.html',
+  styleUrls: ['./edit-condition.component.scss']
 })
-export class AddMedicationComponent implements OnInit {
+export class EditConditionComponent implements OnInit {
+  id;
+  condition_name;
+  condition_notes;
   @ViewChild('f') form: NgForm;
 
   constructor(
     private modalCtrl: ModalController,
-    private medicationsService: MedicationsService,
+    private conditionsService: ConditionsService,
     private loadingCtrl: LoadingController
   ) {}
 
@@ -23,7 +26,7 @@ export class AddMedicationComponent implements OnInit {
     this.modalCtrl.dismiss(null, 'cancel');
   }
 
-  onMedicationEntered() {
+  onConditionEntered() {
     if (!this.form.valid) {
       return;
     }
@@ -33,9 +36,10 @@ export class AddMedicationComponent implements OnInit {
       })
       .then(loadingEl => {
         loadingEl.present();
-        this.medicationsService
-          .addMedication(
-            this.form.value['medication'],
+        this.conditionsService
+          .editCondition(
+            this.id,
+            this.form.value['condition'],
             this.form.value['notes']
           )
           .subscribe(() => {

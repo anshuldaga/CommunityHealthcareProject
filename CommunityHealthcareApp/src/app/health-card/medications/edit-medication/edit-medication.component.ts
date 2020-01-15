@@ -1,14 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ModalController, LoadingController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
+import { ModalController, LoadingController } from '@ionic/angular';
 import { MedicationsService } from '../medications.service';
 
 @Component({
-  selector: 'app-add-medication',
-  templateUrl: './add-medication.component.html',
-  styleUrls: ['./add-medication.component.scss']
+  selector: 'app-edit-medication',
+  templateUrl: './edit-medication.component.html',
+  styleUrls: ['./edit-medication.component.scss']
 })
-export class AddMedicationComponent implements OnInit {
+export class EditMedicationComponent implements OnInit {
+  id;
+  medication_name;
+  medication_notes;
   @ViewChild('f') form: NgForm;
 
   constructor(
@@ -34,7 +37,8 @@ export class AddMedicationComponent implements OnInit {
       .then(loadingEl => {
         loadingEl.present();
         this.medicationsService
-          .addMedication(
+          .editMedication(
+            this.id,
             this.form.value['medication'],
             this.form.value['notes']
           )
