@@ -24,7 +24,8 @@
             <ion-list-header color="primary">
                 My Medications
                 <ion-button (click)="onAddMedication()"  color="primary" style="text-transform: none;"><b>add</b></ion-button>
-                <ion-button *ngIf="loadedMedications.length > 0" (click)="onDeleteMedication()" color="primary" style="text-transform: none;"><b>{{buttonText}}</b></ion-button>
+                <ion-button *ngIf="loadedMedications.length > 0" (click)="onEditMedication()" color="primary" style="text-transform: none;"><b>{{editButtonText}}</b></ion-button>
+                <ion-button *ngIf="loadedMedications.length > 0" (click)="onDeleteMedication()" color="primary" style="text-transform: none;"><b>{{deleteButtonText}}</b></ion-button>
             </ion-list-header>
     </ion-list>
 
@@ -39,6 +40,9 @@
                         </ion-label>
                         <ion-button *ngIf="canDelete" (click)="delete(medication.id)">
                             <ion-icon name="trash"></ion-icon>
+                        </ion-button>
+                        <ion-button *ngIf="canEdit">
+                            <ion-icon name="create"></ion-icon>
                         </ion-button>
                     </ion-item>
                 </ion-list>
