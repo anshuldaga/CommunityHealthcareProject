@@ -3,6 +3,7 @@ import { ConditionsService } from './conditions.service';
 import { Condition } from './conditions.model';
 import { ModalController, LoadingController } from '@ionic/angular';
 import { AddConditionComponent } from './add-condition/add-condition.component';
+import { EditConditionComponent } from './edit-condition/edit-condition.component';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,8 +14,10 @@ import { Subscription } from 'rxjs';
 export class ConditionsPage implements OnInit, OnDestroy {
   loadedConditions: Condition[];
   private loadedConditionsSub: Subscription;
-  public buttonText = 'delete';
-  public canDelete: boolean = false;
+  public deleteButtonText = 'delete';
+  public editButtonText = 'edit';
+  public canDelete = false;
+  public canEdit = false;
 
   constructor(
     private conditionsService: ConditionsService,
@@ -40,9 +43,32 @@ export class ConditionsPage implements OnInit, OnDestroy {
     }
   }
 
+  getItem(condition_id: number) {
+    return this.loadedConditions.filter(x => x.id === condition_id)[0];
+  }
+
+  onEditItem(condition_id: number) {
+    this.modalCtrl
+      .create({
+        component: EditConditionComponent,
+        componentProps: {
+          id: condition_id,
+          condition_name: this.getItem(condition_id).condition_name,
+          condition_notes: this.getItem(condition_id).condition_notes
+        }
+      })
+      .then(modalEl => {
+        modalEl.present();
+        return modalEl.onDidDismiss();
+      });
+  }
+
   onAddCondition() {
+    this.canEdit = false;
+    this.deleteButtonText = 'delete';
+    this.editButtonText = 'edit';
+    this.canEdit = false;
     this.canDelete = false;
-    this.buttonText = 'delete';
     this.modalCtrl
       .create({ component: AddConditionComponent })
       .then(modalEl => {
@@ -65,11 +91,24 @@ export class ConditionsPage implements OnInit, OnDestroy {
   }
 
   onDeleteCondition() {
+    this.editButtonText = 'edit';
+    this.canEdit = false;
     this.canDelete = !this.canDelete;
-    if (this.buttonText === 'delete') {
-      this.buttonText = 'done';
+    if (this.deleteButtonText === 'delete') {
+      this.deleteButtonText = 'done';
     } else {
-      this.buttonText = 'delete';
+      this.deleteButtonText = 'delete';
+    }
+  }
+
+  onEditCondition() {
+    this.deleteButtonText = 'delete';
+    this.canDelete = false;
+    this.canEdit = !this.canEdit;
+    if (this.editButtonText === 'edit') {
+      this.editButtonText = 'done';
+    } else {
+      this.editButtonText = 'edit';
     }
   }
 }

@@ -54,14 +54,48 @@ export class MedicationsService {
     );
   }
 
-  addMedication(medication_name: string, medication_notes: string) {
-    const newMedication = new Medication(
+  editMedication(
+    id: number,
+    medication_name: string,
+    medication_notes: string
+  ) {
+    const existingMedication = new Medication(
+      id,
       0,
-      877,
       medication_name,
       medication_notes
     );
+    console.log(existingMedication);
+    return this.http
+      .put(`http://localhost:3000/usermedication/`, existingMedication)
+      .pipe(
+        switchMap(() => {
+          return this.medications;
+        }),
+        take(1),
+        tap(medications => {
+          const itemIndex = medications.findIndex(
+            ev => ev.id === existingMedication.id
+          );
+          const updatedMedications = [...medications];
+          updatedMedications[itemIndex] = new Medication(
+            existingMedication.id,
+            existingMedication.userId,
+            existingMedication.medication_name,
+            existingMedication.medication_notes
+          );
+          this.medications.next(updatedMedications);
+        })
+      );
+  }
 
+  addMedication(medication_name: string, medication_notes: string) {
+    const newMedication = new Medication(
+      0,
+      0,
+      medication_name,
+      medication_notes
+    );
     return this.http
       .put(`http://localhost:3000/usermedication/`, newMedication)
       .pipe(
