@@ -33,4 +33,12 @@ export class HealthResourcesService
     };
   }
 
+  getDetailsTab(category: string, detail: string){
+    let resourceTab = JSON.parse(this.getResourcesTab(category).all_resources);
+    return{
+      ...resourceTab.find(resources =>{
+        return resources.resource_title === detail;
+      })
+    };
+  }
 }
