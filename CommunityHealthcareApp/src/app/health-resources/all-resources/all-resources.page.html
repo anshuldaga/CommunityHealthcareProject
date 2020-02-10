@@ -18,10 +18,10 @@
       Categories
     </ion-list-header>
     
-    <ion-item *ngFor="let tab of all_resources"  details="true" [routerLink]="['/health-resources', tab.category_title]">
+    <ion-item *ngFor="let tab of all_resources"  details="true" [routerLink]="['/health-resources/' + loadedTab.category_title, tab.resource_title]">
         <ion-label>
           <h2>{{tab.resource_title}}</h2>
-          <p>{{tab.resource_description}}</p>
+          <p>{{tab.resource_title}}</p>
         </ion-label>
     </ion-item>
   </ion-list>

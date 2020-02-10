@@ -64,7 +64,16 @@ const routes: Routes = [
       },
       {
         path: ':category',
-        loadChildren: './health-resources/all-resources/all-resources.module#AllResourcesPageModule' 
+        children: [
+          {
+            path: '',
+            loadChildren: './health-resources/all-resources/all-resources.module#AllResourcesPageModule' 
+          },
+          {
+            path: ':detail',
+            loadChildren: './health-resources/all-resources/all-details/all-details.module#AllDetailsPageModule' 
+          }
+        ]
       }
     ]
   }
