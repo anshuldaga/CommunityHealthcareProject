@@ -1,9 +1,28 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>all-resources</ion-title>
+<ion-header> 
+  <ion-toolbar class="toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button color="danger"></ion-menu-button>
+      <ion-back-button defaultHref="/health-education" color="danger"></ion-back-button>
+    </ion-buttons>
+    <ion-text color="medium">
+      &nbsp;&nbsp;{{loadedTab.category_title}} Resources
+    </ion-text>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
+
+<ion-content>
+  <ion-list>
+    <ion-list-header color="danger">
+      Categories
+    </ion-list-header>
+    
+    <ion-item *ngFor="let tab of all_resources"  details="true" [routerLink]="['/health-resources', tab.category_title]">
+        <ion-label>
+          <h2>{{tab.resource_title}}</h2>
+          <p>{{tab.resource_description}}</p>
+        </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
