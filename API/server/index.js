@@ -13,9 +13,11 @@ const educationTabs = require('./routes/educationTabsRoute'); //user -> router
 const log = require('./routes/logRoute'); //user -> router
 const medlog = require('./routes/medLogRoute'); //user -> router
 const medNames = require('./routes/medNamesRoute'); //user -> router
+const resources = require('./routes/resourcesRoute'); //user -> router
 
 app.use(user); //router
 app.use(userHealth); //router
+app.use(resources); //router
 app.use(userCondition); //router
 app.use(userMedication); //router
 app.use(educationTabs); //router
