@@ -12,22 +12,6 @@ const routes: Routes = [
     loadChildren: './home/home.module#HomePageModule'
   },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
-
-  {
-    path: 'health-education',
-    children: [
-      {
-        path: '',
-        loadChildren:
-          './health-education/health-education.module#HealthEducationPageModule'
-      },
-      {
-        path: ':educationTabId',
-        loadChildren:
-          './health-education/health-education-tab/health-education-tab.module#HealthEducationTabPageModule'
-      }
-    ]
-  },
   {
     path: 'health-calendar',
     loadChildren:
@@ -55,9 +39,37 @@ const routes: Routes = [
     path: 'add-appointment',
     loadChildren:
       './health-calendar/add-appointment/add-appointment.module#AddAppointmentPageModule'
-  },  { path: 'health-resources', loadChildren: './health-resources/health-resources.module#HealthResourcesPageModule' },
-  { path: 'all-resources', loadChildren: './health-resources/all-resources/all-resources.module#AllResourcesPageModule' },
-  { path: 'all-details', loadChildren: './health-resources/all-resources/all-details/all-details.module#AllDetailsPageModule' }
+  },
+  {
+    path: 'health-education',
+    children: [
+      {
+        path: '',
+        loadChildren:
+          './health-education/health-education.module#HealthEducationPageModule'
+      },
+      {
+        path: ':educationTabId',
+        loadChildren:
+          './health-education/health-education-tab/health-education-tab.module#HealthEducationTabPageModule'
+      }
+    ]
+  },
+  { 
+    path: 'health-resources', 
+    children: [
+      {
+        path: '',
+        loadChildren: './health-resources/health-resources.module#HealthResourcesPageModule' 
+      },
+      {
+        path: ':category',
+        loadChildren: './health-resources/all-resources/all-resources.module#AllResourcesPageModule' 
+      }
+    ]
+  }
+  // { path: 'all-resources', loadChildren: './health-resources/all-resources/all-resources.module#AllResourcesPageModule' },
+  // { path: 'all-details', loadChildren: './health-resources/all-resources/all-details/all-details.module#AllDetailsPageModule' }
 
 ];
 

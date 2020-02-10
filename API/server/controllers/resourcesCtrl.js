@@ -7,7 +7,7 @@ var mysqlConnection = require('../mysqlConnection');
 
 exports.getResources = (req, res, next) => {
   mysqlConnection.query(
-    'SELECT categories.category_id, \
+    'SELECT categories.category_title, \
     JSON_ARRAYAGG(JSON_OBJECT("resource_title", resource_title, \
     "resource_description", resource_description, \
     "all_details",  JSON_OBJECT("state", state, "city", city)) ) all_resources \
