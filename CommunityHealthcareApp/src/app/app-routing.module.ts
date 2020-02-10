@@ -29,21 +29,6 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'health-resources',
-    children: [
-      {
-        path: '',
-        loadChildren:
-          './health-resources/health-resources.module#HealthResourcesPageModule'
-      },
-      {
-        path: ':resourceTabId',
-        loadChildren:
-          './health-resources/health-resources-tab/health-resources-tab.module#HealthResourcesTabPageModule'
-      }
-    ]
-  },
-  {
     path: 'health-calendar',
     loadChildren:
       './health-calendar/health-calendar.module#HealthCalendarPageModule'
@@ -70,7 +55,10 @@ const routes: Routes = [
     path: 'add-appointment',
     loadChildren:
       './health-calendar/add-appointment/add-appointment.module#AddAppointmentPageModule'
-  }
+  },  { path: 'health-resources', loadChildren: './health-resources/health-resources.module#HealthResourcesPageModule' },
+  { path: 'all-resources', loadChildren: './health-resources/all-resources/all-resources.module#AllResourcesPageModule' },
+  { path: 'all-details', loadChildren: './health-resources/all-resources/all-details/all-details.module#AllDetailsPageModule' }
+
 ];
 
 @NgModule({
