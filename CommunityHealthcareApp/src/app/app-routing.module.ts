@@ -21,15 +21,10 @@ const routes: Routes = [
     path: 'tabs',
     loadChildren: './health-card/tabs/tabs.module#TabsPageModule'
   },
-  // tslint:disable-next-line: max-line-length
   {
     path: 'edit-information',
     loadChildren:
       './health-card/information/edit-information/edit-information.module#EditInformationPageModule'
-  },
-  {
-    path: 'logtabs',
-    loadChildren: './health-logs/tabs/tabs.module#TabsPageModule'
   },
   {
     path: 'register',
@@ -77,9 +72,6 @@ const routes: Routes = [
       }
     ]
   }
-  // { path: 'all-resources', loadChildren: './health-resources/all-resources/all-resources.module#AllResourcesPageModule' },
-  // { path: 'all-details', loadChildren: './health-resources/all-resources/all-details/all-details.module#AllDetailsPageModule' }
-
 ];
 
 @NgModule({
